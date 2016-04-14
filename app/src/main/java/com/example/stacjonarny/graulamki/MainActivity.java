@@ -26,7 +26,6 @@ public class MainActivity extends FragmentActivity {
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, main_menu_fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 

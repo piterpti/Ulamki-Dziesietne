@@ -1,17 +1,20 @@
 package com.example.stacjonarny.graulamki;
 
-
-
-
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
 import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
+
+import java.lang.reflect.Array;
 
 
 public class MainActivity extends FragmentActivity {
@@ -23,8 +26,8 @@ public class MainActivity extends FragmentActivity {
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
-
     }
 
     public void StartGameFragment(View view) {
@@ -54,4 +57,6 @@ public class MainActivity extends FragmentActivity {
     public void ExitAplication(View view) {
         System.exit(0);
     }
+
+
 }

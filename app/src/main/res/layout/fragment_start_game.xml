@@ -5,29 +5,15 @@
     tools:context="com.example.stacjonarny.graulamki.fragments.StartGameFragment"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="16dp"
     android:background="#8689e8">
 
+    <ListView
+        android:id="@+id/difficultyLevels"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </ListView>
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LEVEL 1"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LEVEL 2"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LEVEL 3"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LEVEL 4"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LEVEL 5"/>
 
 </LinearLayout>

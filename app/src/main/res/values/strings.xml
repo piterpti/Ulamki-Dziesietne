@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">GraUlamki</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string-array name="difficulty_levels">
+        <item>Bardzo Latwy</item>
+        <item>Latwy</item>
+        <item>Sredni</item>
+        <item>Trudny</item>
+        <item>Bardzo Trudny</item>
+    </string-array>
 </resources>

@@ -18,6 +18,8 @@ public class DifficultyLevelAdapter extends ArrayAdapter {
         super(context, 0, list);
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         DifficultLevel lvl = (DifficultLevel) getItem(position);

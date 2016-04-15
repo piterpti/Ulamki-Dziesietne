@@ -7,12 +7,14 @@
     <string name="timeToAnswer">Czas na odpowiedź:</string>
     <string name="questionsCount">Liczba pytan:</string>
     <string name="chooseDifficultLevel">Wybierz poziom trudnosci:</string>
+    <string name="currentTask">Task: 1/10</string>
+    <string name="taskText">Task</string>
 
     <string-array name="difficulty_levels">
-        <item>Bardzo Latwy,40,10,#20ff19</item>
-        <item>Latwy,30,20,#37a31f</item>
-        <item>Sredni,20,30,#eee40f</item>
-        <item>Trudny,15,40,#ee960f</item>
-        <item>Bardzo Trudny,10,50,#ee0f0f</item>
+        <item>Bardzo Latwy,10,40,#20ff19</item>
+        <item>Latwy,20,30,#37a31f</item>
+        <item>Sredni,30,20,#eee40f</item>
+        <item>Trudny,40,15,#ee960f</item>
+        <item>Bardzo Trudny,50,10,#ee0f0f</item>
     </string-array>
 </resources>

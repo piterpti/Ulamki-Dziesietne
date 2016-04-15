@@ -3,45 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Game"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+        <TextView
+            android:id="@+id/taskProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Task"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" / "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:text="@string/taskText"
+            android:gravity="left"/>
+        <!-- HACK FROM STACKOVERFLOW :D-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/go_back_to_difficulty_levels"
-                android:text="@string/back_to_menu"
-                />
-        </LinearLayout>
+            android:text="@string/back_to_menu"
+            android:id="@+id/go_back_to_difficulty_levels"
+            android:gravity="right"/>
     </LinearLayout>
 
     <!--zadanie-->
@@ -58,35 +44,58 @@
         android:text=""
         android:textSize="20sp"
         android:gravity="center"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ANSWER 1"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ANSWER 2"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="48dp">
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ANSWER 3"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ANSWER 4"/>
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANSWER 1"
+                android:layout_weight="0.4"
+                android:layout_marginRight="12dp"
+                android:padding="32dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANSWER 2"
+                android:layout_weight="0.4"
+                android:layout_marginLeft="12dp"
+                android:padding="32dp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="0.5">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANSWER 3"
+                android:layout_weight="0.4"
+                android:layout_marginRight="12dp"
+                android:padding="32dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANSWER 4"
+                android:layout_weight="0.4"
+                android:layout_marginLeft="12dp"
+                android:padding="32dp"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
+

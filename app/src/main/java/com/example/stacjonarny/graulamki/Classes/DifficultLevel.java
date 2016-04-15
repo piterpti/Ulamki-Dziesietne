@@ -7,13 +7,19 @@ public class DifficultLevel {
     private String level;
     private float timeToAnswer;
     private int questionCount;
-    private String backgroundColor;
+    private String backgroundColor = "";
 
     public DifficultLevel(String level, float timeToAnswer, int questionCount, String backgroundColor) {
         this.level = level;
         this.timeToAnswer = timeToAnswer;
         this.questionCount = questionCount;
         this.backgroundColor = backgroundColor;
+    }
+
+    public DifficultLevel(String level, float timeToAnswer, int questionCount) {
+        this.level = level;
+        this.timeToAnswer = timeToAnswer;
+        this.questionCount = questionCount;
     }
 
     public String getLevel() {

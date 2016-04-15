@@ -14,11 +14,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.DifficultyLevelAdapter;
 import com.example.stacjonarny.graulamki.R;
 
 
 public class StartGameFragment extends Fragment {
+
+    private DifficultLevel[] difficultLevels;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +32,9 @@ public class StartGameFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), getResources().getStringArray(R.array.difficulty_levels));
+
+        LoadDifficultLevels();
+        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), difficultLevels);
         ListView list = (ListView) getActivity().findViewById(R.id.difficultyLevels);
         list.setAdapter(adapter);
 
@@ -46,5 +51,16 @@ public class StartGameFragment extends Fragment {
         });
 
 
+    }
+
+    public void LoadDifficultLevels()
+    {
+        difficultLevels = new DifficultLevel[5];
+        String [] tab = getResources().getStringArray(R.array.difficulty_levels);
+        for(int i = 0; i < difficultLevels.length; i++)
+        {
+            String[] temp = tab[i].split(",");
+            difficultLevels[i] = new DifficultLevel(temp[0], Float.valueOf(temp[2]),Integer.valueOf(temp[1]), temp[3]);
+        }
     }
 }

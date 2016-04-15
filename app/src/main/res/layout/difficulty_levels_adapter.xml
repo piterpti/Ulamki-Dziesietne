@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="4dp">
+    android:padding="8dp"
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/diffLevelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BLABLA"
-        android:textSize="24dp"
-        android:padding="4dp"/>
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        />
 
     <TextView
+        android:id="@+id/diffLevelTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MY Adapter"/>
+        android:text="@string/timeToAnswer"
+        android:paddingLeft="@dimen/paddingTextViewAdapter"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/diffLevelCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/questionsCount"
+        android:paddingLeft="@dimen/paddingTextViewAdapter"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
 
 </LinearLayout>

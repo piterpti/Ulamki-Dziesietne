@@ -32,10 +32,11 @@
 
     <!--zadanie-->
     <TextView
+        android:id="@+id/gameQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="QUESTION"
-        android:textSize="50sp"
+        android:textSize="24sp"
         android:gravity="center"/>
     <TextView
         android:layout_width="match_parent"
@@ -49,52 +50,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="48dp">
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:weightSum="1">
 
         <LinearLayout
+            android:id="@+id/answerLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="horizontal"
-            android:layout_weight="0.5"
-            android:gravity="center">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANSWER 1"
-                android:layout_weight="0.4"
-                android:layout_marginRight="12dp"
-                android:padding="32dp"
-                />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANSWER 2"
-                android:layout_weight="0.4"
-                android:layout_marginLeft="12dp"
-                android:padding="32dp"/>
-        </LinearLayout>
+            android:layout_weight="0.2"
+            android:gravity="center"/>
 
         <LinearLayout
+            android:id="@+id/answerLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_weight="0.5">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANSWER 3"
-                android:layout_weight="0.4"
-                android:layout_marginRight="12dp"
-                android:padding="32dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANSWER 4"
-                android:layout_weight="0.4"
-                android:layout_marginLeft="12dp"
-                android:padding="32dp"/>
-        </LinearLayout>
+            android:layout_weight="0.2"/>
     </LinearLayout>
 
 </LinearLayout>

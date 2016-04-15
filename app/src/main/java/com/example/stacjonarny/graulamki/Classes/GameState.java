@@ -24,6 +24,11 @@ public class GameState {
         return currentTask;
     }
 
+    public  void nextTask()
+    {
+        currentTask++;
+    }
+
     public DifficultLevel getDifficultLevel() {
         return difficultLevel;
     }

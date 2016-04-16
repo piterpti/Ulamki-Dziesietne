@@ -1,4 +1,4 @@
-package com.example.stacjonarny.graulamki;
+package com.example.stacjonarny.graulamki.Classes;
 
 
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
+import com.example.stacjonarny.graulamki.R;
 
 
 public class DifficultyLevelAdapter extends ArrayAdapter {

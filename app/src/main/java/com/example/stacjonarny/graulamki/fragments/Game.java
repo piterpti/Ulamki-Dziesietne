@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.*;
 
 import com.example.stacjonarny.graulamki.Classes.AnswerButton;
@@ -26,15 +27,12 @@ import com.example.stacjonarny.graulamki.R;
  */
 public class Game extends Fragment {
 
-    private GameState gameState;
+    public static GameState gameState;
     private TextView timeRemain;
     private Button goBackButton;
     private TextView gameTaskProgress;
     private TextView gameQuestion;
-    private ArrayList<Question> questionsList;
-    private int timeToAnswer = 0;
-
-
+    private CountDownTimer answerTimer;
     private LinearLayout answerLayout1;
     private LinearLayout answerLayout2;
     private AnswerButton[] answerButtons;
@@ -43,19 +41,16 @@ public class Game extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
         timeRemain = (TextView) view.findViewById(R.id.time_remain);
         goBackButton = (Button) view.findViewById(R.id.go_back_to_difficulty_levels);
         gameTaskProgress = (TextView) view.findViewById(R.id.taskProgress);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
-        questionsList = new ArrayList<>();
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
         answerButtons = new AnswerButton[4];
-        for(int i = 0; i < answerButtons.length; i++)
-        {
+        for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new AnswerButton(getActivity());
             answerButtons[i].setOnClickListener(new AnswerButtonHandler());
         }
@@ -82,8 +77,17 @@ public class Game extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void CreateGame()
-    {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(answerTimer != null) {
+            answerTimer.cancel();
+            answerTimer = null;
+        }
+    }
+
+    // starting a game
+    public void CreateGame() {
         String levelText = getArguments().getString(StartGameFragment.KEY_CHOSEN_LEVEL_TEXT);
         int levelCount = getArguments().getInt(StartGameFragment.KEY_CHOSEN_LEVEL_COUNT);
         float levelTime = getArguments().getFloat(StartGameFragment.KEY_CHOSEN_LEVEL_TIME);
@@ -91,93 +95,98 @@ public class Game extends Fragment {
         gameState = new GameState();
         gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount));
         gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + levelCount);
-        CreateTimer((int) gameState.getDifficultLevel().getTimeToAnswer() * 1000);
         GenerateQuestions();
         LoadNextQuestionIfExist();
     }
 
-    public boolean LoadNextQuestionIfExist()
-    {
-        if(gameState.getCurrentTask() - 1 >= questionsList.size())
-        {
+    public boolean LoadNextQuestionIfExist() {
+        // if no more question go to gameSummary fragment
+        if (gameState.getCurrentTask() - 1 >= gameState.questionsList.size()) {
+            GameSummary summary_fragment = new GameSummary();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, summary_fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
             return false;
         }
-        Question question = questionsList.get(gameState.getCurrentTask() - 1);
+        // else load next question
+        Question question = gameState.questionsList.get(gameState.getCurrentTask() - 1);
         gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + gameState.getDifficultLevel().getQuestionCount());
         gameState.nextTask();
         gameQuestion.setText(question.questionDivideWithoutAnswer());
         RandomAnswerOnButtons(question);
+        CreateTimer((int) gameState.getDifficultLevel().getTimeToAnswer() * 1000);
         return true;
     }
 
-    public void RandomAnswerOnButtons(Question question)
-    {
+    // method to random answers on buttons
+    public void RandomAnswerOnButtons(Question question) {
         Random r = new Random();
         int random1 = r.nextInt(4);
         int random2, random3, random4;
         random2 = random3 = random4 = random1;
         answerButtons[random1].setText(question.getDivideAnswer());
+        Log.d("piotrek", answerButtons[random1].getText() + "");
         answerButtons[random1].setIsCorrect(true);
-        while(random1 == random2)
+        while (random1 == random2) {
             random2 = r.nextInt(4);
-        answerButtons[random2].setText(question.getIncorrectDivideAnswer1());
-        while(random3 == random2 || random3 == random1)
-            random3 = r.nextInt(4);
-        answerButtons[random3].setText(question.getIncorrectDivideAnswer2());
-        while(random4 == random1 || random4 == random2 || random4 == random3)
-            random4 = r.nextInt(4);
-        answerButtons[random4].setText(question.getIncorrectDivideAnswer3());
-    }
-
-    public void GenerateQuestions()
-    {
-        for(int i = 0; i < gameState.getDifficultLevel().getQuestionCount(); i++)
-        {
-            questionsList.add(QuestionGenerator.generateQuestion(Question.QUESTION_DIVIDE));
         }
-        Log.d("alamakota",questionsList.size() + "");
+        while (random3 == random2 || random3 == random1) {
+            random3 = r.nextInt(4);
+        }
+        while (random4 == random1 || random4 == random2 || random4 == random3) {
+            random4 = r.nextInt(4);
+        }
+
+        answerButtons[random2].setText(question.getIncorrectDivideAnswer1());
+        answerButtons[random3].setText(question.getIncorrectDivideAnswer2());
+        answerButtons[random4].setText(question.getIncorrectDivideAnswer3());
+        answerButtons[random2].setIsCorrect(false);
+        answerButtons[random3].setIsCorrect(false);
+        answerButtons[random4].setIsCorrect(false);
+
     }
 
-    public void CreateTimer(int time)
-    {
-        new CountDownTimer(time + 1000, 1000) {
+    // method to generate question and adding it to list
+    public void GenerateQuestions() {
+        for (int i = 0; i < gameState.getDifficultLevel().getQuestionCount(); i++) {
+            gameState.questionsList.add(QuestionGenerator.generateQuestion(Question.QUESTION_DIVIDE));
+        }
+    }
 
+    // create time counter
+    public void CreateTimer(int time) {
+        if(answerTimer != null) {
+            answerTimer.cancel();
+            answerTimer = null;
+        }
+        answerTimer = new CountDownTimer(time + 1000, 1000) {
+            @Override
             public void onTick(long millisUntilFinished) {
-                timeRemain.setText("seconds remaining: " + millisUntilFinished / 1000);
+                timeRemain.setText("Pozostalo sekund: " + millisUntilFinished / 1000);
             }
 
+            @Override
             public void onFinish() {
-                timeRemain.setText("time end!");
+                LoadNextQuestionIfExist();
             }
-        }.start();
+        };
+        answerTimer.start();
     }
 
-    public class AnswerButtonHandler implements View.OnClickListener{
+    // listener to answer buttons
+    public class AnswerButtonHandler implements View.OnClickListener {
 
         @Override
-        public void onClick(View v)
-        {
+        public void onClick(View v) {
             AnswerButton button = (AnswerButton) v;
 
-            if(button.isCorrect())
-            {
-                questionsList.get(gameState.getCurrentTask() - 2).setIsCorrectAnswer(true);
+            if (button.isCorrect()) {
+                gameState.questionsList.get(gameState.getCurrentTask() - 2).setIsCorrectAnswer(true);
             }
             LoadNextQuestionIfExist();
-            printListAnswers();
         }
     }
-
-    public void printListAnswers()
-    {
-        Log.d("piotrek", "START");
-        for(int i = 0; i < questionsList.size(); i++)
-        {
-            String s = questionsList.get(i).isCorrectAnswer() ? "true" : "false";
-            Log.d("piotrek", s);
-        }
-    }
-
 }
 
 

@@ -84,7 +84,6 @@ public class Question
     {
         int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma - secondExpression.comma - lossNumberToAnswer;
-        Log.d("alamakota",lossNumberToAnswer + "");
         return new MyNumber(val, comma).toString();
     }
 }

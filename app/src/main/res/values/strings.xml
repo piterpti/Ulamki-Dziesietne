@@ -8,6 +8,8 @@
     <string name="chooseDifficultLevel">Wybierz poziom trudnosci:</string>
     <string name="currentTask">Task: 1/10</string>
     <string name="taskText">Task</string>
+    <string name="gameSummary">Podsumowanie rozgrywki:</string>
+    <string name="correctAnswers">Poprawnych odpowiedzi:</string>
 
     <string-array name="difficulty_levels">
         <item>Bardzo Latwy,10,40,#20ff19</item>

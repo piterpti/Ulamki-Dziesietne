@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">GraUlamki</string>
+    <string name="app_name">Ulamki dziesietne</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_to_menu">Menu</string>
     <string name="timeToAnswer">Czas na odpowiedź:</string>
     <string name="questionsCount">Liczba pytan:</string>
     <string name="chooseDifficultLevel">Wybierz poziom trudnosci:</string>
-    <string name="currentTask">Zadanie: 1/10</string>
     <string name="taskText">Zadanie</string>
     <string name="gameSummary">Podsumowanie rozgrywki:</string>
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>

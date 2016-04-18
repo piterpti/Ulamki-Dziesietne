@@ -1,5 +1,6 @@
 package com.example.stacjonarny.graulamki;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
@@ -33,7 +34,7 @@ public class MainActivity extends FragmentActivity {
         StartGameFragment start_game_fragment = new StartGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, start_game_fragment);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -41,7 +42,7 @@ public class MainActivity extends FragmentActivity {
         AchievementFragment achievement_fragment = new AchievementFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, achievement_fragment);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -49,7 +50,7 @@ public class MainActivity extends FragmentActivity {
         AboutGameFragment about_game_fragment = new AboutGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, about_game_fragment);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
     }
 

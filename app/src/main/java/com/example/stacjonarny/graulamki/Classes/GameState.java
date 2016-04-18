@@ -1,5 +1,8 @@
 package com.example.stacjonarny.graulamki.Classes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.*;
 
 public class GameState {

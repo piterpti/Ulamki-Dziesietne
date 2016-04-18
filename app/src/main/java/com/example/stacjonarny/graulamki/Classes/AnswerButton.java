@@ -1,7 +1,6 @@
 package com.example.stacjonarny.graulamki.Classes;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.widget.Button;
 import android.widget.LinearLayout;
 

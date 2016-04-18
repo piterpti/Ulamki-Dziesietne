@@ -14,7 +14,6 @@ import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.DifficultyLevelAdapter;
 import com.example.stacjonarny.graulamki.R;
 
-
 public class StartGameFragment extends Fragment {
 
     private DifficultLevel[] difficultLevels;
@@ -64,6 +63,7 @@ public class StartGameFragment extends Fragment {
             args.putInt(KEY_CHOSEN_LEVEL_COUNT, chosenLevel.getQuestionCount());
             Game play_mode_fragment = new Game();
             play_mode_fragment.setArguments(args);
+            play_mode_fragment.setRetainInstance(true);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, play_mode_fragment);
             transaction.addToBackStack(null);

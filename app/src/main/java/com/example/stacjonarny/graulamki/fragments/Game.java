@@ -30,6 +30,11 @@ import com.example.stacjonarny.graulamki.R;
  */
 public class Game extends Fragment {
 
+    public enum QuestionType {
+        DIVIDE,
+        MULTIPLY
+    }
+
     public static GameState gameState;
     private Button goBackButton;
     private TextView gameTaskProgress;
@@ -40,6 +45,8 @@ public class Game extends Fragment {
     private AnswerButton[] answerButtons;
     private ProgressBar progressBar;
     private TextView verdictText;
+
+    private final int VERDICT_TIME = 3000;
 
     public Game() {
     }
@@ -124,7 +131,7 @@ public class Game extends Fragment {
         Question question = gameState.questionsList.get(gameState.getCurrentTask() - 1);
         gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + gameState.getDifficultLevel().getQuestionCount());
         gameState.nextTask();
-        gameQuestion.setText(question.questionDivideWithoutAnswer());
+        gameQuestion.setText(question.questionWithoutAnswer());
         RandomAnswerOnButtons(question);
         CreateTimer((int) gameState.getDifficultLevel().getTimeToAnswer() * 1000);
         return true;
@@ -136,7 +143,7 @@ public class Game extends Fragment {
         int random1 = r.nextInt(4);
         int random2, random3, random4;
         random2 = random3 = random4 = random1;
-        answerButtons[random1].setText(question.getDivideAnswer());
+        answerButtons[random1].setText(question.getAnswer());
         Log.d("piotrek", answerButtons[random1].getText() + "");
         answerButtons[random1].setIsCorrect(true);
         while (random1 == random2) {
@@ -149,9 +156,9 @@ public class Game extends Fragment {
             random4 = r.nextInt(4);
         }
 
-        answerButtons[random2].setText(question.getIncorrectDivideAnswer1());
-        answerButtons[random3].setText(question.getIncorrectDivideAnswer2());
-        answerButtons[random4].setText(question.getIncorrectDivideAnswer3());
+        answerButtons[random2].setText(question.getIncorrectAnswer1());
+        answerButtons[random3].setText(question.getIncorrectAnswer2());
+        answerButtons[random4].setText(question.getIncorrectAnswer3());
         answerButtons[random2].setIsCorrect(false);
         answerButtons[random3].setIsCorrect(false);
         answerButtons[random4].setIsCorrect(false);
@@ -161,7 +168,7 @@ public class Game extends Fragment {
     // method to generate question and adding it to list
     public void GenerateQuestions() {
         for (int i = 0; i < gameState.getDifficultLevel().getQuestionCount(); i++) {
-            gameState.questionsList.add(QuestionGenerator.generateQuestion(Question.QUESTION_DIVIDE));
+            gameState.questionsList.add(QuestionGenerator.generateQuestion(QuestionType.DIVIDE));
         }
     }
 
@@ -185,7 +192,7 @@ public class Game extends Fragment {
                     public void run() {
                         LoadNextQuestionIfExist();
                     }
-                }, 3000);
+                }, VERDICT_TIME);
             }
         };
         answerTimer.start();
@@ -248,7 +255,7 @@ public class Game extends Fragment {
                 public void run() {
                     LoadNextQuestionIfExist();
                 }
-            }, 3000);
+            }, VERDICT_TIME);
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.stacjonarny.graulamki.Classes;
 import android.util.Log;
 
+import com.example.stacjonarny.graulamki.fragments.Game;
+
 import java.util.*;
 /**
  * Created by Piter on 15/04/2016.
@@ -9,7 +11,7 @@ public class QuestionGenerator {
 
     private static Random r = new Random();
 
-    public static Question generateQuestion(int type)
+    public static Question generateQuestion(Game.QuestionType type)
     {
         int i1;
         int i2;
@@ -21,7 +23,13 @@ public class QuestionGenerator {
         while(i1 % i2 != 0);
         MyNumber ex1 = converToRange(i1);
         MyNumber ex2 = converToRange(i2);
-        Question q = new Question(ex1, ex2, type);
+        Question q = null;
+        if(type == Game.QuestionType.DIVIDE) {
+            q = new DivideQuestion(ex1, ex2);
+        }
+        else if(type == Game.QuestionType.MULTIPLY) {
+
+        }
         return q;
     }
 

@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +23,7 @@ import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.Classes.QuestionGenerator;
 import com.example.stacjonarny.graulamki.Classes.Question;
+import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
 public class Game extends Fragment {
@@ -32,8 +33,6 @@ public class Game extends Fragment {
         MULTIPLY
     }
 
-    public static Fragment mContent;
-    public static GameState gameState;
     private Button goBackButton;
     private TextView gameTaskProgress;
     private TextView gameQuestion;
@@ -43,8 +42,9 @@ public class Game extends Fragment {
     private AnswerButton[] answerButtons;
     private ProgressBar progressBar;
     private TextView verdictText;
+    private boolean nextQuestion = true;
 
-    private final int VERDICT_TIME = 30; // DEFAULT 3000 MILISECONDS
+    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
     public Game() {
     }
@@ -77,24 +77,14 @@ public class Game extends Fragment {
                 transaction.commit();
             }
         });
-        CreateGame();
+
+        LoadNextQuestionIfExist();
         return view;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        TurnOffTimer();
     }
 
     // starting a game
@@ -102,17 +92,15 @@ public class Game extends Fragment {
         String levelText = getArguments().getString(StartGameFragment.KEY_CHOSEN_LEVEL_TEXT);
         int levelCount = getArguments().getInt(StartGameFragment.KEY_CHOSEN_LEVEL_COUNT);
         float levelTime = getArguments().getFloat(StartGameFragment.KEY_CHOSEN_LEVEL_TIME);
-
-        gameState = new GameState();
-        gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount));
-        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + levelCount);
+        MainActivity.gameState = new GameState();
+        MainActivity.gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount));
         GenerateQuestions();
-        LoadNextQuestionIfExist();
+        nextQuestion = true;
     }
 
     public boolean LoadNextQuestionIfExist() {
         // if no more question go to gameSummary fragment
-        if (gameState.getCurrentTask() - 1 >= gameState.questionsList.size()) {
+        if (MainActivity.gameState.getCurrentTask() - 1 >= MainActivity.gameState.questionsList.size()) {
             GameSummary summary_fragment = new GameSummary();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, summary_fragment);
@@ -129,13 +117,15 @@ public class Game extends Fragment {
         }
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
-
-        Question question = gameState.questionsList.get(gameState.getCurrentTask() - 1);
-        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + gameState.getDifficultLevel().getQuestionCount());
-        gameState.nextTask();
+        Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
+        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
         gameQuestion.setText(question.questionWithoutAnswer());
         RandomAnswerOnButtons(question);
-        CreateTimer((int) gameState.getDifficultLevel().getTimeToAnswer() * 1000);
+        if(nextQuestion)
+        {
+            CreateTimer((int) MainActivity.gameState.getDifficultLevel().getTimeToAnswer() * 1000);
+            nextQuestion = false;
+        }
         return true;
     }
 
@@ -166,11 +156,17 @@ public class Game extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        TurnOffTimer();
+    }
+
     // method to generate question and adding it to list
     public void GenerateQuestions() {
         Random random = new Random();
         QuestionType type;
-        for (int i = 0; i < gameState.getDifficultLevel().getQuestionCount(); i++) {
+        for (int i = 0; i < MainActivity.gameState.getDifficultLevel().getQuestionCount(); i++) {
             if(random.nextInt(2) == 0)
             {
                 type = QuestionType.DIVIDE;
@@ -179,7 +175,7 @@ public class Game extends Fragment {
             {
                 type = QuestionType.MULTIPLY;
             }
-            gameState.questionsList.add(QuestionGenerator.generateQuestion(type));
+            MainActivity.gameState.questionsList.add(QuestionGenerator.generateQuestion(type));
         }
     }
 
@@ -190,8 +186,9 @@ public class Game extends Fragment {
         answerTimer = new CountDownTimer(time, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
-                float ppp = millisUntilFinished / gameState.getDifficultLevel().getTimeToAnswer() / 10;
+                float ppp = millisUntilFinished / MainActivity.gameState.getDifficultLevel().getTimeToAnswer() / 10;
                 progressBar.setProgress((int) ppp);
+                Log.d("blabla",ppp + "");
             }
 
             @Override
@@ -231,6 +228,8 @@ public class Game extends Fragment {
                 b.setEnabled(false);
         }
         progressBar.setVisibility(View.GONE);
+        MainActivity.gameState.nextTask();
+        nextQuestion = true;
     }
 
     public void WrongAnswer()
@@ -243,6 +242,8 @@ public class Game extends Fragment {
             b.setVisibility(View.INVISIBLE);
         }
         progressBar.setVisibility(View.GONE);
+        MainActivity.gameState.nextTask();
+        nextQuestion = true;
     }
 
     // listener to answer buttons
@@ -254,7 +255,7 @@ public class Game extends Fragment {
             TurnOffTimer();
             if (button.isCorrect()) {
                 GoodAnswer();
-                gameState.questionsList.get(gameState.getCurrentTask() - 2).setIsCorrectAnswer(true);
+                MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 2).setIsCorrectAnswer(true);
             }
             else
             {

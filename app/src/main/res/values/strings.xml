@@ -17,7 +17,7 @@
         <item>Latwy,20,30,#37a31f</item>
         <item>Sredni,30,20,#eee40f</item>
         <item>Trudny,40,15,#ee960f</item>
-        <item>Bardzo Trudny,50,10,#ee0f0f</item>
+        <item>Bardzo Trudny,50,5,#ee0f0f</item>
     </string-array>
 
     <string-array name="game_summary">

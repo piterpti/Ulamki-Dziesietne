@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
@@ -19,6 +20,8 @@ import java.lang.reflect.Array;
 
 
 public class MainActivity extends FragmentActivity {
+
+    public static GameState gameState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class MainActivity extends FragmentActivity {
         StartGameFragment start_game_fragment = new StartGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, start_game_fragment);
-        //transaction.addToBackStack(null);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -42,7 +45,7 @@ public class MainActivity extends FragmentActivity {
         AchievementFragment achievement_fragment = new AchievementFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, achievement_fragment);
-        //transaction.addToBackStack(null);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -50,7 +53,7 @@ public class MainActivity extends FragmentActivity {
         AboutGameFragment about_game_fragment = new AboutGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, about_game_fragment);
-        //transaction.addToBackStack(null);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

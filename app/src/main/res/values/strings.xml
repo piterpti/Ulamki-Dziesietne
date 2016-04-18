@@ -20,4 +20,10 @@
         <item>Trudny,40,15,#ee960f</item>
         <item>Bardzo Trudny,50,10,#ee0f0f</item>
     </string-array>
+
+    <string-array name="game_summary">
+        <item>Matura nie zdana?</item>
+        <item>Calkiem calkiem..</item>
+        <item>Tadeusz Sznuk bylby dumny!</item>
+    </string-array>
 </resources>

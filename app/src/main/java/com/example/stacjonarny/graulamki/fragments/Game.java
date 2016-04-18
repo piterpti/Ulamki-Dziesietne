@@ -1,7 +1,7 @@
 package com.example.stacjonarny.graulamki.fragments;
 
 
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -144,7 +144,6 @@ public class Game extends Fragment {
         int random2, random3, random4;
         random2 = random3 = random4 = random1;
         answerButtons[random1].setText(question.getAnswer());
-        Log.d("piotrek", answerButtons[random1].getText() + "");
         answerButtons[random1].setIsCorrect(true);
         while (random1 == random2) {
             random2 = r.nextInt(4);
@@ -167,8 +166,18 @@ public class Game extends Fragment {
 
     // method to generate question and adding it to list
     public void GenerateQuestions() {
+        Random random = new Random();
+        QuestionType type;
         for (int i = 0; i < gameState.getDifficultLevel().getQuestionCount(); i++) {
-            gameState.questionsList.add(QuestionGenerator.generateQuestion(QuestionType.DIVIDE));
+            if(random.nextInt(2) == 0)
+            {
+                type = QuestionType.DIVIDE;
+            }
+            else
+            {
+                type = QuestionType.MULTIPLY;
+            }
+            gameState.questionsList.add(QuestionGenerator.generateQuestion(type));
         }
     }
 

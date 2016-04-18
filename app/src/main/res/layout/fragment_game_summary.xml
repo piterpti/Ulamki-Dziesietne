@@ -3,28 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.stacjonarny.graulamki.fragments.GameSummary"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gameSummary" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_to_menu"
+            android:id="@+id/go_back_to_difficulty_levels"
+            android:gravity="right"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSummary"
+        android:textSize="24sp"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:paddingTop="18dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/correctAnswers"/>
+            android:text="@string/correctAnswers"
+            android:textSize="14sp"/>
         <TextView
             android:id="@+id/summaryGameStatistics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30% (3/10)"/>
+            android:text="30% (3/10)"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textSummaries"
+        android:text="TEST TEXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:paddingTop="16dp"/>
 
 
 </LinearLayout>

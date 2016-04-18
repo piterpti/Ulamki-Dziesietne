@@ -28,7 +28,7 @@ public class QuestionGenerator {
             q = new DivideQuestion(ex1, ex2);
         }
         else if(type == Game.QuestionType.MULTIPLY) {
-
+            q = new MultiplyQuestion(ex1, ex2);
         }
         return q;
     }

@@ -4,6 +4,7 @@ package com.example.stacjonarny.graulamki.fragments;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -30,7 +31,6 @@ import com.example.stacjonarny.graulamki.R;
 public class Game extends Fragment {
 
     public static GameState gameState;
-    private TextView timeRemain;
     private Button goBackButton;
     private TextView gameTaskProgress;
     private TextView gameQuestion;
@@ -39,6 +39,7 @@ public class Game extends Fragment {
     private LinearLayout answerLayout2;
     private AnswerButton[] answerButtons;
     private ProgressBar progressBar;
+    private TextView verdictText;
 
     public Game() {
     }
@@ -46,13 +47,13 @@ public class Game extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
-        timeRemain = (TextView) view.findViewById(R.id.time_remain);
         goBackButton = (Button) view.findViewById(R.id.go_back_to_difficulty_levels);
         gameTaskProgress = (TextView) view.findViewById(R.id.taskProgress);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
         progressBar = (ProgressBar) view.findViewById(R.id.timeRemainProgressBar);
+        verdictText = (TextView) view.findViewById(R.id.verdictText);
         answerButtons = new AnswerButton[4];
         for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new AnswerButton(getActivity());
@@ -84,10 +85,7 @@ public class Game extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(answerTimer != null) {
-            answerTimer.cancel();
-            answerTimer = null;
-        }
+        TurnOffTimer();
     }
 
     // starting a game
@@ -114,6 +112,15 @@ public class Game extends Fragment {
             return false;
         }
         // else load next question
+        verdictText.setVisibility(View.GONE);
+        for(Button b : answerButtons)
+        {
+            b.setVisibility(View.VISIBLE);
+            b.setEnabled(true);
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        gameQuestion.setVisibility(View.VISIBLE);
+
         Question question = gameState.questionsList.get(gameState.getCurrentTask() - 1);
         gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + gameState.getCurrentTask() + "/" + gameState.getDifficultLevel().getQuestionCount());
         gameState.nextTask();
@@ -161,24 +168,63 @@ public class Game extends Fragment {
     // create time counter
     public void CreateTimer(int time) {
         progressBar.setProgress(100);
-        if(answerTimer != null) {
-            answerTimer.cancel();
-            answerTimer = null;
-        }
+        TurnOffTimer();
         answerTimer = new CountDownTimer(time, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
                 float ppp = millisUntilFinished / gameState.getDifficultLevel().getTimeToAnswer() / 10;
                 progressBar.setProgress((int) ppp);
-                timeRemain.setText("Pozostalo sekund: " + (millisUntilFinished / 1000 + 1));
             }
 
             @Override
             public void onFinish() {
-                LoadNextQuestionIfExist();
+                WrongAnswer();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadNextQuestionIfExist();
+                    }
+                }, 3000);
             }
         };
         answerTimer.start();
+    }
+
+    private void TurnOffTimer() {
+        if(answerTimer != null) {
+            answerTimer.cancel();
+            answerTimer = null;
+        }
+    }
+
+    public void GoodAnswer()
+    {
+        verdictText.setText(getResources().getString(R.string.correctAnswer));
+        verdictText.setVisibility(View.VISIBLE);
+        for(AnswerButton b : answerButtons)
+        {
+            if(!b.isCorrect())
+            {
+                b.setVisibility(View.INVISIBLE);
+
+            }
+            else
+                b.setEnabled(false);
+        }
+        progressBar.setVisibility(View.GONE);
+    }
+
+    public void WrongAnswer()
+    {
+        verdictText.setText(getResources().getString(R.string.incorrectAnswer));
+        verdictText.setVisibility(View.VISIBLE);
+        gameQuestion.setVisibility(View.INVISIBLE);
+        for(Button b : answerButtons)
+        {
+            b.setVisibility(View.INVISIBLE);
+        }
+        progressBar.setVisibility(View.GONE);
     }
 
     // listener to answer buttons
@@ -187,11 +233,22 @@ public class Game extends Fragment {
         @Override
         public void onClick(View v) {
             AnswerButton button = (AnswerButton) v;
-
+            TurnOffTimer();
             if (button.isCorrect()) {
+                GoodAnswer();
                 gameState.questionsList.get(gameState.getCurrentTask() - 2).setIsCorrectAnswer(true);
             }
-            LoadNextQuestionIfExist();
+            else
+            {
+                WrongAnswer();
+            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LoadNextQuestionIfExist();
+                }
+            }, 3000);
         }
     }
 }

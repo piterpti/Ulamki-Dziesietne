@@ -38,18 +38,27 @@
         android:text="QUESTION"
         android:textSize="24sp"
         android:gravity="center"/>
-    <TextView
-        android:id="@+id/time_remain"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
-        android:gravity="center"/>
-    <ProgressBar
-        android:id="@+id/timeRemainProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:orientation="vertical">
+        <ProgressBar
+            android:id="@+id/timeRemainProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            style="?android:attr/progressBarStyleHorizontal"/>
+
+        <TextView
+            android:id="@+id/verdictText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verdict"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:visibility="gone"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

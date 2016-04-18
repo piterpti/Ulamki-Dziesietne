@@ -1,6 +1,7 @@
 package com.example.stacjonarny.graulamki.fragments;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.*;
@@ -36,6 +38,7 @@ public class Game extends Fragment {
     private LinearLayout answerLayout1;
     private LinearLayout answerLayout2;
     private AnswerButton[] answerButtons;
+    private ProgressBar progressBar;
 
     public Game() {
     }
@@ -49,6 +52,7 @@ public class Game extends Fragment {
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
+        progressBar = (ProgressBar) view.findViewById(R.id.timeRemainProgressBar);
         answerButtons = new AnswerButton[4];
         for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new AnswerButton(getActivity());
@@ -156,14 +160,17 @@ public class Game extends Fragment {
 
     // create time counter
     public void CreateTimer(int time) {
+        progressBar.setProgress(100);
         if(answerTimer != null) {
             answerTimer.cancel();
             answerTimer = null;
         }
-        answerTimer = new CountDownTimer(time + 1000, 1000) {
+        answerTimer = new CountDownTimer(time, 50) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeRemain.setText("Pozostalo sekund: " + millisUntilFinished / 1000);
+                float ppp = millisUntilFinished / gameState.getDifficultLevel().getTimeToAnswer() / 10;
+                progressBar.setProgress((int) ppp);
+                timeRemain.setText("Pozostalo sekund: " + (millisUntilFinished / 1000 + 1));
             }
 
             @Override

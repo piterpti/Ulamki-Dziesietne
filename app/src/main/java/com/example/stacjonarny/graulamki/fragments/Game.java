@@ -2,6 +2,7 @@ package com.example.stacjonarny.graulamki.fragments;
 
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -188,7 +189,6 @@ public class Game extends Fragment {
             public void onTick(long millisUntilFinished) {
                 float ppp = millisUntilFinished / MainActivity.gameState.getDifficultLevel().getTimeToAnswer() / 10;
                 progressBar.setProgress((int) ppp);
-                Log.d("blabla",ppp + "");
             }
 
             @Override
@@ -217,6 +217,7 @@ public class Game extends Fragment {
     {
         verdictText.setText(getResources().getString(R.string.correctAnswer));
         verdictText.setVisibility(View.VISIBLE);
+        verdictText.setTextColor(Color.argb(255, 0, 255, 0));
         for(AnswerButton b : answerButtons)
         {
             if(!b.isCorrect())
@@ -237,6 +238,7 @@ public class Game extends Fragment {
         verdictText.setText(getResources().getString(R.string.incorrectAnswer));
         verdictText.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.INVISIBLE);
+        verdictText.setTextColor(Color.argb(255, 255, 0, 0));
         for(Button b : answerButtons)
         {
             b.setVisibility(View.INVISIBLE);

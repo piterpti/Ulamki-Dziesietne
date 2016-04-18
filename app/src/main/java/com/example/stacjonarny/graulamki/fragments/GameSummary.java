@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
 import java.text.DecimalFormat;
@@ -28,8 +29,8 @@ public class GameSummary extends Fragment {
         View viev = inflater.inflate(R.layout.fragment_game_summary, container, false);
 
          correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
-        int answers = Game.gameState.getCorrectAnswerCount();
-        int allAnswers = Game.gameState.getDifficultLevel().getQuestionCount();
+        int answers = MainActivity.gameState.getCorrectAnswerCount();
+        int allAnswers = MainActivity.gameState.getDifficultLevel().getQuestionCount();
         float percentAnswers = ((float)answers / (float)allAnswers) * 100f;
         String toDisplay = " " + String.format("%.2f",percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
         correctAnswers.setText(toDisplay);

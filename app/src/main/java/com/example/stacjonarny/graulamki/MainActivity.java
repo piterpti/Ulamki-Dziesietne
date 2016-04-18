@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
@@ -18,6 +19,8 @@ import java.lang.reflect.Array;
 
 
 public class MainActivity extends FragmentActivity {
+
+    public static GameState gameState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

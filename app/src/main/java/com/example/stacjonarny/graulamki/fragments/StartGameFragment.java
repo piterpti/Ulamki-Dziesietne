@@ -68,6 +68,7 @@ public class StartGameFragment extends Fragment {
             transaction.replace(R.id.fragment_container, play_mode_fragment);
             transaction.addToBackStack(null);
             transaction.commit();
+            play_mode_fragment.CreateGame();
         }
     }
 }

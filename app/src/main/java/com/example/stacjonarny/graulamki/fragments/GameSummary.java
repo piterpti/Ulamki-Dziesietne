@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
@@ -64,6 +65,9 @@ public class GameSummary extends Fragment {
                 transaction.commit();
             }
         });
+
+        Toast.makeText(getActivity(),MainActivity.gameState.getCorrectAnswersRowCount() + "", Toast.LENGTH_LONG).show();
+
         return viev;
     }
 }

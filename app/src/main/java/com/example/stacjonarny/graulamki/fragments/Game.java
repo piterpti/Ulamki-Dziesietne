@@ -46,7 +46,7 @@ public class Game extends Fragment {
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
 
-    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
+    private final int VERDICT_TIME = 300; // DEFAULT 3000 MILISECONDS
 
     public Game() {
     }

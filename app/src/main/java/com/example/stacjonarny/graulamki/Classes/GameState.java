@@ -9,6 +9,7 @@ public class GameState {
 
     private DifficultLevel difficultLevel;
     private int currentTask;
+    private int goodAnswers;
     public ArrayList<Question> questionsList;
 
     public GameState() {
@@ -48,5 +49,27 @@ public class GameState {
             }
         }
         return correctAnswers;
+    }
+
+    public int getCorrectAnswersRowCount()
+    {
+        int maxCorrectAnswers = 0;
+        int correctAnswers = 0;
+        for(Question q : questionsList)
+        {
+            if(q.isCorrectAnswer())
+            {
+                correctAnswers++;
+            }
+            else
+            {
+                if(maxCorrectAnswers < correctAnswers)
+                {
+                    maxCorrectAnswers = correctAnswers;
+                }
+                correctAnswers = 0;
+            }
+        }
+        return maxCorrectAnswers;
     }
 }

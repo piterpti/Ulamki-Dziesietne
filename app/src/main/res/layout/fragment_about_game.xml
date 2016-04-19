@@ -1,14 +1,25 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.stacjonarny.graulamki.fragments.AboutGameFragment"
-    android:background="#b9eb83">
+    android:background="#b9eb83"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="about game blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Autorzy aplikacji:"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingLeft="14dp"
+        android:text="@string/applicationAuthors"
+        android:textSize="18sp"/>
+</LinearLayout>

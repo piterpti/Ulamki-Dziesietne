@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.DifficultyLevelAdapter;
+import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
 public class StartGameFragment extends Fragment {
@@ -66,7 +67,7 @@ public class StartGameFragment extends Fragment {
             play_mode_fragment.setRetainInstance(true);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, play_mode_fragment);
-            transaction.addToBackStack(null);
+            transaction.addToBackStack("test");
             transaction.commit();
             play_mode_fragment.CreateGame();
         }

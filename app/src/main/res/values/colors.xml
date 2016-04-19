@@ -6,4 +6,5 @@
     <color name="colorRed">#ee0f0f</color>
     <color name="colorOrange">#ee960f</color>
     <color name="colorGreen">#20ff19</color>
+    <color name="colorButtonDefault">#c8c8c8</color>
 </resources>

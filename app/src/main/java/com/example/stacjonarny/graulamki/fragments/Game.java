@@ -3,12 +3,12 @@ package com.example.stacjonarny.graulamki.fragments;
 
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +84,6 @@ public class Game extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
     // starting a game
     public void CreateGame() {
         String levelText = getArguments().getString(StartGameFragment.KEY_CHOSEN_LEVEL_TEXT);
@@ -114,8 +109,9 @@ public class Game extends Fragment {
         verdictText.setVisibility(View.GONE);
         for(Button b : answerButtons)
         {
+            b.getBackground().setColorFilter(MainActivity.BUTTON_DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
             b.setVisibility(View.VISIBLE);
-            b.setEnabled(true);
+            b.setClickable(true);
         }
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
@@ -155,7 +151,6 @@ public class Game extends Fragment {
         answerButtons[random2].setIsCorrect(false);
         answerButtons[random3].setIsCorrect(false);
         answerButtons[random4].setIsCorrect(false);
-
     }
 
     @Override
@@ -190,7 +185,6 @@ public class Game extends Fragment {
             public void onTick(long millisUntilFinished) {
                 float ppp = millisUntilFinished / MainActivity.gameState.getDifficultLevel().getTimeToAnswer() / 10;
                 progressBar.setProgress((int) ppp);
-                Log.d("blabla",ppp + "");
             }
 
             @Override
@@ -219,16 +213,18 @@ public class Game extends Fragment {
     {
         verdictText.setText(getResources().getString(R.string.correctAnswer));
         verdictText.setVisibility(View.VISIBLE);
-        verdictText.setTextColor(Color.argb(255, 0, 255, 0));
+        verdictText.setTextColor(MainActivity.GREEN_COLOR);
         for(AnswerButton b : answerButtons)
         {
             if(!b.isCorrect())
             {
                 b.setVisibility(View.INVISIBLE);
-
             }
             else
-                b.setEnabled(false);
+            {
+                b.getBackground().setColorFilter(MainActivity.GREEN_COLOR, PorterDuff.Mode.MULTIPLY);
+                b.setClickable(false);
+            }
         }
         progressBar.setVisibility(View.GONE);
         MainActivity.gameState.nextTask();
@@ -240,7 +236,7 @@ public class Game extends Fragment {
         verdictText.setText(getResources().getString(R.string.incorrectAnswer));
         verdictText.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.INVISIBLE);
-        verdictText.setTextColor(Color.argb(255, 255, 0, 0));
+        verdictText.setTextColor(MainActivity.RED_COLOR);
         for(Button b : answerButtons)
         {
             b.setVisibility(View.INVISIBLE);

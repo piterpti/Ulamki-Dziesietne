@@ -11,6 +11,11 @@
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>
     <string name="correctAnswer">DOBRZE!</string>
     <string name="incorrectAnswer">ZLE!</string>
+    <string name="applicationAuthors">Michal Brzujszczak\nPawel Karpinski\nDamian Kurek\nPiotr Lukasik</string>
+    <string name="menuNewGame">Graj</string>
+    <string name="menuAchievments">Osiagniecia</string>
+    <string name="menuAboutGame">O grze</string>
+    <string name="menuExit">Wyjscie</string>
 
     <string-array name="difficulty_levels">
         <item>Bardzo Latwy,10,40,#20ff19</item>

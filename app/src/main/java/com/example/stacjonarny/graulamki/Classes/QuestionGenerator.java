@@ -1,5 +1,4 @@
 package com.example.stacjonarny.graulamki.Classes;
-import android.util.Log;
 
 import com.example.stacjonarny.graulamki.fragments.Game;
 
@@ -21,8 +20,8 @@ public class QuestionGenerator {
             i2 = r.nextInt(i1) + 1;
         }
         while(i1 % i2 != 0);
-        MyNumber ex1 = converToRange(i1);
-        MyNumber ex2 = converToRange(i2);
+        MyNumber ex1 = convertToRange(i1);
+        MyNumber ex2 = convertToRange(i2);
         Question q = null;
         if(type == Game.QuestionType.DIVIDE) {
             q = new DivideQuestion(ex1, ex2);
@@ -33,9 +32,13 @@ public class QuestionGenerator {
         return q;
     }
 
-    public static MyNumber converToRange(int number)
+    public static MyNumber convertToRange(int number)
     {
         int comma = r.nextInt(10) - 4; // loss number form range -4 : 5
+        if(number == 1 && comma == 0)
+        {
+            comma = 1;
+        }
         return new MyNumber(number, comma);
     }
 

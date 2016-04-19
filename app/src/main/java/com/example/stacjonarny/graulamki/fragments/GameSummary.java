@@ -43,15 +43,15 @@ public class GameSummary extends Fragment {
         float percentAnswers = ((float)answers / (float)allAnswers) * 100f;
         String toDisplay = " " + String.format("%.2f",percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
         if(percentAnswers < 30) {
-            correctAnswers.setTextColor(Color.argb(255, 230, 21, 21));
+            correctAnswers.setTextColor(MainActivity.RED_COLOR);
             textViewSummaries.setText(gameTexTSummaries[0]);
         }
         else if(percentAnswers >= 30 && percentAnswers < 75) {
-            correctAnswers.setTextColor(Color.argb(255, 245, 133, 5));
+            correctAnswers.setTextColor(MainActivity.ORANGE_COLOR);
             textViewSummaries.setText(gameTexTSummaries[1]);
         }
         else {
-            correctAnswers.setTextColor(Color.argb(255, 5, 245, 13));
+            correctAnswers.setTextColor(MainActivity.GREEN_COLOR);
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
         correctAnswers.setText(toDisplay);

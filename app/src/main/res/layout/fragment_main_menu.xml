@@ -1,35 +1,50 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.stacjonarny.graulamki.fragments.MainMenu">
+    tools:context="com.example.stacjonarny.graulamki.fragments.MainMenu"
+    android:background="@android:color/darker_gray"
+    android:padding="16dp">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="START GAME"
-            android:onClick="StartGameFragment"/>
-        <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ACHIEVEMENT"
-        android:onClick="StartAchievementFragment"/>
+            android:layout_height="0dp"
+            android:text="@string/menuNewGame"
+            android:onClick="StartGameFragment"
+            android:layout_weight="0.25"
+            android:background="#ffffff"
+            android:layout_margin="6dp"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ABOUT GAME"
-            android:onClick="StartAboutGameFragment"/>
+            android:layout_height="0dp"
+            android:text="@string/menuAchievments"
+            android:onClick="StartAchievementFragment"
+            android:background="#ffffff"
+            android:layout_weight="0.25"
+            android:layout_margin="6dp"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EXIT"
-            android:onClick="ExitAplication"/>
+            android:layout_height="0dp"
+            android:text="@string/menuAboutGame"
+            android:onClick="StartAboutGameFragment"
+            android:background="#ffffff"
+            android:layout_weight="0.25"
+            android:layout_margin="6dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuExit"
+            android:onClick="ExitAplication"
+            android:background="#ffffff"
+            android:layout_weight="0.25"
+            android:layout_margin="6dp"/>
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

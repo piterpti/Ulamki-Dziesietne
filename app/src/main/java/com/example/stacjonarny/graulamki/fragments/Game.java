@@ -76,6 +76,7 @@ public class Game extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
+                TurnOffTimer();
             }
         });
 
@@ -189,6 +190,7 @@ public class Game extends Fragment {
             public void onTick(long millisUntilFinished) {
                 float ppp = millisUntilFinished / MainActivity.gameState.getDifficultLevel().getTimeToAnswer() / 10;
                 progressBar.setProgress((int) ppp);
+                Log.d("blabla",ppp + "");
             }
 
             @Override

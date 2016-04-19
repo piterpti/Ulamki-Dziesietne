@@ -44,6 +44,7 @@ public class Game extends Fragment {
     private ProgressBar progressBar;
     private TextView verdictText;
     private boolean nextQuestion = true;
+    private int random1, random2, random3, random4;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
@@ -118,23 +119,21 @@ public class Game extends Fragment {
         Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
         gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
         gameQuestion.setText(question.questionWithoutAnswer());
-        RandomAnswerOnButtons(question);
         if(nextQuestion)
         {
+            RandomAnswerOnButtons();
             CreateTimer((int) MainActivity.gameState.getDifficultLevel().getTimeToAnswer() * 1000);
             nextQuestion = false;
         }
+        UpdateButtonsText(question);
         return true;
     }
 
     // method to random answers on buttons
-    public void RandomAnswerOnButtons(Question question) {
+    public void RandomAnswerOnButtons() {
         Random r = new Random();
-        int random1 = r.nextInt(4);
-        int random2, random3, random4;
+        random1 = r.nextInt(4);
         random2 = random3 = random4 = random1;
-        answerButtons[random1].setText(question.getAnswer());
-        answerButtons[random1].setIsCorrect(true);
         while (random1 == random2) {
             random2 = r.nextInt(4);
         }
@@ -144,10 +143,15 @@ public class Game extends Fragment {
         while (random4 == random1 || random4 == random2 || random4 == random3) {
             random4 = r.nextInt(4);
         }
+    }
 
+    public void UpdateButtonsText(Question question)
+    {
+        answerButtons[random1].setText(question.getAnswer());
         answerButtons[random2].setText(question.getIncorrectAnswer1());
         answerButtons[random3].setText(question.getIncorrectAnswer2());
         answerButtons[random4].setText(question.getIncorrectAnswer3());
+        answerButtons[random1].setIsCorrect(true);
         answerButtons[random2].setIsCorrect(false);
         answerButtons[random3].setIsCorrect(false);
         answerButtons[random4].setIsCorrect(false);

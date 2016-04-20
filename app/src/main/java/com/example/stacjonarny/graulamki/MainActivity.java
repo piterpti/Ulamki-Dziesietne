@@ -71,7 +71,7 @@ public class MainActivity extends FragmentActivity {
     {
         sqlAdapter = new SqlAdapter(this);
         sqlAdapter.open();
-        sqlAdapter.insertTodo("5 pod rzad!", 1);
-        Log.d("blabla",sqlAdapter.getTodo(1).getName());
+
+
     }
 }

@@ -2,7 +2,6 @@ package com.example.stacjonarny.graulamki.fragments;
 
 
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,8 +21,8 @@ import java.util.*;
 import com.example.stacjonarny.graulamki.Classes.AnswerButton;
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
-import com.example.stacjonarny.graulamki.Classes.QuestionGenerator;
-import com.example.stacjonarny.graulamki.Classes.Question;
+import com.example.stacjonarny.graulamki.Classes.Questions.QuestionGenerator;
+import com.example.stacjonarny.graulamki.Classes.Questions.Question;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 

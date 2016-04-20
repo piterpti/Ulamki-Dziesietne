@@ -1,35 +1,28 @@
 package com.example.stacjonarny.graulamki;
 
-import android.app.Fragment;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
 
 import com.example.stacjonarny.graulamki.Classes.GameState;
+import com.example.stacjonarny.graulamki.Classes.SqlDatabase.SqlAdapter;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
-import com.example.stacjonarny.graulamki.fragments.Game;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
 import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
-
-import java.lang.reflect.Array;
-
 
 public class MainActivity extends FragmentActivity {
 
     public static GameState gameState;
-
     public static int RED_COLOR;
     public static int GREEN_COLOR;
     public static int ORANGE_COLOR;
     public static int BUTTON_DEFAULT_COLOR;
+    public SqlAdapter sqlAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +36,7 @@ public class MainActivity extends FragmentActivity {
         GREEN_COLOR = ContextCompat.getColor(this, R.color.colorGreen);
         ORANGE_COLOR = ContextCompat.getColor(this, R.color.colorOrange);
         BUTTON_DEFAULT_COLOR = ContextCompat.getColor(this, R.color.colorButtonDefault);
+        ConnectToDatabase();
     }
 
     public void StartGameFragment(View view) {
@@ -71,5 +65,13 @@ public class MainActivity extends FragmentActivity {
 
     public void ExitAplication(View view) {
         System.exit(0);
+    }
+
+    public void ConnectToDatabase()
+    {
+        sqlAdapter = new SqlAdapter(this);
+        sqlAdapter.open();
+        sqlAdapter.insertTodo("5 pod rzad!", 1);
+        Log.d("blabla",sqlAdapter.getTodo(1).getName());
     }
 }

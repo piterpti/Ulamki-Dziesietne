@@ -86,11 +86,13 @@ public class Game extends Fragment {
 
     // starting a game
     public void CreateGame() {
-        String levelText = getArguments().getString(StartGameFragment.KEY_CHOSEN_LEVEL_TEXT);
-        int levelCount = getArguments().getInt(StartGameFragment.KEY_CHOSEN_LEVEL_COUNT);
-        float levelTime = getArguments().getFloat(StartGameFragment.KEY_CHOSEN_LEVEL_TIME);
+        String levelText = MainActivity.gameDifficultLevel.getLevel();
+        int levelCount =  MainActivity.gameDifficultLevel.getQuestionCount();
+        int levelNum =  MainActivity.gameDifficultLevel.getLevelNum();
+        float levelTime =  MainActivity.gameDifficultLevel.getTimeToAnswer();
+
         MainActivity.gameState = new GameState();
-        MainActivity.gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount));
+        MainActivity.gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount, levelNum));
         GenerateQuestions();
         nextQuestion = true;
     }

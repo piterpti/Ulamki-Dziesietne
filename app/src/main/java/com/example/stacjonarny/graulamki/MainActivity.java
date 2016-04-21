@@ -9,6 +9,7 @@ import android.view.View;
 
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
+import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.Classes.SQL.AchievementDbHelper;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
@@ -25,6 +26,8 @@ public class MainActivity extends FragmentActivity {
     public static int ORANGE_COLOR;
     public static int BUTTON_DEFAULT_COLOR;
     public static ArrayList<Achievement> achievementList;
+    public static AchievementDbHelper achievementDbHelper;
+    public static DifficultLevel gameDifficultLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, achievement_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+        PrintAchievementList();
     }
 
     public void StartAboutGameFragment(View view) {
@@ -72,20 +76,36 @@ public class MainActivity extends FragmentActivity {
     public void PrintAchievementList()
     {
         for(Achievement a : achievementList) {
-            Log.d("piotrek", a.getName());
+            Log.d("piotrek", a.toString());
         }
     }
 
     public void GetDataFromDatabase()
     {
-        AchievementDbHelper dbHelper = new AchievementDbHelper(this);
-        dbHelper.deleteAchievement("5 pod rzad");
-        achievementList = dbHelper.getAllAchievements();
+        achievementDbHelper = new AchievementDbHelper(this);
+//        achievementDbHelper.clearDatabase();
+        achievementList = achievementDbHelper.getAllAchievements();
+        AddAchievementsToDatabase();
+        achievementList = achievementDbHelper.getAllAchievements();
         PrintAchievementList();
     }
 
     public void AddAchievementsToDatabase() {
-
+        String[] achievements = getResources().getStringArray(R.array.achievments_array);
+        for(String achieves : achievements) {
+            String[] achieve = achieves.split(",");
+            Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]));
+            boolean ifExist = false;
+            for(Achievement a : achievementList) {
+                if(a.getName().equals(newAchieve.getName())) {
+                    ifExist = true;
+                }
+            }
+            if(!ifExist)
+            {
+                achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel());
+            }
+        }
     }
 
 }

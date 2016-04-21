@@ -5,21 +5,32 @@ package com.example.stacjonarny.graulamki.Classes;
  */
 public class DifficultLevel {
     private String level;
+    private int levelNum;
     private float timeToAnswer;
     private int questionCount;
     private String backgroundColor = "";
 
-    public DifficultLevel(String level, float timeToAnswer, int questionCount, String backgroundColor) {
+    public DifficultLevel(String level, float timeToAnswer, int questionCount, int levelNum, String backgroundColor) {
         this.level = level;
         this.timeToAnswer = timeToAnswer;
         this.questionCount = questionCount;
         this.backgroundColor = backgroundColor;
+        this.levelNum = levelNum;
     }
 
-    public DifficultLevel(String level, float timeToAnswer, int questionCount) {
+    public DifficultLevel(String level, float timeToAnswer, int questionCount, int levelNum) {
         this.level = level;
         this.timeToAnswer = timeToAnswer;
         this.questionCount = questionCount;
+        this.levelNum = levelNum;
+    }
+
+    public int getLevelNum() {
+        return levelNum;
+    }
+
+    public void setLevelNum(int levelNum) {
+        this.levelNum = levelNum;
     }
 
     public String getLevel() {

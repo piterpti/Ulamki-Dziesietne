@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
@@ -65,8 +66,15 @@ public class GameSummary extends Fragment {
                 transaction.commit();
             }
         });
+        int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
+        Toast.makeText(getActivity(),correctAnswersRowCount + "", Toast.LENGTH_LONG).show();
 
-        Toast.makeText(getActivity(),MainActivity.gameState.getCorrectAnswersRowCount() + "", Toast.LENGTH_LONG).show();
+        for(Achievement a : MainActivity.achievementList) {
+            if(MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel())
+            {
+                a.Check(correctAnswersRowCount);
+            }
+        }
 
         return viev;
     }

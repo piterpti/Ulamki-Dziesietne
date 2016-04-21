@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 
 
+import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.GameState;
-import com.example.stacjonarny.graulamki.Classes.SqlDatabase.SqlAdapter;
+import com.example.stacjonarny.graulamki.Classes.SQL.AchievementDbHelper;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
 import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
+import java.util.*;
 
 public class MainActivity extends FragmentActivity {
 
@@ -22,7 +24,7 @@ public class MainActivity extends FragmentActivity {
     public static int GREEN_COLOR;
     public static int ORANGE_COLOR;
     public static int BUTTON_DEFAULT_COLOR;
-    public SqlAdapter sqlAdapter;
+    public static ArrayList<Achievement> achievementList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MainActivity extends FragmentActivity {
         GREEN_COLOR = ContextCompat.getColor(this, R.color.colorGreen);
         ORANGE_COLOR = ContextCompat.getColor(this, R.color.colorOrange);
         BUTTON_DEFAULT_COLOR = ContextCompat.getColor(this, R.color.colorButtonDefault);
-        ConnectToDatabase();
+        GetDataFromDatabase();
     }
 
     public void StartGameFragment(View view) {
@@ -67,11 +69,23 @@ public class MainActivity extends FragmentActivity {
         System.exit(0);
     }
 
-    public void ConnectToDatabase()
+    public void PrintAchievementList()
     {
-        sqlAdapter = new SqlAdapter(this);
-        sqlAdapter.open();
+        for(Achievement a : achievementList) {
+            Log.d("piotrek", a.getName());
+        }
+    }
 
+    public void GetDataFromDatabase()
+    {
+        AchievementDbHelper dbHelper = new AchievementDbHelper(this);
+        dbHelper.deleteAchievement("5 pod rzad");
+        achievementList = dbHelper.getAllAchievements();
+        PrintAchievementList();
+    }
+
+    public void AddAchievementsToDatabase() {
 
     }
+
 }

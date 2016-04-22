@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class GameSummary extends Fragment {
     private TextView textViewSummaries;
     private String[] gameTexTSummaries;
     private Button goBackButton;
+    private LinearLayout unlockedLayout;
+    private ListView unlockedAchievementsList;
 
     public GameSummary() {
     }
@@ -40,6 +44,9 @@ public class GameSummary extends Fragment {
         correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
         textViewSummaries = (TextView) viev.findViewById(R.id.textSummaries);
         goBackButton = (Button) viev.findViewById(R.id.go_back_to_menu);
+        unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
+        unlockedAchievementsList = (ListView) viev.findViewById(R.id.unlockedSummariesList);
+        unlockedLayout.setVisibility(View.INVISIBLE);
         int answers = MainActivity.gameState.getCorrectAnswerCount();
         int allAnswers = MainActivity.gameState.getDifficultLevel().getQuestionCount();
         float percentAnswers = ((float)answers / (float)allAnswers) * 100f;
@@ -67,12 +74,14 @@ public class GameSummary extends Fragment {
             }
         });
         int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
-        Toast.makeText(getActivity(),correctAnswersRowCount + "", Toast.LENGTH_LONG).show();
 
         for(Achievement a : MainActivity.achievementList) {
             if(MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel())
             {
-                a.Check(correctAnswersRowCount);
+                if(a.Check(correctAnswersRowCount));
+                {
+                    unlockedLayout.setVisibility(View.VISIBLE);
+                }
             }
         }
 

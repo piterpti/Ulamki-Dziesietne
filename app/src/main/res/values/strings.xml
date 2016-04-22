@@ -16,6 +16,7 @@
     <string name="menuAchievments">Osiagniecia</string>
     <string name="menuAboutGame">O grze</string>
     <string name="menuExit">Wyjscie</string>
+    <string name="unlockedAchievements">ODBLOKOWANE OSIAGNIECIA:</string>
 
     <string-array name="difficulty_levels">
         <item>Bardzo Latwy,10,40,1,#20ff19</item>

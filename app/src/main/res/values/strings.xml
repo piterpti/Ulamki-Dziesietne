@@ -4,18 +4,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_to_menu">Menu</string>
     <string name="timeToAnswer">Czas na odpowiedź:</string>
-    <string name="questionsCount">Liczba pytan:</string>
-    <string name="chooseDifficultLevel">Wybierz poziom trudnosci:</string>
+    <string name="questionsCount">Liczba pytań:</string>
+    <string name="chooseDifficultLevel">Wybierz poziom trudności:</string>
     <string name="taskText">Zadanie</string>
     <string name="gameSummary">Podsumowanie rozgrywki:</string>
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>
     <string name="correctAnswer">DOBRZE!</string>
-    <string name="incorrectAnswer">ZLE!</string>
-    <string name="applicationAuthors">Michal Brzujszczak\nPawel Karpinski\nDamian Kurek\nPiotr Lukasik</string>
+    <string name="incorrectAnswer">ŹLE!</string>
+    <string name="applicationAuthors">Michał Brzujszczak\nPawel Karpiński\nDamian Kurek\nPiotr Łukasik</string>
     <string name="menuNewGame">Graj</string>
-    <string name="menuAchievments">Osiagniecia</string>
+    <string name="menuAchievments">Osiągnięcia</string>
     <string name="menuAboutGame">O grze</string>
-    <string name="menuExit">Wyjscie</string>
+    <string name="menuExit">Wyjście</string>
 
     <string-array name="difficulty_levels">
         <item>Bardzo Latwy,10,40,1,#20ff19</item>

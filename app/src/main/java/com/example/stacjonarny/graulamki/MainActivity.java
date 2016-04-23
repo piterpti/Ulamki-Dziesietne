@@ -1,5 +1,6 @@
 package com.example.stacjonarny.graulamki;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -47,6 +48,11 @@ public class MainActivity extends FragmentActivity {
     public void StartGameFragment(View view) {
         StartGameFragment start_game_fragment = new StartGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
         transaction.replace(R.id.fragment_container, start_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -55,6 +61,12 @@ public class MainActivity extends FragmentActivity {
     public void StartAchievementFragment(View view) {
         AchievementFragment achievement_fragment = new AchievementFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        //animation
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
         transaction.replace(R.id.fragment_container, achievement_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -64,6 +76,11 @@ public class MainActivity extends FragmentActivity {
     public void StartAboutGameFragment(View view) {
         AboutGameFragment about_game_fragment = new AboutGameFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();

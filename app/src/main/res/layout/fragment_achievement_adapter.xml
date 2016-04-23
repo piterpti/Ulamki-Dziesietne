@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    android:gravity="center_horizontal">
+    android:background="#AAAAAA">
 
     <ImageView
+        android:src="@drawable/achievement"
         android:id="@+id/achievementListImage"
         android:layout_width="40dp"
         android:layout_height="40dp" />
     <TextView
-        android:id="@+id/diffLevelTime"
+        android:id="@+id/simpleAchievement"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/timeToAnswer"
+        android:layout_height="40dp"
+        android:text="@string/menuAchievements"
         android:paddingLeft="@dimen/paddingTextViewAdapter"
         android:textColor="@android:color/black"
-        android:textSize="14sp"/>
+        android:textSize="14sp"
+        android:gravity="center"
+        />
 
 </LinearLayout>

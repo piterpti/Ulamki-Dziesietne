@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Created by Piter on 21/04/2016.
  */
-public class Achievement implements Serializable {
+public class Achievement implements Serializable, Comparable<Achievement>{
 
     private String name;
     private boolean locked;
@@ -72,6 +72,7 @@ public class Achievement implements Serializable {
     }
 
 
+
     @Override
     public boolean equals(Object o) {
         Achievement a = (Achievement) o;
@@ -90,5 +91,13 @@ public class Achievement implements Serializable {
                 ", status=" + status +
                 ", difficultLevel=" + difficultLevel +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Achievement another) {
+        if(difficultLevel == another.getDifficultLevel()) {
+            return correctAnswersRow > another.getCorrectAnswersRow() ? 1 : -1;
+        }
+        return  difficultLevel > another.getDifficultLevel() ? 1 : -1;
     }
 }

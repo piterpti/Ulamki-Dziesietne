@@ -24,7 +24,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@string/menuAchievments"
+            android:text="@string/menuAchievements"
             android:onClick="StartAchievementFragment"
             android:background="#ffffff"
             android:layout_weight="0.25"

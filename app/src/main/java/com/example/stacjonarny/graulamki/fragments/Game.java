@@ -53,6 +53,26 @@ public class Game extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+        init(view);
+        AddMenuButtonListener();
+        LoadNextQuestionIfExist();
+        return view;
+    }
+
+    private void AddMenuButtonListener() {
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainMenu main_menu_fragment = new MainMenu();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, main_menu_fragment);
+                transaction.commit();
+                TurnOffTimer();
+            }
+        });
+    }
+
+    private void init(View view) {
         goBackButton = (Button) view.findViewById(R.id.go_back_to_menu);
         gameTaskProgress = (TextView) view.findViewById(R.id.taskProgress);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
@@ -69,19 +89,6 @@ public class Game extends Fragment {
         answerLayout1.addView(answerButtons[1]);
         answerLayout2.addView(answerButtons[2]);
         answerLayout2.addView(answerButtons[3]);
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
-                TurnOffTimer();
-            }
-        });
-
-        LoadNextQuestionIfExist();
-        return view;
     }
 
     // starting a game

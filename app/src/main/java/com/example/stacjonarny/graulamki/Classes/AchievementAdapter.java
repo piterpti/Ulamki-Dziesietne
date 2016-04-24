@@ -1,8 +1,6 @@
 package com.example.stacjonarny.graulamki.Classes;
 
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +32,8 @@ public class AchievementAdapter extends ArrayAdapter {
         TextView diffLevelView = (TextView) convertView.findViewById(R.id.achievementDifficultLevel);
         image = (ImageView) convertView.findViewById(R.id.achievementListImage);
         ImageChange(achievement.isLocked(), achievement.getDifficultLevel());
-        String temporaryText = achievement.isLocked() ? " locked" : " unlocked";
         String achievementDiffLevel = MainActivity.difficultLevels[achievement.getDifficultLevel()-1].getLevel();
-        textView.setText(achievement.getName() + temporaryText);
+        textView.setText(achievement.getName());
         diffLevelView.setText(achievementDiffLevel);
         return convertView;
     }

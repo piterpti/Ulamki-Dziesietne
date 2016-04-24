@@ -33,20 +33,20 @@ public class Achievement implements Serializable, Comparable<Achievement>{
         this.difficultLevel = difficultLevel;
     }
 
-    private void Unlock()
-    {
-        locked = false;
-        MainActivity.achievementDbHelper.updateAchievement(name, locked, correctAnswersRow, status, difficultLevel);
-    }
-
-    public boolean Check(int correctAnswersRow)
+    public boolean Unlock(int correctAnswersRow)
     {
         if(!locked)
             return false;
-        if(correctAnswersRow >= this.correctAnswersRow) {
-            Unlock();
+        if(correctAnswersRow >= this.correctAnswersRow)
+        {
+            locked = false;
+            MainActivity.achievementDbHelper.updateAchievement(name, locked, correctAnswersRow, status, difficultLevel);
+            return true;
         }
-        return true;
+        else
+        {
+            return false;
+        }
     }
 
     public void AddToStatus(int toStatus) {
@@ -82,17 +82,6 @@ public class Achievement implements Serializable, Comparable<Achievement>{
             return true;
         else
             return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Achievement{" +
-                "name='" + name + '\'' +
-                ", locked=" + locked +
-                ", correctAnswersRow=" + correctAnswersRow +
-                ", status=" + status +
-                ", difficultLevel=" + difficultLevel +
-                '}';
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.stacjonarny.graulamki;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -30,21 +31,21 @@ public class MainActivity extends FragmentActivity {
     public static AchievementDbHelper achievementDbHelper;
     public static DifficultLevel gameDifficultLevel;
     public static DifficultLevel[] difficultLevels;
+    public static Context mainContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainContext = this;
         setContentView(R.layout.activity_main);
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, main_menu_fragment);
         transaction.commit();
-        RED_COLOR = ContextCompat.getColor(this, R.color.colorRed);
-        GREEN_COLOR = ContextCompat.getColor(this, R.color.colorGreen);
-        ORANGE_COLOR = ContextCompat.getColor(this, R.color.colorOrange);
-        BUTTON_DEFAULT_COLOR = ContextCompat.getColor(this, R.color.colorButtonDefault);
+        GetColorFromResoureces();
         LoadDifficultLevels();
-        GetDataFromDatabase();
+        Thread dataBaseConnection = new Thread(new DatabaseConnection());
+        dataBaseConnection.start();
     }
 
     public void StartGameFragment(View view) {
@@ -72,7 +73,6 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, achievement_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        PrintAchievementList();
     }
 
     public void StartAboutGameFragment(View view) {
@@ -86,21 +86,21 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        Log.d("piotrek", "WARNING DELETE ALL ACHEIVEMENTS");
         achievementDbHelper.clearAchievementsDatabase();
         achievementDbHelper.resetAllAchievements();
-        GetDataFromDatabase();
+        Thread dataBaseConnection = new Thread(new DatabaseConnection());
+        dataBaseConnection.start();
     }
 
     public void ExitAplication(View view) {
         System.exit(0);
     }
 
-    public void PrintAchievementList()
-    {
-        for(Achievement a : achievementList) {
-            Log.d("piotrek", a.toString());
-        }
+    private void GetColorFromResoureces() {
+        RED_COLOR = ContextCompat.getColor(this, R.color.colorRed);
+        GREEN_COLOR = ContextCompat.getColor(this, R.color.colorGreen);
+        ORANGE_COLOR = ContextCompat.getColor(this, R.color.colorOrange);
+        BUTTON_DEFAULT_COLOR = ContextCompat.getColor(this, R.color.colorButtonDefault);
     }
 
     public void LoadDifficultLevels()
@@ -114,33 +114,40 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public void GetDataFromDatabase()
-    {
-        achievementDbHelper = new AchievementDbHelper(this);
-//        achievementDbHelper.clearDatabase();
-        achievementList = achievementDbHelper.getAllAchievements();
-        AddAchievementsToDatabase();
-        achievementList = achievementDbHelper.getAllAchievements();
-        PrintAchievementList();
+    class DatabaseConnection implements Runnable {
 
-    }
+        @Override
+        public void run() {
+            GetDataFromDatabase();
+        }
 
-    public void AddAchievementsToDatabase() {
-        String[] achievements = getResources().getStringArray(R.array.achievments_array);
-        for(String achieves : achievements) {
-            String[] achieve = achieves.split(",");
-            Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]));
-            boolean ifExist = false;
-            for(Achievement a : achievementList) {
-                if(a.getName().equals(newAchieve.getName())) {
-                    ifExist = true;
+        public void GetDataFromDatabase()
+        {
+            achievementDbHelper = new AchievementDbHelper(mainContext);
+            achievementList = achievementDbHelper.getAllAchievements();
+            AddAchievementsToDatabase();
+            achievementList = achievementDbHelper.getAllAchievements();
+        }
+
+        public void AddAchievementsToDatabase() {
+            String[] achievements = getResources().getStringArray(R.array.achievments_array);
+            for(String achieves : achievements) {
+                String[] achieve = achieves.split(",");
+                Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]));
+                boolean ifExist = false;
+                for(Achievement a : achievementList) {
+                    if(a.getName().equals(newAchieve.getName())) {
+                        ifExist = true;
+                    }
                 }
-            }
-            if(!ifExist)
-            {
-                achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel());
+                if(!ifExist)
+                {
+                    achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel());
+                }
             }
         }
     }
 
 }
+
+

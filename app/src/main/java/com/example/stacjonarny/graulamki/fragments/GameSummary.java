@@ -1,7 +1,6 @@
 package com.example.stacjonarny.graulamki.fragments;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,14 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.*;
-import android.widget.Toast;
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
-
-import java.util.Collections;
 
 public class GameSummary extends Fragment {
 
@@ -38,10 +34,35 @@ public class GameSummary extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View viev = inflater.inflate(R.layout.fragment_game_summary, container, false);
+        init(viev);
+        int answers = MainActivity.gameState.getCorrectAnswerCount();
+        int allAnswers = MainActivity.gameState.getDifficultLevel().getQuestionCount();
+        float percentAnswers = ((float) answers / (float) allAnswers) * 100f;
+        String toDisplay = " " + String.format("%.2f", percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
+        TextColorSummary(percentAnswers);
+        correctAnswers.setText(toDisplay);
+        AddMenuButtonListener();
+        int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
+        UnlockedAchievementsDuringGame(correctAnswersRowCount);
+        return viev;
+    }
 
+    private void UnlockedAchievementsDuringGame(int correctAnswersRowCount) {
+        ArrayList<Achievement> unlockedAchievements = new ArrayList<>();
+        for (Achievement a : MainActivity.achievementList) {
+            if (MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel()) {
+                if (a.Unlock(correctAnswersRowCount))
+                {
+                    unlockedAchievements.add(a);
+                    unlockedLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+        unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), unlockedAchievements));
+    }
 
+    private void init(View viev) {
         gameTexTSummaries = getResources().getStringArray(R.array.game_summary);
         correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
         textViewSummaries = (TextView) viev.findViewById(R.id.textSummaries);
@@ -49,10 +70,21 @@ public class GameSummary extends Fragment {
         unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
         unlockedAchievementsList = (ListView) viev.findViewById(R.id.unlockedSummariesList);
         unlockedLayout.setVisibility(View.INVISIBLE);
-        int answers = MainActivity.gameState.getCorrectAnswerCount();
-        int allAnswers = MainActivity.gameState.getDifficultLevel().getQuestionCount();
-        float percentAnswers = ((float) answers / (float) allAnswers) * 100f;
-        String toDisplay = " " + String.format("%.2f", percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
+    }
+
+    private void AddMenuButtonListener() {
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainMenu main_menu_fragment = new MainMenu();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, main_menu_fragment);
+                transaction.commit();
+            }
+        });
+    }
+
+    private void TextColorSummary(float percentAnswers) {
         if (percentAnswers < 30) {
             correctAnswers.setTextColor(MainActivity.RED_COLOR);
             textViewSummaries.setText(gameTexTSummaries[0]);
@@ -63,30 +95,5 @@ public class GameSummary extends Fragment {
             correctAnswers.setTextColor(MainActivity.GREEN_COLOR);
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
-        correctAnswers.setText(toDisplay);
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
-            }
-        });
-        int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
-
-        ArrayList<Achievement> unlockedAchievements = new ArrayList<>();
-        for (Achievement a : MainActivity.achievementList) {
-            if (MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel()) {
-                if (a.Check(correctAnswersRowCount))
-                {
-                    unlockedAchievements.add(a);
-                    unlockedLayout.setVisibility(View.VISIBLE);
-                }
-            }
-        }
-        unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), unlockedAchievements));
-
-        return viev;
     }
 }

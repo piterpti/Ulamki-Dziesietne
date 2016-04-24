@@ -8,12 +8,11 @@ public class GameState {
 
     private DifficultLevel difficultLevel;
     private int currentTask;
-    private int goodAnswers;
     public ArrayList<Question> questionsList;
 
     public GameState() {
         currentTask = 1;
-        questionsList = new ArrayList<Question>();
+        questionsList = new ArrayList<>();
     }
 
     public void setDifficultLevel(DifficultLevel difficultLevel) {

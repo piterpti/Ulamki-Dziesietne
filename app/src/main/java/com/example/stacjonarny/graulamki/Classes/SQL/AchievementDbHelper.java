@@ -81,9 +81,9 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void clearDatabase() {
+    public void clearAchievementsDatabase() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(ACHIEVEMENT_TABLE_NAME, null, null);
+        db.execSQL("DELETE FROM " + ACHIEVEMENT_TABLE_NAME);
         db.close();
     }
 
@@ -95,6 +95,14 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
     public Integer deleteAchievement(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(ACHIEVEMENT_TABLE_NAME,"name = ?", new String[]{name});
+    }
+
+    public void resetAllAchievements() {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_LOCKED, 1);
+        db.update(ACHIEVEMENT_TABLE_NAME, cv, null, null);
+        db.close();
     }
 
     public ArrayList<Achievement> getAllAchievements() {

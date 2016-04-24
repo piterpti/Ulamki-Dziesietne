@@ -35,7 +35,7 @@ public class QuestionGenerator {
 
     public static MyNumber convertToRange(int number)
     {
-        int comma = r.nextInt(10) - 4; // loss number form range -4 : 5
+        int comma = r.nextInt(10) - 4; // loss number form range -4 : 5 | 10 - 4
         if(number == 1 && comma == 0)
         {
             comma = 1;

@@ -17,14 +17,20 @@ public class MyNumber {
         String s = "";
         if(comma < 0)
         {
-            s += "0.";
-            comma = -comma;
-            for(int i = 0; i < comma - 1; i++)
+            if(number >= 10 && comma == -1) {
+                s += number / 10;
+                s += "." + (number - number / 10 * 10);
+                return s;
+            }
+            else
+            {
+                s += "0.";
+            }
+            for(int i = 0; i < -comma - 1; i++)
             {
                 s += "0";
             }
             s += number + "";
-            comma = -comma;
         }
         else
         {

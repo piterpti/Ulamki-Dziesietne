@@ -17,49 +17,49 @@
             android:layout_height="0dp"
             android:text="@string/menuNewGame"
             android:onClick="StartGameFragment"
-            android:textSize="70sp"
+            android:textSize="75sp"
             android:textColor="#ffffff"
             android:background="#512DA8"
             android:layout_weight="0.25"
             android:drawableTop="@drawable/play_game"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp" />
+            android:paddingTop="50dp"
+            android:paddingBottom="40dp" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="@string/menuAchievements"
             android:onClick="StartAchievementFragment"
-            android:textSize="70sp"
+            android:textSize="75sp"
             android:textColor="#ffffff"
             android:background="#18FFFF"
             android:layout_weight="0.25"
             android:drawableTop="@drawable/achievement"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp" />
+            android:paddingTop="50dp"
+            android:paddingBottom="40dp" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:text="@string/menuAboutGame"
             android:onClick="StartAboutGameFragment"
-            android:textSize="70sp"
+            android:textSize="75sp"
             android:textColor="#ffffff"
             android:background="#F57C00"
             android:layout_weight="0.25"
             android:drawableTop="@drawable/about_aplication"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"/>
+            android:paddingTop="50dp"
+            android:paddingBottom="40dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:onClick="ExitAplication"
             android:text="@string/menuExit"
-            android:textSize="70sp"
+            android:textSize="75sp"
             android:textColor="#ffffff"
             android:background="#FF1744"
             android:layout_weight="0.25"
             android:drawableTop="@drawable/close_apk"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="40dp"
             />
     </LinearLayout>
 

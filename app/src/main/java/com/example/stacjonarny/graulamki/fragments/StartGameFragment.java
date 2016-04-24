@@ -17,7 +17,7 @@ import com.example.stacjonarny.graulamki.R;
 
 public class StartGameFragment extends Fragment {
 
-    private DifficultLevel[] difficultLevels;
+
     private ListView list;
 
     @Override
@@ -29,24 +29,10 @@ public class StartGameFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LoadDifficultLevels();
-        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), difficultLevels);
+        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), MainActivity.difficultLevels);
         list = (ListView) getActivity().findViewById(R.id.difficultyLevels);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new ListHandler());
-    }
-
-
-    // load difficult levels from string array resources
-    public void LoadDifficultLevels()
-    {
-        difficultLevels = new DifficultLevel[5];
-        String [] tab = getResources().getStringArray(R.array.difficulty_levels);
-        for(int i = 0; i < difficultLevels.length; i++)
-        {
-            String[] temp = tab[i].split(",");
-            difficultLevels[i] = new DifficultLevel(temp[0], Float.valueOf(temp[2]),Integer.valueOf(temp[1]), Integer.parseInt(temp[3]) ,temp[4]);
-        }
     }
 
     // class to handle difficulty levels list

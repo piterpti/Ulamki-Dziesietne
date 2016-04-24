@@ -29,6 +29,7 @@ public class MainActivity extends FragmentActivity {
     public static ArrayList<Achievement> achievementList;
     public static AchievementDbHelper achievementDbHelper;
     public static DifficultLevel gameDifficultLevel;
+    public static DifficultLevel[] difficultLevels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class MainActivity extends FragmentActivity {
         GREEN_COLOR = ContextCompat.getColor(this, R.color.colorGreen);
         ORANGE_COLOR = ContextCompat.getColor(this, R.color.colorOrange);
         BUTTON_DEFAULT_COLOR = ContextCompat.getColor(this, R.color.colorButtonDefault);
+        LoadDifficultLevels();
         GetDataFromDatabase();
     }
 
@@ -98,6 +100,17 @@ public class MainActivity extends FragmentActivity {
     {
         for(Achievement a : achievementList) {
             Log.d("piotrek", a.toString());
+        }
+    }
+
+    public void LoadDifficultLevels()
+    {
+        MainActivity.difficultLevels = new DifficultLevel[5];
+        String [] tab = getResources().getStringArray(R.array.difficulty_levels);
+        for(int i = 0; i < MainActivity.difficultLevels.length; i++)
+        {
+            String[] temp = tab[i].split(",");
+            MainActivity.difficultLevels[i] = new DifficultLevel(temp[0], Float.valueOf(temp[2]),Integer.valueOf(temp[1]), Integer.parseInt(temp[3]) ,temp[4]);
         }
     }
 

@@ -12,13 +12,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.util.*;
 import android.widget.Toast;
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
+import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
-import java.text.DecimalFormat;
+import java.util.Collections;
 
 public class GameSummary extends Fragment {
 
@@ -49,17 +51,15 @@ public class GameSummary extends Fragment {
         unlockedLayout.setVisibility(View.INVISIBLE);
         int answers = MainActivity.gameState.getCorrectAnswerCount();
         int allAnswers = MainActivity.gameState.getDifficultLevel().getQuestionCount();
-        float percentAnswers = ((float)answers / (float)allAnswers) * 100f;
-        String toDisplay = " " + String.format("%.2f",percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
-        if(percentAnswers < 30) {
+        float percentAnswers = ((float) answers / (float) allAnswers) * 100f;
+        String toDisplay = " " + String.format("%.2f", percentAnswers) + "%" + " (" + answers + "/" + allAnswers + ")";
+        if (percentAnswers < 30) {
             correctAnswers.setTextColor(MainActivity.RED_COLOR);
             textViewSummaries.setText(gameTexTSummaries[0]);
-        }
-        else if(percentAnswers >= 30 && percentAnswers < 75) {
+        } else if (percentAnswers >= 30 && percentAnswers < 75) {
             correctAnswers.setTextColor(MainActivity.ORANGE_COLOR);
             textViewSummaries.setText(gameTexTSummaries[1]);
-        }
-        else {
+        } else {
             correctAnswers.setTextColor(MainActivity.GREEN_COLOR);
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
@@ -75,15 +75,17 @@ public class GameSummary extends Fragment {
         });
         int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
 
-        for(Achievement a : MainActivity.achievementList) {
-            if(MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel())
-            {
-                if(a.Check(correctAnswersRowCount));
+        ArrayList<Achievement> unlockedAchievements = new ArrayList<>();
+        for (Achievement a : MainActivity.achievementList) {
+            if (MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel()) {
+                if (a.Check(correctAnswersRowCount))
                 {
+                    unlockedAchievements.add(a);
                     unlockedLayout.setVisibility(View.VISIBLE);
                 }
             }
         }
+        unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), unlockedAchievements));
 
         return viev;
     }

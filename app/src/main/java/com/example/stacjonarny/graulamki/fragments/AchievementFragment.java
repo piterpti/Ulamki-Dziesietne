@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import java.util.*;
 
-import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;

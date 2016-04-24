@@ -41,10 +41,12 @@ public class Achievement implements Serializable, Comparable<Achievement>{
 
     public boolean Check(int correctAnswersRow)
     {
+        if(!locked)
+            return false;
         if(correctAnswersRow >= this.correctAnswersRow) {
             Unlock();
         }
-        return locked;
+        return true;
     }
 
     public void AddToStatus(int toStatus) {

@@ -45,7 +45,7 @@ public class Game extends Fragment {
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
 
-    private final int VERDICT_TIME = 30; // DEFAULT 3000 MILISECONDS
+    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
     public Game() {
     }
@@ -93,6 +93,7 @@ public class Game extends Fragment {
 
     // starting a game
     public void CreateGame() {
+        TurnOffTimer();
         String levelText = MainActivity.gameDifficultLevel.getLevel();
         int levelCount =  MainActivity.gameDifficultLevel.getQuestionCount();
         int levelNum =  MainActivity.gameDifficultLevel.getLevelNum();
@@ -160,9 +161,9 @@ public class Game extends Fragment {
         answerButtons[random3].setText(question.getIncorrectAnswer2());
         answerButtons[random4].setText(question.getIncorrectAnswer3());
         answerButtons[random1].setIsCorrect(true);
-        answerButtons[random2].setIsCorrect(true);
-        answerButtons[random3].setIsCorrect(true);
-        answerButtons[random4].setIsCorrect(true);
+        answerButtons[random2].setIsCorrect(false);
+        answerButtons[random3].setIsCorrect(false);
+        answerButtons[random4].setIsCorrect(false);
     }
 
     @Override

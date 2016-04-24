@@ -86,10 +86,10 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        achievementDbHelper.clearAchievementsDatabase();
-        achievementDbHelper.resetAllAchievements();
-        Thread dataBaseConnection = new Thread(new DatabaseConnection());
-        dataBaseConnection.start();
+//        achievementDbHelper.clearAchievementsDatabase();
+//        achievementDbHelper.resetAllAchievements();
+//        Thread dataBaseConnection = new Thread(new DatabaseConnection());
+//        dataBaseConnection.start();
     }
 
     public void ExitAplication(View view) {

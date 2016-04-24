@@ -18,11 +18,11 @@
     <string name="menuExit">Wyjście</string>
 
     <string-array name="difficulty_levels">
-        <item>Bardzo Latwy,10,40,1,#20ff19</item>
-        <item>Latwy,20,30,2,#37a31f</item>
-        <item>Sredni,30,20,3,#eee40f</item>
-        <item>Trudny,40,15,4,#ee960f</item>
-        <item>Bardzo Trudny,50,10,5,#ee0f0f</item>
+        <item>Bardzo Latwy,10,40,1,#8BC34A</item>
+        <item>Latwy,20,30,2,#4CAF50</item>
+        <item>Sredni,30,20,3,#FFEB3B</item>
+        <item>Trudny,40,15,4,#FF9800</item>
+        <item>Bardzo Trudny,50,10,5,#F44336</item>
     </string-array>
 
     <string-array name="game_summary">

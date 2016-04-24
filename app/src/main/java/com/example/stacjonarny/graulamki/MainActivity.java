@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
@@ -15,6 +16,7 @@ import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.Classes.SQL.AchievementDbHelper;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
+import com.example.stacjonarny.graulamki.fragments.Game;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
 import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
 import java.util.*;
@@ -29,6 +31,7 @@ public class MainActivity extends FragmentActivity {
     public static ArrayList<Achievement> achievementList;
     public static AchievementDbHelper achievementDbHelper;
     public static DifficultLevel gameDifficultLevel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,4 +133,15 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Game gameFragmnet =null;
+        gameFragmnet = (Game) getSupportFragmentManager().findFragmentByTag("GAME");
+        if (gameFragmnet != null && gameFragmnet.isVisible()) {
+            if (gameFragmnet.BackPresed()) {
+            }
+        }
+        if(gameFragmnet == null)
+            super.onBackPressed();
+    }
 }

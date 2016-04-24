@@ -2,12 +2,16 @@ package com.example.stacjonarny.graulamki.fragments;
 
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.*;
 
@@ -72,11 +77,23 @@ public class Game extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
-                TurnOffTimer();
+                AlertDialog show = new AlertDialog.Builder(getContext())
+                        .setTitle("Rozgrywka")
+                        .setMessage("Zakończy grę?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("log", "click zamknij");
+                                EndGame();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("log","click cancel");
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
             }
         });
 
@@ -274,6 +291,40 @@ public class Game extends Fragment {
                 }
             }, VERDICT_TIME);
         }
+    }
+
+    public boolean BackPresed(){
+
+        AlertDialog show = new AlertDialog.Builder(getContext())
+                .setTitle("Rozgrywka")
+                .setMessage("Zakończy grę?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("log", "click zamknij");
+                        EndGame();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("log","click cancel");
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+        return true;
+    }
+    public void EndGame(){
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        MainMenu main_menu_fragment = new MainMenu();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.commit();
+        TurnOffTimer();
     }
 }
 

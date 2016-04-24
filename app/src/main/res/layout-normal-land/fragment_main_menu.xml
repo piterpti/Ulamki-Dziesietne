@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.stacjonarny.graulamki.fragments.MainMenu"
+>
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuNewGame"
+            android:onClick="StartGameFragment"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#512DA8"
+            android:layout_weight="0.25"
+            android:drawableLeft="@drawable/play_game"
+            android:paddingLeft="200dp"
+            android:paddingRight="190dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuAchievements"
+            android:onClick="StartAchievementFragment"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#18FFFF"
+            android:layout_weight="0.25"
+            android:drawableLeft="@drawable/achievement"
+            android:paddingLeft="150dp"
+            android:paddingRight="150dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuAboutGame"
+            android:onClick="StartAboutGameFragment"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#F57C00"
+            android:layout_weight="0.25"
+            android:drawableLeft="@drawable/about_aplication"
+            android:paddingLeft="180dp"
+            android:paddingRight="180dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:onClick="ExitAplication"
+            android:text="@string/menuExit"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#FF1744"
+            android:layout_weight="0.25"
+            android:drawableLeft="@drawable/close_apk"
+            android:paddingLeft="170dp"
+            android:paddingRight="170dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

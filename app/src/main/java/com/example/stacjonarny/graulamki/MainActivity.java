@@ -84,6 +84,10 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+        Log.d("piotrek", "WARNING DELETE ALL ACHEIVEMENTS");
+        achievementDbHelper.clearAchievementsDatabase();
+        achievementDbHelper.resetAllAchievements();
+        GetDataFromDatabase();
     }
 
     public void ExitAplication(View view) {
@@ -105,6 +109,7 @@ public class MainActivity extends FragmentActivity {
         AddAchievementsToDatabase();
         achievementList = achievementDbHelper.getAllAchievements();
         PrintAchievementList();
+
     }
 
     public void AddAchievementsToDatabase() {

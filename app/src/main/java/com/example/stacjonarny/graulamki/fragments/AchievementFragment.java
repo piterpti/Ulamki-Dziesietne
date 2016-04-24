@@ -40,7 +40,6 @@ public class AchievementFragment extends Fragment {
         Collections.sort(MainActivity.achievementList);
         AchievementAdapter achievementAdapter = new AchievementAdapter(getActivity(), MainActivity.achievementList);
         achievementList.setAdapter(achievementAdapter);
-
     }
 
 }

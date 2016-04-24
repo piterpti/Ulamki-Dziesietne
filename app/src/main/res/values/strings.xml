@@ -34,9 +34,10 @@
     </string-array>
 
     <string-array name="achievments_array">
-        <item>5 pod rzad!,5,2</item>
         <item>10 pod rzad!,10,1</item>
-        <item>15 pod rzad!,15,1</item>
-        <item>20 pod rzad!,20,1</item>
+        <item>15 pod rzad!,15,2</item>
+        <item>25 pod rzad!,25,3</item>
+        <item>35 pod rzad!,35,4</item>
+        <item>50 pod rzad!,50,5</item>
     </string-array>
 </resources>

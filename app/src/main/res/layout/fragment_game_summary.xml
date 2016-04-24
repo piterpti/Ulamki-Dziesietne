@@ -69,10 +69,23 @@
             android:textAlignment="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"/>
-        <ImageView
-            android:id="@+id/summaryImage"
+        <LinearLayout
+            android:id="@+id/unlockedLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/unlockedSummaries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unlockedAchievements"
+                android:textSize="18sp"/>
+            <ListView
+                android:id="@+id/unlockedSummariesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

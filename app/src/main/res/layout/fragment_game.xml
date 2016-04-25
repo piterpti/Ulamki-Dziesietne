@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/taskText"
+            android:textSize="@dimen/gameQuestionTaskCount"
             android:gravity="left"/>
         <!-- HACK FROM STACKOVERFLOW :D-->
         <View
@@ -29,6 +30,7 @@
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:id="@+id/go_back_to_menu"
+            android:textSize="@dimen/gameQuestionTaskCount"
             />
     </LinearLayout>
 
@@ -38,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="QUESTION"
-        android:textSize="28sp"
+        android:textSize="@dimen/gameQuestionTextSize"
         android:gravity="center"/>
 
     <LinearLayout
@@ -58,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="Verdict"
             android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="@dimen/gameVedrictTextSize"
             android:visibility="gone"
             />
     </LinearLayout>

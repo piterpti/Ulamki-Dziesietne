@@ -13,17 +13,19 @@
         <ImageView
             android:src="@drawable/achievement_locked"
             android:id="@+id/achievementListImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="@dimen/achievementStarSize"
+            android:layout_height="@dimen/achievementStarSize" />
         <TextView
             android:id="@+id/simpleAchievement"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="@string/menuAchievements"
             android:paddingLeft="@dimen/paddingTextViewAdapter"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:gravity="center"
+            android:textSize="@dimen/achievementName"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+
             />
     </LinearLayout>
     <LinearLayout
@@ -37,12 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Poziom: "
+            android:textSize="@dimen/achievementDetails"
             />
         <TextView
             android:id="@+id/achievementDifficultLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Łatwy"
+            android:textSize="@dimen/achievementDetails"
             />
     </LinearLayout>
 

@@ -1,0 +1,18 @@
+<resources>
+
+    <dimen name="gameQuestionTextSize">64sp</dimen>
+    <dimen name="gameVedrictTextSize">58sp</dimen>
+    <dimen name="gameQuestionTaskCount">24sp</dimen>
+    <dimen name="answerButtonTextSize">20sp</dimen>
+    <dimen name="diffLevelTextSize">32sp</dimen>
+    <dimen name="diffLevelRest">22sp</dimen>
+    <dimen name="achievementStarSize">80dp</dimen>
+    <dimen name="achievementName">24sp</dimen>
+    <dimen name="achievementDetails">16sp</dimen>
+    <dimen name="authors">42sp</dimen>
+    <dimen name="authorsList">36sp</dimen>
+    <dimen name="gameSummary">36sp</dimen>
+    <dimen name="summaryCorrectAnswer">24sp</dimen>
+    <dimen name="summaryComment">26sp</dimen>
+    <dimen name="sumaryUnlockedAchievements">28sp</dimen>
+</resources>

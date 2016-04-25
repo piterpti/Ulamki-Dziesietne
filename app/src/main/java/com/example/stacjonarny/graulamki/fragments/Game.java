@@ -74,6 +74,7 @@ public class Game extends Fragment {
                 transaction.replace(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
                 TurnOffTimer();*/
+                gameEnded = true;
                 BackPresed();
             }
         });

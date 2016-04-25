@@ -3,5 +3,20 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="paddingTextViewAdapter">12dp</dimen>
-    
+    <dimen name="gameQuestionTextSize">28sp</dimen>
+    <dimen name="gameVedrictTextSize">34sp</dimen>
+    <dimen name="gameQuestionTaskCount">14sp</dimen>
+    <dimen name="answerButtonTextSize">12sp</dimen>
+    <dimen name="diffLevelTextSize">18sp</dimen>
+    <dimen name="diffLevelRest">14sp</dimen>
+    <dimen name="achievementStarSize">40dp</dimen>
+    <dimen name="achievementName">14sp</dimen>
+    <dimen name="achievementDetails">12sp</dimen>
+    <dimen name="authors">24sp</dimen>
+    <dimen name="authorsList">18sp</dimen>
+    <dimen name="gameSummary">24sp</dimen>
+    <dimen name="summaryCorrectAnswer">14sp</dimen>
+    <dimen name="summaryComment">16sp</dimen>
+    <dimen name="sumaryUnlockedAchievements">18sp</dimen>
+
 </resources>

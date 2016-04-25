@@ -10,7 +10,8 @@
         android:id="@+id/diffLevelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:text="LATWY"
+        android:textSize="@dimen/diffLevelTextSize"
         android:textColor="@android:color/black"
         />
 
@@ -21,7 +22,7 @@
         android:text="@string/timeToAnswer"
         android:paddingLeft="@dimen/paddingTextViewAdapter"
         android:textColor="@android:color/black"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/diffLevelRest"/>
 
     <TextView
         android:id="@+id/diffLevelCount"
@@ -30,6 +31,6 @@
         android:text="@string/questionsCount"
         android:paddingLeft="@dimen/paddingTextViewAdapter"
         android:textColor="@android:color/black"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/diffLevelRest"/>
 
 </LinearLayout>

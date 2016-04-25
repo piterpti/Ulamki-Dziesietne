@@ -85,6 +85,7 @@ public class Game extends Fragment {
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
         progressBar = (ProgressBar) view.findViewById(R.id.timeRemainProgressBar);
+        progressBar.setScaleY(6f);
         verdictText = (TextView) view.findViewById(R.id.verdictText);
         answerButtons = new AnswerButton[4];
         for (int i = 0; i < answerButtons.length; i++) {

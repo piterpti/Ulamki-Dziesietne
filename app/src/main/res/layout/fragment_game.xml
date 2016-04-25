@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="QUESTION"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:gravity="center"/>
 
     <LinearLayout
@@ -49,6 +49,7 @@
             android:id="@+id/timeRemainProgressBar"
             android:layout_width="match_parent"
             android:layout_height="36dp"
+            android:layout_marginTop="18dp"
             style="?android:attr/progressBarStyleHorizontal"/>
 
         <TextView
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="Verdict"
             android:textAlignment="center"
-            android:textSize="24sp"
+            android:textSize="34sp"
             android:visibility="gone"
             />
     </LinearLayout>
@@ -65,26 +66,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal">
 
         <LinearLayout
             android:id="@+id/answerLayout1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_weight="0.5"
             android:weightSum="1"
             android:gravity="center"/>
         <LinearLayout
             android:id="@+id/answerLayout2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.5"
             android:weightSum="1"
-            android:layout_weight="0.5"/>
+            android:gravity="center"/>
     </LinearLayout>
 
 </LinearLayout>

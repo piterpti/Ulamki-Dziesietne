@@ -17,8 +17,9 @@ public class AnswerButton extends Button {
         super(context);
         isCorrect = false;
         setSingleLine(true);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.weight =  0.5f;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
+        params.setMargins(5, 20, 5 ,20);
+        params.weight =  0.3f;
         setLayoutParams(params);
         getBackground().setColorFilter(MainActivity.BUTTON_DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
     }

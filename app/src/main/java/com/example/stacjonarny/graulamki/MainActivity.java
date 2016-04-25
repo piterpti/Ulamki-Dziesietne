@@ -153,13 +153,13 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        Game gameFragmnet = null;
-        gameFragmnet = (Game) getSupportFragmentManager().findFragmentByTag("GAME");
-        if (gameFragmnet != null && gameFragmnet.isVisible()) {
-            if (gameFragmnet.BackPresed()) {
+        Game gameFragment = null;
+        gameFragment = (Game) getSupportFragmentManager().findFragmentByTag("GAME");
+        if (gameFragment != null && gameFragment.isVisible()) {
+            if (gameFragment.BackPresed()) {
             }
         }
-        if(gameFragmnet == null)
+        if(gameFragment == null)
             super.onBackPressed();
     }
 }

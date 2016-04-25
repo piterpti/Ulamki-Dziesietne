@@ -69,11 +69,12 @@ public class Game extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainMenu main_menu_fragment = new MainMenu();
+               /* MainMenu main_menu_fragment = new MainMenu();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
-                TurnOffTimer();
+                TurnOffTimer();*/
+                BackPresed();
             }
         });
     }
@@ -334,11 +335,9 @@ public class Game extends Fragment {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
-
         return true;
     }
     public void EndGame(){
-        gameEnded = true;
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {

@@ -3,6 +3,7 @@ package com.example.stacjonarny.graulamki.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,9 +77,14 @@ public class GameSummary extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
                 MainMenu main_menu_fragment = new MainMenu();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
+                transaction.add(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
             }
         });

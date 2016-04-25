@@ -35,7 +35,17 @@ public class DivideQuestion extends Question {
     {
         int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma;
-        return new MyNumber(val, comma).toString();
+        String temp = new MyNumber(val, comma).toString();
+        if(temp.equals(getAnswer()))
+        {
+            comma++;
+            temp = new MyNumber(val, comma).toString();
+        }
+        while (temp.equals(getIncorrectAnswer2()) || temp.equals(getIncorrectAnswer3())){
+            comma++;
+            temp = new MyNumber(val, comma).toString();
+        }
+        return temp;
     }
 
     public String getIncorrectAnswer2()

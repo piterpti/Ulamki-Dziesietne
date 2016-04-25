@@ -49,6 +49,7 @@ public class Game extends Fragment {
     private TextView verdictText;
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
+    boolean gameEnded = false;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
@@ -99,17 +100,15 @@ public class Game extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog show = new AlertDialog.Builder(getContext())
-                        .setTitle("Rozgrywka")
-                        .setMessage("Zakończy grę?")
+                        .setTitle(R.string.alertMessageGame)
+                        .setMessage(R.string.alertMessageExit)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("log", "click zamknij");
                                 EndGame();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("log","click cancel");
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -307,7 +306,10 @@ public class Game extends Fragment {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    LoadNextQuestionIfExist();
+                    if(!gameEnded)
+                    {
+                        LoadNextQuestionIfExist();
+                    }
                 }
             }, VERDICT_TIME);
         }
@@ -335,6 +337,7 @@ public class Game extends Fragment {
         return true;
     }
     public void EndGame(){
+        gameEnded = true;
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {

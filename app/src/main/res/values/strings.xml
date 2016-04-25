@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Ulamki dziesietne</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_to_menu">Menu</string>
     <string name="timeToAnswer">Czas na odpowiedź:</string>
     <string name="questionsCount">Liczba pytań:</string>
@@ -15,29 +13,31 @@
     <string name="menuNewGame">Graj</string>
     <string name="menuAchievements">Osiągnięcia</string>
     <string name="menuAboutGame">O grze</string>
-    <string name="unlockedAchievements">ODBLOKOWANE OSIAGNIECIA:</string>
+    <string name="unlockedAchievements">ODBLOKOWANE OSIĄGNIECIA:</string>
     <string name="menuExit">Wyjście</string>
+    <string name="alertMessageGame">Rozgrywka</string>
+    <string name="alertMessageExit">Zakończyć grę?</string>
 
 
     <string-array name="difficulty_levels">
-        <item>Bardzo Latwy,10,40,1,#8BC34A</item>
-        <item>Latwy,20,30,2,#4CAF50</item>
-        <item>Sredni,30,20,3,#FFEB3B</item>
+        <item>Bardzo Łatwy,10,40,1,#8BC34A</item>
+        <item>Łatwy,20,30,2,#4CAF50</item>
+        <item>Średni,30,20,3,#FFEB3B</item>
         <item>Trudny,40,15,4,#FF9800</item>
         <item>Bardzo Trudny,50,10,5,#F44336</item>
     </string-array>
 
     <string-array name="game_summary">
         <item>Matura nie zdana?</item>
-        <item>Calkiem calkiem..</item>
-        <item>Tadeusz Sznuk bylby dumny!</item>
+        <item>Całkiem całkiem..</item>
+        <item>Tadeusz Sznuk byłby dumny!</item>
     </string-array>
 
     <string-array name="achievments_array">
-        <item>10 pod rzad!,10,1</item>
-        <item>15 pod rzad!,15,2</item>
-        <item>25 pod rzad!,25,3</item>
-        <item>35 pod rzad!,35,4</item>
-        <item>50 pod rzad!,50,5</item>
+        <item>10 pod rząd!,10,1</item>
+        <item>15 pod rząd!,15,2</item>
+        <item>25 pod rząd!,25,3</item>
+        <item>35 pod rząd!,35,4</item>
+        <item>50 pod rząd!,50,5</item>
     </string-array>
 </resources>

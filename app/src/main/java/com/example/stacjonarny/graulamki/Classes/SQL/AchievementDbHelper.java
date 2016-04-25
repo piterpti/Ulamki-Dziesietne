@@ -53,18 +53,21 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_STATUS, 0);
         contentValues.put(COLUMN_DIFFICULT_LEVEL, difficultLevel);
         db.insert(ACHIEVEMENT_TABLE_NAME, null, contentValues);
+        db.close();
         return true;
     }
 
     public Cursor getData(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + DATABASE_NAME + " WHERE " + COLUMN_ID + " = " + id + "", null);
+        db.close();
         return res;
     }
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, ACHIEVEMENT_TABLE_NAME);
+        db.close();
         return numRows;
     }
 
@@ -78,6 +81,7 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_STATUS, status);
         contentValues.put(COLUMN_DIFFICULT_LEVEL, difficultLevel);
         db.update(ACHIEVEMENT_TABLE_NAME, contentValues, "name = ?", new String[]{name});
+        db.close();
         return true;
     }
 
@@ -89,12 +93,16 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
 
     public Integer deleteAchievement(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(ACHIEVEMENT_TABLE_NAME,"id = ?", new String[]{Integer.toString(id)});
+        Integer toReturn = db.delete(ACHIEVEMENT_TABLE_NAME,"id = ?", new String[]{Integer.toString(id)});
+        db.close();
+        return toReturn;
     }
 
     public Integer deleteAchievement(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(ACHIEVEMENT_TABLE_NAME,"name = ?", new String[]{name});
+        Integer toReturn =  db.delete(ACHIEVEMENT_TABLE_NAME,"name = ?", new String[]{name});
+        db.close();
+        return toReturn;
     }
 
     public void resetAllAchievements() {
@@ -122,6 +130,7 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
             arrayList.add(newAchievement);
             res.moveToNext();
         }
+        db.close();
         return arrayList;
     }
 }

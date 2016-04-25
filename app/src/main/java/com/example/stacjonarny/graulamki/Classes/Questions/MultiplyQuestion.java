@@ -18,7 +18,6 @@ public class MultiplyQuestion extends Question {
     public String getAnswer() {
         int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma;
-     //   Log.d("piotrek", firstExpression.number + "^" + firstExpression.comma + " * " + secondExpression.number + "^" + secondExpression.comma + " = " + val + "^" + comma);
         return new MyNumber(val, comma).toString();
     }
 
@@ -36,7 +35,7 @@ public class MultiplyQuestion extends Question {
 
     @Override
     public String getIncorrectAnswer1() {
-        int val = firstExpression.number / secondExpression.number;
+        int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma - secondExpression.comma;
         return new MyNumber(val, comma).toString();
     }
@@ -52,8 +51,6 @@ public class MultiplyQuestion extends Question {
     public String getIncorrectAnswer3() {
         int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma - lossNumberToAnswer;
-        Log.d("piotrek", firstExpression.number + "^" + firstExpression.comma + " * " + secondExpression.number + "^" + secondExpression.comma + " = " + val + "^" + comma);
-        Log.d("piotrek",new MyNumber(val, comma).toString());
         return new MyNumber(val, comma).toString();
     }
 }

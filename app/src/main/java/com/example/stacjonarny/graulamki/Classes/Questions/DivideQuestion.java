@@ -33,7 +33,7 @@ public class DivideQuestion extends Question {
 
     public String getIncorrectAnswer1()
     {
-        int val = firstExpression.number * secondExpression.number;
+        int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma;
         return new MyNumber(val, comma).toString();
     }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
@@ -50,6 +51,7 @@ public class MainActivity extends FragmentActivity {
         transaction.add(R.id.fragment_container, main_menu_fragment);
         transaction.commit();
         init();
+        //TypefaceProvider.registerDefaultIconSets();
     }
 
     private void init() {

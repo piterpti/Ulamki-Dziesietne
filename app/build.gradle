@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:support-v4:23.2.0'
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
+    compile 'com.beardedhen:androidbootstrap:2.2.0'
+    compile 'info.hoang8f:fbutton:1.0.5'
 }

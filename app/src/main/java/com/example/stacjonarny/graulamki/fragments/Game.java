@@ -18,11 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.*;
 
+import com.beardedhen.androidbootstrap.BootstrapProgressBar;
 import com.example.stacjonarny.graulamki.Classes.AnswerButton;
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
@@ -50,12 +50,12 @@ public class Game extends Fragment {
     private LinearLayout answerLayout1;
     private LinearLayout answerLayout2;
     private AnswerButton[] answerButtons;
-    private ProgressBar progressBar;
+    private BootstrapProgressBar progressBar;
     private TextView verdictText;
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
     boolean gameEnded = false;
-    DonutProgress circleTimer;
+    private DonutProgress circleTimer;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
@@ -86,9 +86,8 @@ public class Game extends Fragment {
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
-        progressBar = (ProgressBar) view.findViewById(R.id.timeRemainProgressBar);
+        progressBar = (BootstrapProgressBar) view.findViewById(R.id.timeRemainProgressBar2);
         circleTimer = (DonutProgress) view.findViewById(R.id.donutProgressDon);
-        progressBar.setScaleY(6f);
         verdictText = (TextView) view.findViewById(R.id.verdictText);
         answerButtons = new AnswerButton[4];
         for (int i = 0; i < answerButtons.length; i++) {
@@ -158,8 +157,8 @@ public class Game extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
         Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
-//        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
-//        circleTimer.setProgress(MainActivity.gameState.getCurrentTask());
+        //gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
+        circleTimer.setProgress(MainActivity.gameState.getCurrentTask());
         gameQuestion.setText(question.questionWithoutAnswer());
         if(nextQuestion)
         {

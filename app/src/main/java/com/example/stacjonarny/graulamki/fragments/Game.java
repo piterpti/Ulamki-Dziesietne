@@ -179,7 +179,6 @@ public class Game extends Fragment {
         GameSummary summary_fragment = new GameSummary();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, summary_fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
         END_GAME_SOUND.start();
     }

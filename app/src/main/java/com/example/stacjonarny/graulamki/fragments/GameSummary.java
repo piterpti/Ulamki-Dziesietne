@@ -19,13 +19,15 @@ import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
+import info.hoang8f.widget.FButton;
+
 public class GameSummary extends Fragment {
 
 
     private TextView correctAnswers;
     private TextView textViewSummaries;
     private String[] gameTexTSummaries;
-    private Button goBackButton;
+    private FButton goBackButton;
     private LinearLayout unlockedLayout;
     private ListView unlockedAchievementsList;
 
@@ -67,7 +69,7 @@ public class GameSummary extends Fragment {
         gameTexTSummaries = getResources().getStringArray(R.array.game_summary);
         correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
         textViewSummaries = (TextView) viev.findViewById(R.id.textSummaries);
-        goBackButton = (Button) viev.findViewById(R.id.go_back_to_menu);
+        goBackButton = (FButton) viev.findViewById(R.id.go_back_to_menu);
         unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
         unlockedAchievementsList = (ListView) viev.findViewById(R.id.unlockedSummariesList);
         unlockedLayout.setVisibility(View.INVISIBLE);
@@ -77,14 +79,6 @@ public class GameSummary extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                    fm.popBackStack();
-                }
-                MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
                 EndGame();
             }
         });
@@ -103,14 +97,14 @@ public class GameSummary extends Fragment {
         }
     }
     public void EndGame(){
-        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-            fm.popBackStack();
-        }
-        MainMenu main_menu_fragment = new MainMenu();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, main_menu_fragment);
-        transaction.commit();
+                getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                        fm.popBackStack();
+                    }
+                MainMenu main_menu_fragment = new MainMenu();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container, main_menu_fragment);
+                transaction.commit();
     }
 }

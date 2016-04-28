@@ -30,6 +30,7 @@ import com.example.stacjonarny.graulamki.Classes.Questions.QuestionGenerator;
 import com.example.stacjonarny.graulamki.Classes.Questions.Question;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 public class Game extends Fragment {
 
@@ -50,6 +51,7 @@ public class Game extends Fragment {
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
     boolean gameEnded = false;
+    DonutProgress circleTimer;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
@@ -62,6 +64,7 @@ public class Game extends Fragment {
         init(view);
         AddMenuButtonListener();
         LoadNextQuestionIfExist();
+
         return view;
     }
 
@@ -69,19 +72,17 @@ public class Game extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
-                TurnOffTimer();*/
                 BackPresed();
             }
         });
     }
 
     private void init(View view) {
+        circleTimer = (DonutProgress) view.findViewById(R.id.donut_progress);
+        circleTimer.setProgress(0);
+        circleTimer.setMax((MainActivity.gameState.getDifficultLevel().getQuestionCount()));
+        circleTimer.setSuffixText(" / " + String.valueOf(MainActivity.gameState.getDifficultLevel().getQuestionCount()));
         goBackButton = (Button) view.findViewById(R.id.go_back_to_menu);
-        gameTaskProgress = (TextView) view.findViewById(R.id.taskProgress);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
@@ -141,7 +142,7 @@ public class Game extends Fragment {
             GameSummary summary_fragment = new GameSummary();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, summary_fragment);
-            transaction.addToBackStack(null);
+           // transaction.addToBackStack(null);
             transaction.commit();
             return false;
         }
@@ -156,7 +157,8 @@ public class Game extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
         Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
-        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
+//        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
+        circleTimer.setProgress(MainActivity.gameState.getCurrentTask());
         gameQuestion.setText(question.questionWithoutAnswer());
         if(nextQuestion)
         {

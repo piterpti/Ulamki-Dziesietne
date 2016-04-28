@@ -41,6 +41,7 @@ public class Game extends Fragment {
 
     private static final MediaPlayer GOOD_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_correct_answer);
     private static final MediaPlayer WRONG_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_wrong_answer);
+    private static final MediaPlayer END_GAME_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.end_game);
 
     private Button goBackButton;
     private TextView gameTaskProgress;
@@ -73,12 +74,6 @@ public class Game extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
-                TurnOffTimer();*/
-                gameEnded = true;
                 BackPresed();
             }
         });
@@ -143,11 +138,7 @@ public class Game extends Fragment {
     public boolean LoadNextQuestionIfExist() {
         // if no more question go to gameSummary fragment
         if (MainActivity.gameState.getCurrentTask() - 1 >= MainActivity.gameState.questionsList.size()) {
-            GameSummary summary_fragment = new GameSummary();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, summary_fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            GoToGameSummary();
             return false;
         }
         // else load next question
@@ -171,6 +162,15 @@ public class Game extends Fragment {
         }
         UpdateButtonsText(question);
         return true;
+    }
+
+    private void GoToGameSummary() {
+        GameSummary summary_fragment = new GameSummary();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, summary_fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        END_GAME_SOUND.start();
     }
 
     // method to random answers on buttons
@@ -332,6 +332,7 @@ public class Game extends Fragment {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d("log", "click zamknij");
+                        gameEnded = true;
                         EndGame();
                     }
                 })

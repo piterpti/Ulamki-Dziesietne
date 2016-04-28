@@ -77,7 +77,6 @@ public class GameSummary extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
                     fm.popBackStack();

@@ -5,6 +5,7 @@ package com.example.stacjonarny.graulamki.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -37,6 +38,9 @@ public class Game extends Fragment {
         DIVIDE,
         MULTIPLY
     }
+
+    private static final MediaPlayer GOOD_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_correct_answer);
+    private static final MediaPlayer WRONG_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_wrong_answer);
 
     private Button goBackButton;
     private TextView gameTaskProgress;
@@ -255,6 +259,7 @@ public class Game extends Fragment {
 
     public void GoodAnswer()
     {
+        GOOD_ANSWER_SOUND.start();
         verdictText.setText(getResources().getString(R.string.correctAnswer));
         verdictText.setVisibility(View.VISIBLE);
         verdictText.setTextColor(MainActivity.GREEN_COLOR);
@@ -277,6 +282,7 @@ public class Game extends Fragment {
 
     public void WrongAnswer()
     {
+        WRONG_ANSWER_SOUND.start();
         verdictText.setText(getResources().getString(R.string.incorrectAnswer));
         verdictText.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.INVISIBLE);

@@ -1,7 +1,13 @@
 package com.example.stacjonarny.graulamki;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -35,16 +41,19 @@ public class MainActivity extends FragmentActivity {
     public static DifficultLevel[] difficultLevels;
     public static Context mainContext;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainContext = this;
         setContentView(R.layout.activity_main);
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, main_menu_fragment);
         transaction.commit();
+        init();
+    }
+
+    private void init() {
+        mainContext = this;
         GetColorFromResoureces();
         LoadDifficultLevels();
         Thread dataBaseConnection = new Thread(new DatabaseConnection());

@@ -2,7 +2,6 @@ package com.example.stacjonarny.graulamki.Classes;
 
 import com.example.stacjonarny.graulamki.R;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.TypedValue;
 import android.widget.Button;
@@ -25,6 +24,7 @@ public class AnswerButton extends Button {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.answerButtonTextSize));
         setLayoutParams(params);
         getBackground().setColorFilter(MainActivity.BUTTON_DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+        setSoundEffectsEnabled(false);
     }
 
     public void setIsCorrect(boolean isCorrect) {

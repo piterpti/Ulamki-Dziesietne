@@ -109,17 +109,7 @@
             android:layout_weight="0.5"
             android:weightSum="1"
             android:gravity="center"/>
-        <info.hoang8f.widget.FButton
-            fbutton:buttonColor="#E74C3C"
-            fbutton:shadowColor="#C0392B"
-            android:textColor="#ffffff"
-            fbutton:shadowEnabled="true"
-            fbutton:shadowHeight="5dp"
-            fbutton:cornerRadius="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="anser1"
-            android:id="@+id/asw00"/>
+
     </LinearLayout>
 
 </LinearLayout>

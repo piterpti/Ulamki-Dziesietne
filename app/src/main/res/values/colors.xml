@@ -7,4 +7,8 @@
     <color name="colorOrange">#ee960f</color>
     <color name="colorGreen">#20ff19</color>
     <color name="colorButtonDefault">#c8c8c8</color>
+    <color name="colorButtonDefault1">#3498DB</color>
+    <color name="colorButtonDefault2">#2980B9</color>
+    <color name="colorButtonAnswerOk1">#2ECC71</color>
+    <color name="colorButtonAnswerOk2">#27AE60</color>
 </resources>

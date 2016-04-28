@@ -103,22 +103,7 @@ public class Game extends Fragment {
         answerLayout1.addView(answerButtons[1]);
         answerLayout2.addView(answerButtons[2]);
         answerLayout2.addView(answerButtons[3]);
-        //test button
-        final FButton testButton = (FButton) view.findViewById(R.id.asw00);
-        testButton.setButtonColor(ContextCompat.getColor(getActivity(), R.color.bootstrap_brand_danger));
-        testButton.setShadowColor(ContextCompat.getColor(getActivity(), R.color.bootstrap_gray_lighter));
-        testButton.setShadowEnabled(true);
-        testButton.setShadowHeight(5);
-        testButton.setCornerRadius(20);
-        testButton.setText("odpowiedź");
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testButton.setButtonColor(ContextCompat.getColor(getActivity(), R.color.holo_green_light));
-                testButton.setShadowColor(ContextCompat.getColor(getActivity(), R.color.mb_green_dark));
-            }
-        });
-        //
+
 
         circleTimer.setProgress(0);
         circleTimer.setMax((MainActivity.gameState.getDifficultLevel().getQuestionCount()));

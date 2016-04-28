@@ -21,7 +21,7 @@ public class AnswerButton extends Button {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
         params.setMargins(5, 20, 5 ,20);
         params.weight =  0.3f;
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.answerButtonTextSize));
+      //  setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.answerButtonTextSize));
         setLayoutParams(params);
         getBackground().setColorFilter(MainActivity.BUTTON_DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
         setSoundEffectsEnabled(false);

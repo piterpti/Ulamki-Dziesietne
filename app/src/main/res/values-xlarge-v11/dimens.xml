@@ -3,7 +3,7 @@
     <dimen name="gameQuestionTextSize">64sp</dimen>
     <dimen name="gameVedrictTextSize">58sp</dimen>
     <dimen name="gameQuestionTaskCount">24sp</dimen>
-    <dimen name="answerButtonTextSize">20sp</dimen>
+    <dimen name="answerButtonTextSize">14sp</dimen>
     <dimen name="diffLevelTextSize">32sp</dimen>
     <dimen name="diffLevelRest">22sp</dimen>
     <dimen name="achievementStarSize">80dp</dimen>

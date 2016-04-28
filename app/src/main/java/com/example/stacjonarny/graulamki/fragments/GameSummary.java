@@ -85,6 +85,7 @@ public class GameSummary extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
+                EndGame();
             }
         });
     }
@@ -100,5 +101,16 @@ public class GameSummary extends Fragment {
             correctAnswers.setTextColor(MainActivity.GREEN_COLOR);
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
+    }
+    public void EndGame(){
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        MainMenu main_menu_fragment = new MainMenu();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.commit();
     }
 }

@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.*;
 
@@ -31,6 +30,7 @@ import com.example.stacjonarny.graulamki.Classes.Questions.QuestionGenerator;
 import com.example.stacjonarny.graulamki.Classes.Questions.Question;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 public class Game extends Fragment {
 
@@ -55,6 +55,7 @@ public class Game extends Fragment {
     private boolean nextQuestion = true;
     private int random1, random2, random3, random4;
     boolean gameEnded = false;
+    DonutProgress circleTimer;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
 
@@ -67,6 +68,7 @@ public class Game extends Fragment {
         init(view);
         AddMenuButtonListener();
         LoadNextQuestionIfExist();
+
         return view;
     }
 
@@ -81,11 +83,11 @@ public class Game extends Fragment {
 
     private void init(View view) {
         goBackButton = (Button) view.findViewById(R.id.go_back_to_menu);
-        gameTaskProgress = (TextView) view.findViewById(R.id.taskProgress);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
         progressBar = (ProgressBar) view.findViewById(R.id.timeRemainProgressBar);
+        circleTimer = (DonutProgress) view.findViewById(R.id.donutProgressDon);
         progressBar.setScaleY(6f);
         verdictText = (TextView) view.findViewById(R.id.verdictText);
         answerButtons = new AnswerButton[4];
@@ -97,6 +99,11 @@ public class Game extends Fragment {
         answerLayout1.addView(answerButtons[1]);
         answerLayout2.addView(answerButtons[2]);
         answerLayout2.addView(answerButtons[3]);
+
+
+        circleTimer.setProgress(0);
+        circleTimer.setMax((MainActivity.gameState.getDifficultLevel().getQuestionCount()));
+        circleTimer.setSuffixText(" / " + String.valueOf(MainActivity.gameState.getDifficultLevel().getQuestionCount()));
 
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +135,6 @@ public class Game extends Fragment {
         int levelCount =  MainActivity.gameDifficultLevel.getQuestionCount();
         int levelNum =  MainActivity.gameDifficultLevel.getLevelNum();
         float levelTime =  MainActivity.gameDifficultLevel.getTimeToAnswer();
-
         MainActivity.gameState = new GameState();
         MainActivity.gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount, levelNum));
         GenerateQuestions();
@@ -152,7 +158,8 @@ public class Game extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
         Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
-        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
+//        gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
+//        circleTimer.setProgress(MainActivity.gameState.getCurrentTask());
         gameQuestion.setText(question.questionWithoutAnswer());
         if(nextQuestion)
         {

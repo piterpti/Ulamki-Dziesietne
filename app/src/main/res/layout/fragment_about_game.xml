@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.stacjonarny.graulamki.fragments.AboutGameFragment"
-    android:background="#b9eb83"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -22,4 +22,5 @@
         android:paddingLeft="14dp"
         android:text="@string/applicationAuthors"
         android:textSize="@dimen/authorsList"/>
+
 </LinearLayout>

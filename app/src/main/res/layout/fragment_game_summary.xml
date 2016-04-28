@@ -12,12 +12,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:layout_marginLeft="10dp">
 
-        <View
+ <!--       <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"/>-->
+        <info.hoang8f.widget.FButton
+            fbutton:buttonColor="#2ECC71"
+            fbutton:shadowColor="#27AE60"
+            android:textColor="#ffffff"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="5dp"
+            fbutton:cornerRadius="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poziomy"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/go_back_to_levels"/>
+        <info.hoang8f.widget.FButton
+            fbutton:buttonColor="#3498DB"
+            fbutton:shadowColor="#2980B9"
+            android:textColor="#ffffff"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="5dp"
+            fbutton:cornerRadius="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MENU"
+            android:layout_marginLeft="23dp"
+            android:id="@+id/go_back_to_menu"/>
         <info.hoang8f.widget.FButton
             fbutton:buttonColor="#E74C3C"
             fbutton:shadowColor="#C0392B"
@@ -27,8 +52,9 @@
             fbutton:cornerRadius="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MENU"
-            android:id="@+id/go_back_to_menu"/>
+            android:text="Wyjście"
+            android:layout_marginLeft="23dp"
+            android:id="@+id/exit_game"/>
     </LinearLayout>
 
     <TextView

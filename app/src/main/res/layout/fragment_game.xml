@@ -28,8 +28,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
         <info.hoang8f.widget.FButton
-        fbutton:buttonColor="#E74C3C"
-        fbutton:shadowColor="#C0392B"
+            fbutton:buttonColor="#3498DB"
+            fbutton:shadowColor="#2980B9"
         android:textColor="#ffffff"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp"

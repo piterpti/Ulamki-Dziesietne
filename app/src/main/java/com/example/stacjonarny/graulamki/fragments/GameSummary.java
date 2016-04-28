@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,7 +26,9 @@ public class GameSummary extends Fragment {
     private TextView correctAnswers;
     private TextView textViewSummaries;
     private String[] gameTexTSummaries;
-    private FButton goBackButton;
+    private FButton goBackToMenuButton;
+    private FButton goBackToLevelsButton;
+    private FButton exitGameButton;
     private LinearLayout unlockedLayout;
     private ListView unlockedAchievementsList;
 
@@ -69,17 +70,31 @@ public class GameSummary extends Fragment {
         gameTexTSummaries = getResources().getStringArray(R.array.game_summary);
         correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
         textViewSummaries = (TextView) viev.findViewById(R.id.textSummaries);
-        goBackButton = (FButton) viev.findViewById(R.id.go_back_to_menu);
+        goBackToMenuButton = (FButton) viev.findViewById(R.id.go_back_to_menu);
+        goBackToLevelsButton = (FButton) viev.findViewById(R.id.go_back_to_levels);
+        exitGameButton = (FButton) viev.findViewById(R.id.exit_game);
         unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
         unlockedAchievementsList = (ListView) viev.findViewById(R.id.unlockedSummariesList);
         unlockedLayout.setVisibility(View.INVISIBLE);
     }
 
     private void AddMenuButtonListener() {
-        goBackButton.setOnClickListener(new View.OnClickListener() {
+        goBackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EndGame();
+                BackToMenu();
+            }
+        });
+        goBackToLevelsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BackToLevels();
+            }
+        });
+        exitGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
             }
         });
     }
@@ -96,7 +111,7 @@ public class GameSummary extends Fragment {
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
     }
-    public void EndGame(){
+    public void BackToMenu(){
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
@@ -106,5 +121,22 @@ public class GameSummary extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
+    }
+    public void BackToLevels(){
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        StartGameFragment start_game_fragment = new StartGameFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
+        transaction.replace(R.id.fragment_container, start_game_fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

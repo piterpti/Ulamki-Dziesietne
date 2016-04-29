@@ -92,6 +92,7 @@ public class Game extends Fragment {
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
         answerLayout2 = (LinearLayout) view.findViewById(R.id.answerLayout2);
         progressBar = (BootstrapProgressBar) view.findViewById(R.id.timeRemainProgressBar2);
+        progressBar.setAnimated(false);
         circleTimer = (DonutProgress) view.findViewById(R.id.donutProgressDon);
         verdictText = (TextView) view.findViewById(R.id.verdictText);
         answerButtons = new AnswerButton[4];
@@ -139,6 +140,7 @@ public class Game extends Fragment {
         int levelCount =  MainActivity.gameDifficultLevel.getQuestionCount();
         int levelNum =  MainActivity.gameDifficultLevel.getLevelNum();
         float levelTime =  MainActivity.gameDifficultLevel.getTimeToAnswer();
+        MainActivity.unlockedAchievements = null;
         MainActivity.gameState = new GameState();
         MainActivity.gameState.setDifficultLevel(new DifficultLevel(levelText, levelTime, levelCount, levelNum));
         GenerateQuestions();
@@ -236,9 +238,9 @@ public class Game extends Fragment {
 
     // create time counter
     public void CreateTimer(int time) {
-        progressBar.setProgress(100);
         TurnOffTimer();
-        answerTimer = new CountDownTimer(time, 50) {
+        progressBar.setProgress(100);
+        answerTimer = new CountDownTimer(time, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
                 float ppp = millisUntilFinished / MainActivity.gameState.getDifficultLevel().getTimeToAnswer() / 10;

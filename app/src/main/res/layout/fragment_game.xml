@@ -26,29 +26,20 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="0.5"/>
         <info.hoang8f.widget.FButton
             fbutton:buttonColor="#3498DB"
             fbutton:shadowColor="#2980B9"
-        android:textColor="#ffffff"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp"
-        fbutton:cornerRadius="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MENU"
-        android:id="@+id/go_back_to_menu"/>
-<!--        <Button
-            android:background="#3F51B5"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:text="@string/back_to_menu"
-            android:paddingLeft="23dp"
-            android:paddingRight="12dp"
-            android:id="@+id/go_back_to_menu"
-            android:textSize="@dimen/gameQuestionTaskCount"
-            />-->
+            android:textColor="#ffffff"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="5dp"
+            fbutton:cornerRadius="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="MENU"
+            android:id="@+id/go_back_to_menu"/>
+
 
     </LinearLayout>
 

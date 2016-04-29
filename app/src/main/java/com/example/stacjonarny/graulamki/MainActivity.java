@@ -41,6 +41,7 @@ public class MainActivity extends FragmentActivity {
     public static DifficultLevel gameDifficultLevel;
     public static DifficultLevel[] difficultLevels;
     public static Context mainContext;
+    public static ArrayList<Achievement> unlockedAchievements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

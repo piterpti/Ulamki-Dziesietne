@@ -20,7 +20,7 @@
 
 
     <string-array name="difficulty_levels">
-        <item>Bardzo Łatwy,1,40,1,#8BC34A</item>
+        <item>Bardzo Łatwy,10,40,1,#8BC34A</item>
         <item>Łatwy,20,30,2,#4CAF50</item>
         <item>Średni,30,20,3,#FFEB3B</item>
         <item>Trudny,40,15,4,#FF9800</item>

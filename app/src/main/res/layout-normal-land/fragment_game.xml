@@ -25,16 +25,17 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="0.55"/>
         <info.hoang8f.widget.FButton
-            fbutton:buttonColor="#E74C3C"
-            fbutton:shadowColor="#C0392B"
+            fbutton:buttonColor="#3498DB"
+            fbutton:shadowColor="#2980B9"
             android:textColor="#ffffff"
             fbutton:shadowEnabled="true"
             fbutton:shadowHeight="5dp"
             fbutton:cornerRadius="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="MENU"
             android:id="@+id/go_back_to_menu"/>
     </LinearLayout>
@@ -47,7 +48,8 @@
         android:textColor="#ffffff"
         android:text="QUESTION"
         android:textSize="@dimen/gameQuestionTextSize"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="-24dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +87,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="0.5"
-            android:weightSum="0.5"
+            android:weightSum="0.4"
             android:gravity="center"/>
         <LinearLayout
             android:id="@+id/answerLayout2"
@@ -93,7 +95,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="0.5"
-            android:weightSum="0.5"
+            android:weightSum="0.4"
             android:gravity="center"/>
     </LinearLayout>
 

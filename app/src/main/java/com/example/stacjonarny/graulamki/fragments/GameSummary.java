@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import com.example.stacjonarny.graulamki.R;
 import info.hoang8f.widget.FButton;
 
 public class GameSummary extends Fragment {
-
 
     private TextView correctAnswers;
     private TextView textViewSummaries;
@@ -53,17 +53,23 @@ public class GameSummary extends Fragment {
     }
 
     private void UnlockedAchievementsDuringGame(int correctAnswersRowCount) {
-        ArrayList<Achievement> unlockedAchievements = new ArrayList<>();
+        if(MainActivity.unlockedAchievements != null) {
+            unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));
+            unlockedLayout.setVisibility(View.VISIBLE);
+            return;
+        }
+        Log.d("piotrek", "blabla");
+        MainActivity.unlockedAchievements = new ArrayList<>();
         for (Achievement a : MainActivity.achievementList) {
             if (MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel()) {
                 if (a.Unlock(correctAnswersRowCount))
                 {
-                    unlockedAchievements.add(a);
+                    MainActivity.unlockedAchievements.add(a);
                     unlockedLayout.setVisibility(View.VISIBLE);
                 }
             }
         }
-        unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), unlockedAchievements));
+        unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));
     }
 
     private void init(View viev) {

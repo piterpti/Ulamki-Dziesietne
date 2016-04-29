@@ -15,10 +15,7 @@
         android:paddingBottom="16dp"
         android:layout_marginLeft="10dp">
 
- <!--       <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>-->
+
         <info.hoang8f.widget.FButton
             fbutton:buttonColor="#2ECC71"
             fbutton:shadowColor="#27AE60"
@@ -26,7 +23,8 @@
             fbutton:shadowEnabled="true"
             fbutton:shadowHeight="5dp"
             fbutton:cornerRadius="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
             android:layout_height="wrap_content"
             android:text="Poziomy"
             android:layout_marginLeft="10dp"
@@ -38,7 +36,8 @@
             fbutton:shadowEnabled="true"
             fbutton:shadowHeight="5dp"
             fbutton:cornerRadius="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
             android:layout_height="wrap_content"
             android:text="MENU"
             android:layout_marginLeft="23dp"
@@ -50,7 +49,8 @@
             fbutton:shadowEnabled="true"
             fbutton:shadowHeight="5dp"
             fbutton:cornerRadius="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
             android:layout_height="wrap_content"
             android:text="Wyjście"
             android:layout_marginLeft="23dp"

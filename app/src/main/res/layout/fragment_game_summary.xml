@@ -96,7 +96,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/textSummaries"
@@ -110,7 +110,7 @@
                 <LinearLayout
                     android:id="@+id/unlockedLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/unlockedSummaries"
@@ -118,10 +118,10 @@
                         android:layout_height="wrap_content"
                         android:text="@string/unlockedAchievements"
                         android:textSize="@dimen/sumaryUnlockedAchievements"/>
-                    <ListView
+                    <com.example.stacjonarny.graulamki.Classes.NonScrollListView
                         android:id="@+id/unlockedSummariesList"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

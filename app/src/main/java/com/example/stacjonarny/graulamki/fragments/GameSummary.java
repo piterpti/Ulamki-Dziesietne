@@ -16,6 +16,7 @@ import java.util.*;
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
+import com.example.stacjonarny.graulamki.Classes.NonScrollListView;
 import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 
@@ -30,7 +31,7 @@ public class GameSummary extends Fragment {
     private FButton goBackToLevelsButton;
     private FButton exitGameButton;
     private LinearLayout unlockedLayout;
-    private ListView unlockedAchievementsList;
+    private NonScrollListView unlockedAchievementsList;
 
     public GameSummary() {
     }
@@ -79,7 +80,7 @@ public class GameSummary extends Fragment {
         goBackToLevelsButton = (FButton) viev.findViewById(R.id.go_back_to_levels);
         exitGameButton = (FButton) viev.findViewById(R.id.exit_game);
         unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
-        unlockedAchievementsList = (ListView) viev.findViewById(R.id.unlockedSummariesList);
+        unlockedAchievementsList = (NonScrollListView) viev.findViewById(R.id.unlockedSummariesList);
         unlockedLayout.setVisibility(View.INVISIBLE);
     }
 

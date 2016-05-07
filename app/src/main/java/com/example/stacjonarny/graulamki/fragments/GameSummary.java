@@ -52,21 +52,20 @@ public class GameSummary extends Fragment {
         return viev;
     }
 
+
+
     private void UnlockedAchievementsDuringGame(int correctAnswersRowCount) {
-        if(MainActivity.unlockedAchievements != null) {
+        if(MainActivity.unlockedAchievements != null && MainActivity.unlockedAchievements.size() > 0) {
             unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));
             unlockedLayout.setVisibility(View.VISIBLE);
             return;
         }
-        Log.d("piotrek", "blabla");
         MainActivity.unlockedAchievements = new ArrayList<>();
         for (Achievement a : MainActivity.achievementList) {
-            if (MainActivity.gameDifficultLevel.getLevelNum() == a.getDifficultLevel()) {
-                if (a.Unlock(correctAnswersRowCount))
-                {
-                    MainActivity.unlockedAchievements.add(a);
-                    unlockedLayout.setVisibility(View.VISIBLE);
-                }
+            if (a.Unlock(correctAnswersRowCount))
+            {
+                MainActivity.unlockedAchievements.add(a);
+                unlockedLayout.setVisibility(View.VISIBLE);
             }
         }
         unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));

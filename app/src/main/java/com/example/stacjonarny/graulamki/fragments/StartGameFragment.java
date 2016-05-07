@@ -19,6 +19,7 @@ import com.example.stacjonarny.graulamki.R;
 public class StartGameFragment extends Fragment {
 
 
+    public static final String GAME_FRAGMENT_TAG = "GAME";
     private ListView list;
 
     @Override
@@ -47,8 +48,7 @@ public class StartGameFragment extends Fragment {
             play_mode_fragment.setArguments(args);
             play_mode_fragment.setRetainInstance(true);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, play_mode_fragment,"GAME");
-            transaction.addToBackStack("test");
+            transaction.replace(R.id.fragment_container, play_mode_fragment,GAME_FRAGMENT_TAG);
             transaction.commit();
             play_mode_fragment.CreateGame();
         }

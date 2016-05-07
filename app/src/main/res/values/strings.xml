@@ -8,8 +8,8 @@
     <string name="gameSummary">Podsumowanie rozgrywki:</string>
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>
     <string name="correctAnswer">DOBRZE!</string>
-    <string name="incorrectAnswer">ŹLE!</string>
-    <string name="applicationAuthors">Michał Brzujszczak\nPawel Karpiński\nDamian Kurek\nPiotr Łukasik</string>
+    <string name="inCorrectAnswer">ŹLE!</string>
+    <string name="applicationAuthors">Michał Brzujszczak\nPaweł Karpiński\nDamian Kurek\nPiotr Łukasik</string>
     <string name="menuNewGame">Graj</string>
     <string name="menuAchievements">Osiągnięcia</string>
     <string name="menuAboutGame">O grze</string>
@@ -17,6 +17,8 @@
     <string name="menuExit">Wyjście</string>
     <string name="alertMessageGame">Rozgrywka</string>
     <string name="alertMessageExit">Zakończyć grę?</string>
+    <string name="end_game">Zakończyć grę?</string>
+    <string name="alert_dialog_game">Rozgrywka</string>
 
 
     <string-array name="difficulty_levels">

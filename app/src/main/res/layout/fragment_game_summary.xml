@@ -8,115 +8,122 @@
     android:padding="16dp"
     android:background="#BCAAA4">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="16dp"
-        android:layout_marginLeft="10dp">
-
-
-        <info.hoang8f.widget.FButton
-            fbutton:buttonColor="#2ECC71"
-            fbutton:shadowColor="#27AE60"
-            android:textColor="#ffffff"
-            fbutton:shadowEnabled="true"
-            fbutton:shadowHeight="5dp"
-            fbutton:cornerRadius="20dp"
-            android:layout_width="0dp"
-            android:layout_weight="0.33"
-            android:layout_height="wrap_content"
-            android:text="Poziomy"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/go_back_to_levels"/>
-        <info.hoang8f.widget.FButton
-            fbutton:buttonColor="#3498DB"
-            fbutton:shadowColor="#2980B9"
-            android:textColor="#ffffff"
-            fbutton:shadowEnabled="true"
-            fbutton:shadowHeight="5dp"
-            fbutton:cornerRadius="20dp"
-            android:layout_width="0dp"
-            android:layout_weight="0.33"
-            android:layout_height="wrap_content"
-            android:text="MENU"
-            android:layout_marginLeft="23dp"
-            android:id="@+id/go_back_to_menu"/>
-        <info.hoang8f.widget.FButton
-            fbutton:buttonColor="#E74C3C"
-            fbutton:shadowColor="#C0392B"
-            android:textColor="#ffffff"
-            fbutton:shadowEnabled="true"
-            fbutton:shadowHeight="5dp"
-            fbutton:cornerRadius="20dp"
-            android:layout_width="0dp"
-            android:layout_weight="0.33"
-            android:layout_height="wrap_content"
-            android:text="Wyjście"
-            android:layout_marginLeft="23dp"
-            android:id="@+id/exit_game"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/gameSummary"
-        android:textSize="@dimen/gameSummary"
-        android:textAlignment="center"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:paddingTop="18dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/correctAnswers"
-            android:textSize="@dimen/summaryCorrectAnswer"/>
-        <TextView
-            android:id="@+id/summaryGameStatistics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="30% (3/10)"
-            android:textSize="@dimen/summaryCorrectAnswer"
-            android:textStyle="bold"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textSummaries"
-            android:text="TEST TEXT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/summaryComment"
-            android:textAlignment="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"/>
+        android:fillViewport="true">
         <LinearLayout
-            android:id="@+id/unlockedLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/unlockedSummaries"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/unlockedAchievements"
-                android:textSize="@dimen/sumaryUnlockedAchievements"/>
-            <ListView
-                android:id="@+id/unlockedSummariesList"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp"
+                android:layout_marginLeft="10dp">
+
+                <info.hoang8f.widget.FButton
+                    fbutton:buttonColor="#2ECC71"
+                    fbutton:shadowColor="#27AE60"
+                    android:textColor="#ffffff"
+                    fbutton:shadowEnabled="true"
+                    fbutton:shadowHeight="5dp"
+                    fbutton:cornerRadius="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
+                    android:text="Poziomy"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/go_back_to_levels"/>
+                <info.hoang8f.widget.FButton
+                    fbutton:buttonColor="#3498DB"
+                    fbutton:shadowColor="#2980B9"
+                    android:textColor="#ffffff"
+                    fbutton:shadowEnabled="true"
+                    fbutton:shadowHeight="5dp"
+                    fbutton:cornerRadius="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
+                    android:text="MENU"
+                    android:layout_marginLeft="23dp"
+                    android:id="@+id/go_back_to_menu"/>
+                <info.hoang8f.widget.FButton
+                    fbutton:buttonColor="#E74C3C"
+                    fbutton:shadowColor="#C0392B"
+                    android:textColor="#ffffff"
+                    fbutton:shadowEnabled="true"
+                    fbutton:shadowHeight="5dp"
+                    fbutton:cornerRadius="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.33"
+                    android:layout_height="wrap_content"
+                    android:text="Wyjście"
+                    android:layout_marginLeft="23dp"
+                    android:id="@+id/exit_game"/>
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/gameSummary"
+                android:textSize="@dimen/gameSummary"
+                android:textAlignment="center"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:paddingTop="18dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/correctAnswers"
+                    android:textSize="@dimen/summaryCorrectAnswer"/>
+                <TextView
+                    android:id="@+id/summaryGameStatistics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30% (3/10)"
+                    android:textSize="@dimen/summaryCorrectAnswer"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textSummaries"
+                    android:text="TEST TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/summaryComment"
+                    android:textAlignment="center"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"/>
+                <LinearLayout
+                    android:id="@+id/unlockedLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/unlockedSummaries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/unlockedAchievements"
+                        android:textSize="@dimen/sumaryUnlockedAchievements"/>
+                    <ListView
+                        android:id="@+id/unlockedSummariesList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

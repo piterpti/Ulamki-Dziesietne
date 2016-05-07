@@ -1,23 +1,14 @@
 package com.example.stacjonarny.graulamki;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 
-import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
@@ -25,6 +16,7 @@ import com.example.stacjonarny.graulamki.Classes.SQL.AchievementDbHelper;
 import com.example.stacjonarny.graulamki.fragments.AboutGameFragment;
 import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.Game;
+import com.example.stacjonarny.graulamki.fragments.GameSummary;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
 import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
 import java.util.*;
@@ -42,6 +34,11 @@ public class MainActivity extends FragmentActivity {
     public static DifficultLevel[] difficultLevels;
     public static Context mainContext;
     public static ArrayList<Achievement> unlockedAchievements;
+    public final static String SOUND_KEY = "SOUNDONOFF";
+    public static boolean SOUND = true;
+
+    public static final boolean DEBUG_MODE = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +49,14 @@ public class MainActivity extends FragmentActivity {
         transaction.add(R.id.fragment_container, main_menu_fragment);
         transaction.commit();
         init();
-        //TypefaceProvider.registerDefaultIconSets();
     }
 
     private void init() {
         mainContext = this;
         GetColorFromResoureces();
         LoadDifficultLevels();
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SOUND = sharedPreferences.getBoolean(SOUND_KEY, true);
         Thread dataBaseConnection = new Thread(new DatabaseConnection());
         dataBaseConnection.start();
     }
@@ -101,10 +99,13 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-//        achievementDbHelper.clearAchievementsDatabase();
-//        achievementDbHelper.resetAllAchievements();
-//        Thread dataBaseConnection = new Thread(new DatabaseConnection());
-//        dataBaseConnection.start();
+        if(DEBUG_MODE)
+        {
+            achievementDbHelper.clearAchievementsDatabase();
+            achievementDbHelper.resetAllAchievements();
+            Thread dataBaseConnection = new Thread(new DatabaseConnection());
+            dataBaseConnection.start();
+        }
     }
 
     public void ExitAplication(View view) {
@@ -165,14 +166,24 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        boolean callSuper = true;
         Game gameFragment = null;
-        gameFragment = (Game) getSupportFragmentManager().findFragmentByTag("GAME");
+        GameSummary gameSummaryFragment = null;
+        gameFragment = (Game) getSupportFragmentManager().findFragmentByTag(StartGameFragment.GAME_FRAGMENT_TAG);
+        gameSummaryFragment = (GameSummary) getSupportFragmentManager().findFragmentByTag(Game.GAME_SUMMARY_TAG);
         if (gameFragment != null && gameFragment.isVisible()) {
-            if (gameFragment.BackPresed()) {
+            if(gameFragment.BackPressed()) {
+                callSuper = false;
             }
         }
-        if(gameFragment == null)
+        if(gameSummaryFragment != null && gameSummaryFragment.isVisible()) {
+            gameSummaryFragment.BackToMenu();
+            callSuper = false;
+        }
+        if(callSuper)
+        {
             super.onBackPressed();
+        }
     }
 }
 

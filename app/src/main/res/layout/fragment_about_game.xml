@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.stacjonarny.graulamki.fragments.AboutGameFragment"
-    android:background="#ffffff"
+    android:background="#aaaaaa"
     android:orientation="vertical"
     android:padding="16dp">
 

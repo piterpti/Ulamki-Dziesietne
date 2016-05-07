@@ -3,8 +3,9 @@ package com.example.stacjonarny.graulamki.fragments;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,15 +14,14 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.*;
 
@@ -35,8 +35,6 @@ import com.example.stacjonarny.graulamki.MainActivity;
 import com.example.stacjonarny.graulamki.R;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 
-import info.hoang8f.widget.FButton;
-
 public class Game extends Fragment {
 
     public enum QuestionType {
@@ -44,12 +42,14 @@ public class Game extends Fragment {
         MULTIPLY
     }
 
+    public static final String GAME_SUMMARY_TAG = "GAME_SUMMARY";
+
     private static final MediaPlayer GOOD_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_correct_answer);
     private static final MediaPlayer WRONG_ANSWER_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.game_wrong_answer);
     private static final MediaPlayer END_GAME_SOUND = MediaPlayer.create(MainActivity.mainContext, R.raw.end_game);
 
+    private ImageView soundIcon;
     private Button goBackButton;
-    private TextView gameTaskProgress;
     private TextView gameQuestion;
     private CountDownTimer answerTimer;
     private LinearLayout answerLayout1;
@@ -62,7 +62,7 @@ public class Game extends Fragment {
     boolean gameEnded = false;
     private DonutProgress circleTimer;
 
-    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILISECONDS
+    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILI SECONDS
 
     public Game() {
     }
@@ -81,12 +81,13 @@ public class Game extends Fragment {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BackPresed();
+                BackPressed();
             }
         });
     }
 
     private void init(View view) {
+        soundIcon = (ImageView) view.findViewById(R.id.gameSound);
         goBackButton = (Button) view.findViewById(R.id.go_back_to_menu);
         gameQuestion = (TextView) view.findViewById(R.id.gameQuestion);
         answerLayout1 = (LinearLayout) view.findViewById(R.id.answerLayout1);
@@ -130,7 +131,28 @@ public class Game extends Fragment {
 
             }
         });
+
+        soundIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.SOUND = !MainActivity.SOUND;
+                SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(MainActivity.SOUND_KEY, MainActivity.SOUND);
+                editor.commit();
+                ChangeSoundIcon();
+            }
+        });
+        ChangeSoundIcon();
         LoadNextQuestionIfExist();
+    }
+
+    private void ChangeSoundIcon() {
+        if(MainActivity.SOUND) {
+            soundIcon.setImageResource(R.drawable.sound_on);
+        } else {
+            soundIcon.setImageResource(R.drawable.sound_off);
+        }
     }
 
     // starting a game
@@ -164,7 +186,6 @@ public class Game extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.VISIBLE);
         Question question = MainActivity.gameState.questionsList.get(MainActivity.gameState.getCurrentTask() - 1);
-        //gameTaskProgress.setText(getResources().getString(R.string.taskText) + ": " + MainActivity.gameState.getCurrentTask() + "/" + MainActivity.gameState.getDifficultLevel().getQuestionCount());
         circleTimer.setProgress(MainActivity.gameState.getCurrentTask());
         gameQuestion.setText(question.questionWithoutAnswer());
         if(nextQuestion)
@@ -180,9 +201,11 @@ public class Game extends Fragment {
     private void GoToGameSummary() {
         GameSummary summary_fragment = new GameSummary();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, summary_fragment);
+        transaction.replace(R.id.fragment_container, summary_fragment, GAME_SUMMARY_TAG);
         transaction.commit();
-        END_GAME_SOUND.start();
+        if(MainActivity.SOUND) {
+            END_GAME_SOUND.start();
+        }
     }
 
     // method to random answers on buttons
@@ -208,9 +231,9 @@ public class Game extends Fragment {
         answerButtons[random3].setText(question.getIncorrectAnswer2());
         answerButtons[random4].setText(question.getIncorrectAnswer3());
         answerButtons[random1].setIsCorrect(true);
-        answerButtons[random2].setIsCorrect(false);
-        answerButtons[random3].setIsCorrect(false);
-        answerButtons[random4].setIsCorrect(false);
+        answerButtons[random2].setIsCorrect(MainActivity.DEBUG_MODE);
+        answerButtons[random3].setIsCorrect(MainActivity.DEBUG_MODE);
+        answerButtons[random4].setIsCorrect(MainActivity.DEBUG_MODE);
     }
 
     @Override
@@ -271,7 +294,9 @@ public class Game extends Fragment {
 
     public void GoodAnswer()
     {
-        GOOD_ANSWER_SOUND.start();
+        if(MainActivity.SOUND){
+            GOOD_ANSWER_SOUND.start();
+        }
         verdictText.setText(getResources().getString(R.string.correctAnswer));
         verdictText.setVisibility(View.VISIBLE);
         verdictText.setTextColor(MainActivity.GREEN_COLOR);
@@ -294,8 +319,10 @@ public class Game extends Fragment {
 
     public void WrongAnswer()
     {
-        WRONG_ANSWER_SOUND.start();
-        verdictText.setText(getResources().getString(R.string.incorrectAnswer));
+        if(MainActivity.SOUND) {
+            WRONG_ANSWER_SOUND.start();
+        }
+        verdictText.setText(getResources().getString(R.string.inCorrectAnswer));
         verdictText.setVisibility(View.VISIBLE);
         gameQuestion.setVisibility(View.INVISIBLE);
         verdictText.setTextColor(MainActivity.RED_COLOR);
@@ -336,21 +363,18 @@ public class Game extends Fragment {
         }
     }
 
-    public boolean BackPresed(){
+    public boolean BackPressed(){
 
         AlertDialog show = new AlertDialog.Builder(getContext())
-                .setTitle("Rozgrywka")
-                .setMessage("Zakończy grę?")
+                .setTitle(R.string.alert_dialog_game)
+                .setMessage(R.string.end_game)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("log", "click zamknij");
-                        gameEnded = true;
                         EndGame();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("log","click cancel");
                     }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -358,6 +382,7 @@ public class Game extends Fragment {
         return true;
     }
     public void EndGame(){
+        gameEnded = true;
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {

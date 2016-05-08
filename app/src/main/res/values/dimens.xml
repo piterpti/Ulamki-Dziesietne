@@ -9,7 +9,7 @@
     <dimen name="answerButtonTextSize">12sp</dimen>
     <dimen name="diffLevelTextSize">18sp</dimen>
     <dimen name="diffLevelRest">14sp</dimen>
-    <dimen name="achievementStarSize">40dp</dimen>
+    <dimen name="achievementStarSize">55dp</dimen>
     <dimen name="achievementName">14sp</dimen>
     <dimen name="achievementDetails">12sp</dimen>
     <dimen name="authors">24sp</dimen>

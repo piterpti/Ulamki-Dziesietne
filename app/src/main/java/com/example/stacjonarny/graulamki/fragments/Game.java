@@ -339,7 +339,7 @@ public class Game extends Fragment {
 
         @Override
         public void onClick(View v) {
-            AnswerButton button = (AnswerButton) v;
+            final AnswerButton button = (AnswerButton) v;
             TurnOffTimer();
             if (button.isCorrect()) {
                 GoodAnswer();
@@ -349,6 +349,7 @@ public class Game extends Fragment {
             {
                 WrongAnswer();
             }
+            button.setEnabled(false);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -356,6 +357,7 @@ public class Game extends Fragment {
                     if(!gameEnded)
                     {
                         LoadNextQuestionIfExist();
+                        button.setEnabled(true);
                     }
                 }
             }, VERDICT_TIME);

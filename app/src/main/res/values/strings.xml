@@ -36,10 +36,14 @@
     </string-array>
 
     <string-array name="achievments_array">
+        <item>5 pod rząd!,5,1</item>
         <item>10 pod rząd!,10,1</item>
         <item>15 pod rząd!,15,2</item>
-        <item>25 pod rząd!,25,3</item>
+        <item>15 pod rząd!,15,3</item>
+        <item>30 pod rząd!,30,3</item>
         <item>35 pod rząd!,35,4</item>
+        <item>10 pod rząd!,10,5</item>
+        <item>25 pod rząd!,25,5</item>
         <item>50 pod rząd!,50,5</item>
     </string-array>
 </resources>

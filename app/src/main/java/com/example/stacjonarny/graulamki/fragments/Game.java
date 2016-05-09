@@ -58,9 +58,9 @@ public class Game extends Fragment {
     private BootstrapProgressBar progressBar;
     private TextView verdictText;
     private boolean nextQuestion = true;
-    private int random1, random2, random3, random4;
     boolean gameEnded = false;
     private DonutProgress circleTimer;
+    private int [] randoms;
 
     private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILI SECONDS
 
@@ -207,37 +207,44 @@ public class Game extends Fragment {
         } catch (NullPointerException e) {
             Log.w("NullPointerException", "Controlled NullPointerException: " + e);
         }
-        if(MainActivity.SOUND) {
+        if (MainActivity.SOUND) {
             END_GAME_SOUND.start();
+        }
+    }
+
+    private void ShuffleArray(int[] array)
+    {
+        int index, temp;
+        Random random = new Random();
+        for (int i = array.length - 1; i > 0; i--)
+        {
+            index = random.nextInt(i + 1);
+            temp = array[index];
+            array[index] = array[i];
+            array[i] = temp;
         }
     }
 
     // method to random answers on buttons
     public void RandomAnswerOnButtons() {
         Random r = new Random();
-        random1 = r.nextInt(4);
-        random2 = random3 = random4 = random1;
-        while (random1 == random2) {
-            random2 = r.nextInt(4);
+        randoms = new int[4];
+        for(int i = 0; i < 4; i++) {
+            randoms[i] = i;
         }
-        while (random3 == random2 || random3 == random1) {
-            random3 = r.nextInt(4);
-        }
-        while (random4 == random1 || random4 == random2 || random4 == random3) {
-            random4 = r.nextInt(4);
-        }
+        ShuffleArray(randoms);
     }
 
     public void UpdateButtonsText(Question question)
     {
-        answerButtons[random1].setText(question.getAnswer());
-        answerButtons[random2].setText(question.getIncorrectAnswer1());
-        answerButtons[random3].setText(question.getIncorrectAnswer2());
-        answerButtons[random4].setText(question.getIncorrectAnswer3());
-        answerButtons[random1].setIsCorrect(true);
-        answerButtons[random2].setIsCorrect(MainActivity.DEBUG_MODE);
-        answerButtons[random3].setIsCorrect(MainActivity.DEBUG_MODE);
-        answerButtons[random4].setIsCorrect(MainActivity.DEBUG_MODE);
+        answerButtons[randoms[0]].setText(question.getAnswer());
+        answerButtons[randoms[1]].setText(question.getIncorrectAnswer1());
+        answerButtons[randoms[2]].setText(question.getIncorrectAnswer2());
+        answerButtons[randoms[3]].setText(question.getIncorrectAnswer3());
+        answerButtons[randoms[0]].setIsCorrect(true);
+        answerButtons[randoms[1]].setIsCorrect(MainActivity.DEBUG_MODE);
+        answerButtons[randoms[2]].setIsCorrect(MainActivity.DEBUG_MODE);
+        answerButtons[randoms[3]].setIsCorrect(MainActivity.DEBUG_MODE);
     }
 
     @Override

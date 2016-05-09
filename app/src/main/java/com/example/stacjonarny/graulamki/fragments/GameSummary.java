@@ -63,10 +63,13 @@ public class GameSummary extends Fragment {
         }
         MainActivity.unlockedAchievements = new ArrayList<>();
         for (Achievement a : MainActivity.achievementList) {
-            if (a.Unlock(correctAnswersRowCount))
+            if(a.getDifficultLevel() == MainActivity.gameState.getDifficultLevel().getLevelNum())
             {
-                MainActivity.unlockedAchievements.add(a);
-                unlockedLayout.setVisibility(View.VISIBLE);
+                if (a.Unlock(correctAnswersRowCount))
+                {
+                    MainActivity.unlockedAchievements.add(a);
+                    unlockedLayout.setVisibility(View.VISIBLE);
+                }
             }
         }
         unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));

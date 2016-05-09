@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -199,9 +200,13 @@ public class Game extends Fragment {
 
     private void GoToGameSummary() {
         GameSummary summary_fragment = new GameSummary();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, summary_fragment, GAME_SUMMARY_TAG);
-        transaction.commit();
+        try {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, summary_fragment, GAME_SUMMARY_TAG);
+            transaction.commit();
+        } catch (NullPointerException e) {
+            Log.w("NullPointerException", "Controlled NullPointerException: " + e);
+        }
         if(MainActivity.SOUND) {
             END_GAME_SOUND.start();
         }

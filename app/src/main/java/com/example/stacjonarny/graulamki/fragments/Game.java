@@ -62,7 +62,7 @@ public class Game extends Fragment {
     private DonutProgress circleTimer;
     private int [] randoms;
 
-    private final int VERDICT_TIME = 30; // DEFAULT 3000 MILI SECONDS
+    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILI SECONDS
 
     public Game() {
     }
@@ -202,6 +202,7 @@ public class Game extends Fragment {
         GameSummary summary_fragment = new GameSummary();
         try {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.addToBackStack(null);
             transaction.replace(R.id.fragment_container, summary_fragment, GAME_SUMMARY_TAG);
             transaction.commit();
         } catch (NullPointerException e) {

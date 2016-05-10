@@ -7,32 +7,42 @@
     android:gravity="center"
     android:background="#123">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/currentDiffLevel"
-        android:textSize="28sp"
-        android:padding="16dp"
-        android:textColor="@android:color/white"/>
-
-    <ListView
-        android:id="@+id/currentLevel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/chooseDifficultLevel"
-        android:textSize="24sp"
-        android:padding="16dp"
-        android:textColor="@android:color/white"/>
-
-    <ListView
-        android:id="@+id/difficultyLevels"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </ListView>
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currentDiffLevel"
+            android:textSize="28sp"
+            android:padding="16dp"
+            android:textColor="@android:color/white"/>
+
+        <ListView
+            android:id="@+id/currentLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseDifficultLevel"
+            android:textSize="24sp"
+            android:padding="16dp"
+            android:textColor="@android:color/white"/>
+
+        <com.example.stacjonarny.graulamki.Classes.NonScrollListView
+            android:id="@+id/difficultyLevels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </com.example.stacjonarny.graulamki.Classes.NonScrollListView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

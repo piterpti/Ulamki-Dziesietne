@@ -42,7 +42,7 @@ public class MainActivity extends FragmentActivity {
     public static boolean FIRST_RUN = true;
 
 
-    public static final boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = false;
 
 
     @Override
@@ -52,6 +52,7 @@ public class MainActivity extends FragmentActivity {
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
         init();
     }
@@ -75,6 +76,7 @@ public class MainActivity extends FragmentActivity {
         play_mode_fragment.setRetainInstance(true);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, play_mode_fragment,DifficultLevelFragment.GAME_FRAGMENT_TAG);
+        transaction.addToBackStack(null);
         transaction.commit();
         play_mode_fragment.CreateGame();
     }

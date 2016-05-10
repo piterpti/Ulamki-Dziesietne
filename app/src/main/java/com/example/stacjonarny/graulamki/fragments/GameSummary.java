@@ -112,10 +112,6 @@ public class GameSummary extends Fragment {
     }
     public void BackToMenu(){
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                        fm.popBackStack();
-                    }
                 MainMenu main_menu_fragment = new MainMenu();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.fragment_container, main_menu_fragment);

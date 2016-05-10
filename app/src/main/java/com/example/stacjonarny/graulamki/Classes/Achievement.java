@@ -4,8 +4,6 @@ package com.example.stacjonarny.graulamki.Classes;
 
 import com.example.stacjonarny.graulamki.MainActivity;
 
-import java.io.Serializable;
-
 /**
  * Created by Piter on 21/04/2016.
  */
@@ -23,22 +21,24 @@ public class Achievement implements Comparable<Achievement>{
 
     private boolean locked;
     private final int correctAnswersRow;
-    private int status;
+    private int starImage; // 1 | 2 | 3
     private final int difficultLevel;
 
-    public Achievement(String name, int correctAnswersRow, int difficultLevel) {
+
+
+    public Achievement(String name, int correctAnswersRow, int difficultLevel, int starImage) {
         this.name = name;
         this.correctAnswersRow = correctAnswersRow;
         this.difficultLevel = difficultLevel;
         locked = false;
-        status = 0;
+        this.starImage = starImage;
     }
 
     public Achievement(String name, boolean locked, int correctAnswersRow, int status, int difficultLevel) {
         this.name = name;
         this.locked = locked;
         this.correctAnswersRow = correctAnswersRow;
-        this.status = status;
+        this.starImage = status;
         this.difficultLevel = difficultLevel;
     }
 
@@ -49,7 +49,7 @@ public class Achievement implements Comparable<Achievement>{
         if(correctAnswersRow >= this.correctAnswersRow)
         {
             locked = false;
-            MainActivity.achievementDbHelper.updateAchievement(name, locked, correctAnswersRow, status, difficultLevel);
+            MainActivity.achievementDbHelper.updateAchievement(name, locked, this.correctAnswersRow, starImage, difficultLevel);
             return true;
         }
         else
@@ -59,7 +59,7 @@ public class Achievement implements Comparable<Achievement>{
     }
 
     public void AddToStatus(int toStatus) {
-        status += toStatus;
+        starImage += toStatus;
     }
 
     public String getName() {
@@ -74,8 +74,8 @@ public class Achievement implements Comparable<Achievement>{
         return correctAnswersRow;
     }
 
-    public int getStatus() {
-        return status;
+    public int getStarImage() {
+        return starImage;
     }
 
     public int getDifficultLevel() {
@@ -84,11 +84,6 @@ public class Achievement implements Comparable<Achievement>{
 
     @Override
     public int compareTo(Achievement another) {
-       /* if(locked && !another.isLocked()) {
-            return 1000;
-        }*/
         return correctAnswersRow > another.getCorrectAnswersRow() ? 1 : -1;
-
-
     }
 }

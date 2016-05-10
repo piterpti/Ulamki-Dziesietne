@@ -46,14 +46,14 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertAchievement(String name, int correctAnswerRow, int difficultLevel)
+    public boolean insertAchievement(String name, int correctAnswerRow, int difficultLevel, int starImage)
     {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, name);
         contentValues.put(COLUMN_LOCKED, 1);
         contentValues.put(COLUMN_ANSWERS, correctAnswerRow);
-        contentValues.put(COLUMN_STATUS, 0);
+        contentValues.put(COLUMN_STATUS, starImage);
         contentValues.put(COLUMN_DIFFICULT_LEVEL, difficultLevel);
         db.insert(ACHIEVEMENT_TABLE_NAME, null, contentValues);
         db.close();

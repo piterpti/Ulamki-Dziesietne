@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class GameSummary extends Fragment {
         correctAnswers.setText(toDisplay);
         AddMenuButtonListener();
         int correctAnswersRowCount = MainActivity.gameState.getCorrectAnswersRowCount();
+        Log.d("CorrectAnswerRowCount", MainActivity.gameState.getCorrectAnswerCount() + "");
         UnlockedAchievementsDuringGame(correctAnswersRowCount);
         return viev;
     }
@@ -60,13 +62,10 @@ public class GameSummary extends Fragment {
         }
         MainActivity.unlockedAchievements = new ArrayList<>();
         for (Achievement a : MainActivity.achievementList) {
-            if(a.getDifficultLevel() == MainActivity.gameState.getDifficultLevel().getLevelNum())
+            if (a.Unlock(correctAnswersRowCount))
             {
-                if (a.Unlock(correctAnswersRowCount))
-                {
-                    MainActivity.unlockedAchievements.add(a);
-                    unlockedLayout.setVisibility(View.VISIBLE);
-                }
+                MainActivity.unlockedAchievements.add(a);
+                unlockedLayout.setVisibility(View.VISIBLE);
             }
         }
         unlockedAchievementsList.setAdapter(new AchievementAdapter(getActivity(), MainActivity.unlockedAchievements));

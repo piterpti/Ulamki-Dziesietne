@@ -81,6 +81,7 @@ public class DifficultLevelFragment extends Fragment {
                     R.anim.slide_out);
             transaction.replace(R.id.fragment_container, main_menu_fragment);
             transaction.commit();
+            new DatabaseConnection(MainActivity.mainContext);
         }
     }
 

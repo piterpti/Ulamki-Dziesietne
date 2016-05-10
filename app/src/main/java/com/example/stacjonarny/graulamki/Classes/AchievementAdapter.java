@@ -33,17 +33,17 @@ public class AchievementAdapter extends ArrayAdapter {
         }
         TextView textView = (TextView) convertView.findViewById(R.id.simpleAchievement);
         image = (ImageView) convertView.findViewById(R.id.achievementListImage);
-        ImageChange(achievement.isLocked(), achievement.getDifficultLevel());
+        ImageChange(achievement.isLocked(), achievement.getStarImage());
         textView.setText(achievement.getName());
         return convertView;
     }
 
-    public void ImageChange(boolean locked, int difficultLevel) {
+    public void ImageChange(boolean locked, int starImage) {
         if(!locked) {
-            if(difficultLevel <= 2) {
+            if(starImage == 1) {
                 image.setImageResource(R.drawable.achievement_bronze);
             }
-            else if(difficultLevel <=4) {
+            else if(starImage ==2) {
                 image.setImageResource(R.drawable.achievement_silver);
             }
             else {

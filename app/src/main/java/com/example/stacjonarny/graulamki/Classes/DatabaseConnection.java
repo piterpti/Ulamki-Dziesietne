@@ -38,8 +38,8 @@ public class DatabaseConnection {
         String[] achievements = context.getResources().getStringArray(R.array.achievments_array);
         for(String achieves : achievements) {
             String[] achieve = achieves.split(",");
-            Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]));
-            achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel());
+            Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]), Integer.valueOf(achieve[3]));
+            achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel(), newAchieve.getStarImage());
             FIRST_RUN = false;
         }
     }

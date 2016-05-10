@@ -4,18 +4,13 @@ package com.example.stacjonarny.graulamki.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.*;
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
 import com.example.stacjonarny.graulamki.Classes.AchievementAdapter;
@@ -73,7 +68,7 @@ public class AchievementFragment extends Fragment implements AdapterView.OnItemL
                         MainActivity.achievementDbHelper.updateAchievement(achievement.getName(),
                                 true,
                                 achievement.getCorrectAnswersRow(),
-                                achievement.getStatus(),
+                                achievement.getStarImage(),
                                 achievement.getDifficultLevel());
                         adapter.notifyDataSetChanged();
                     }

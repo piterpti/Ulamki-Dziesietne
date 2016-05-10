@@ -51,9 +51,12 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, main_menu_fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        if(savedInstanceState == null)
+        {
+            transaction.add(R.id.fragment_container, main_menu_fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
         init();
     }
 
@@ -66,7 +69,6 @@ public class MainActivity extends FragmentActivity {
         FIRST_RUN = sharedPreferences.getBoolean(FIRST_RUN_KEY, true);
         MainActivity.gameDifficultLevel = difficultLevels[sharedPreferences.getInt(DIFFICULT_LEVEL_KEY, 0)];
         new DatabaseConnection(mainContext);
-
     }
 
     public void StartGameFragment(View view) {

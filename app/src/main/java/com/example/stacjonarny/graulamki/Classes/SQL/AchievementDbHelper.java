@@ -80,7 +80,7 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_ANSWERS, correctAnswerRow);
         contentValues.put(COLUMN_STATUS, status);
         contentValues.put(COLUMN_DIFFICULT_LEVEL, difficultLevel);
-        db.update(ACHIEVEMENT_TABLE_NAME, contentValues, "name = ?", new String[]{name});
+        db.update(ACHIEVEMENT_TABLE_NAME, contentValues, COLUMN_NAME + " = ? AND " + COLUMN_DIFFICULT_LEVEL + " = ?", new String[]{name, difficultLevel + ""});
         db.close();
         return true;
     }

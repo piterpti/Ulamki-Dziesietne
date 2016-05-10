@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum="1.25">
 
         <Button
             android:layout_width="match_parent"
@@ -29,6 +29,18 @@
             android:layout_height="0dp"
             android:text="@string/menuAchievements"
             android:onClick="StartAchievementFragment"
+            android:textSize="75sp"
+            android:textColor="#ffffff"
+            android:background="#18FFFF"
+            android:layout_weight="0.25"
+            android:drawableTop="@drawable/achievement"
+            android:paddingTop="50dp"
+            android:paddingBottom="40dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuDifficultLevel"
+            android:onClick="StartDiffLevelFragment"
             android:textSize="75sp"
             android:textColor="#ffffff"
             android:background="#18FFFF"

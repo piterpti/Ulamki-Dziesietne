@@ -37,7 +37,7 @@ public class MainActivity extends FragmentActivity {
     public final static String SOUND_KEY = "SOUNDONOFF";
     public static boolean SOUND = true;
 
-    public static final boolean DEBUG_MODE = false;
+    public static final boolean DEBUG_MODE = true;
 
 
     @Override
@@ -106,6 +106,19 @@ public class MainActivity extends FragmentActivity {
             Thread dataBaseConnection = new Thread(new DatabaseConnection());
             dataBaseConnection.start();
         }
+    }
+
+    public void StartDiffLevelFragment(View view) {
+        StartGameFragment start_game_fragment = new StartGameFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
+        transaction.replace(R.id.fragment_container, start_game_fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void ExitAplication(View view) {

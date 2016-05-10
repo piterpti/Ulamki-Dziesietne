@@ -20,7 +20,7 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#512DA8"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableLeft="@drawable/play_game"
             android:paddingLeft="300dp"
             android:paddingRight="300dp" />
@@ -32,7 +32,19 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#18FFFF"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
+            android:drawableLeft="@drawable/achievement"
+            android:paddingLeft="220dp"
+            android:paddingRight="220dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuDifficultLevel"
+            android:onClick="StartDiffLevelFragment"
+            android:textSize="50sp"
+            android:textColor="#ffffff"
+            android:background="#18FFFF"
+            android:layout_weight="0.2"
             android:drawableLeft="@drawable/achievement"
             android:paddingLeft="220dp"
             android:paddingRight="220dp" />
@@ -44,7 +56,7 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#F57C00"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableLeft="@drawable/about_aplication"
             android:paddingLeft="270dp"
             android:paddingRight="270dp"/>
@@ -56,7 +68,7 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#FF1744"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableLeft="@drawable/close_apk"
             android:paddingLeft="270dp"
             android:paddingRight="270dp"

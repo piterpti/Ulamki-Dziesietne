@@ -20,7 +20,7 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#512DA8"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableTop="@drawable/play_game"
             android:paddingTop="45dp"
             android:paddingBottom="35dp" />
@@ -32,10 +32,23 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#18FFFF"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableTop="@drawable/achievement"
             android:paddingTop="45dp"
             android:paddingBottom="35dp"  />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/menuDifficultLevel"
+            android:onClick="StartDiffLevelFragmen"
+            android:textSize="50sp"
+            android:textColor="#ffffff"
+            android:background="#18FFFF"
+            android:layout_weight="0.2"
+            android:drawableTop="@drawable/achievement"
+            android:paddingTop="45dp"
+            android:paddingBottom="35dp"  />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -44,7 +57,7 @@
             android:textSize="50sp"
             android:textColor="#ffffff"
             android:background="#F57C00"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:drawableTop="@drawable/about_aplication"
             android:paddingTop="45dp"
             android:paddingBottom="35dp" />

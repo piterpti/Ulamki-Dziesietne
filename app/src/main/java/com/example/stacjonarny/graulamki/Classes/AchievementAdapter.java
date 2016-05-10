@@ -1,12 +1,15 @@
 package com.example.stacjonarny.graulamki.Classes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.sql.*;
 import java.util.*;
 
 import com.example.stacjonarny.graulamki.MainActivity;
@@ -38,7 +41,7 @@ public class AchievementAdapter extends ArrayAdapter {
         return convertView;
     }
 
-    private void ImageChange(boolean locked, int difficultLevel) {
+    public void ImageChange(boolean locked, int difficultLevel) {
         if(!locked) {
             if(difficultLevel <= 2) {
                 image.setImageResource(R.drawable.achievement_bronze);
@@ -54,5 +57,4 @@ public class AchievementAdapter extends ArrayAdapter {
             image.setImageResource(R.drawable.achievement_locked);
         }
     }
-
 }

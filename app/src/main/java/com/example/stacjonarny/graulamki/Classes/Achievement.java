@@ -11,7 +11,16 @@ import java.io.Serializable;
  */
 public class Achievement implements Serializable, Comparable<Achievement>{
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String name;
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
     private boolean locked;
     private final int correctAnswersRow;
     private int status;

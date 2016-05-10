@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.*;
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
@@ -27,6 +29,7 @@ public class AchievementFragment extends Fragment implements AdapterView.OnItemL
 
 
     private ListView achievementList;
+    private TextView achievementDiffLevelText;
     private AchievementAdapter adapter;
 
     public AchievementFragment() {
@@ -38,6 +41,9 @@ public class AchievementFragment extends Fragment implements AdapterView.OnItemL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_achievement, container, false);
         achievementList = (ListView) view.findViewById(R.id.achievementMenuList);
+        achievementDiffLevelText = (TextView) view.findViewById(R.id.achievementDiffLevel);
+        achievementDiffLevelText.setText(getResources().getString(R.string.achDiffLevelText)
+                + " " + MainActivity.gameDifficultLevel.getLevel());
         LoadAchievementsFromList();
         return view;
     }
@@ -45,7 +51,6 @@ public class AchievementFragment extends Fragment implements AdapterView.OnItemL
     public void LoadAchievementsFromList()
     {
         achievementList.setAdapter(null);
-        Collections.sort(MainActivity.achievementList);
         adapter = new AchievementAdapter(getActivity(), MainActivity.achievementList);
         achievementList.setAdapter(adapter);
         achievementList.setOnItemLongClickListener(this);
@@ -53,6 +58,7 @@ public class AchievementFragment extends Fragment implements AdapterView.OnItemL
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
         final Achievement achievement = (Achievement) parent.getItemAtPosition(position);
         final AchievementAdapter a = (AchievementAdapter) parent.getAdapter();
         if( ! achievement.isLocked())

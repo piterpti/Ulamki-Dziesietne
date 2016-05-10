@@ -32,12 +32,9 @@ public class AchievementAdapter extends ArrayAdapter {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_achievement_adapter, parent, false);
         }
         TextView textView = (TextView) convertView.findViewById(R.id.simpleAchievement);
-        TextView diffLevelView = (TextView) convertView.findViewById(R.id.achievementDifficultLevel);
         image = (ImageView) convertView.findViewById(R.id.achievementListImage);
         ImageChange(achievement.isLocked(), achievement.getDifficultLevel());
-        String achievementDiffLevel = MainActivity.difficultLevels[achievement.getDifficultLevel()-1].getLevel();
         textView.setText(achievement.getName());
-        diffLevelView.setText(achievementDiffLevel);
         return convertView;
     }
 

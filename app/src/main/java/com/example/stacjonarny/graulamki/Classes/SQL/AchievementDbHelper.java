@@ -8,9 +8,12 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 import com.example.stacjonarny.graulamki.Classes.Achievement;
+import com.example.stacjonarny.graulamki.MainActivity;
 
 import java.util.*;
+import java.util.Collections;
 
 /**
  * Created by Piter on 21/04/2016.
@@ -80,7 +83,7 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_ANSWERS, correctAnswerRow);
         contentValues.put(COLUMN_STATUS, status);
         contentValues.put(COLUMN_DIFFICULT_LEVEL, difficultLevel);
-        db.update(ACHIEVEMENT_TABLE_NAME, contentValues, COLUMN_NAME + " = ? AND " + COLUMN_DIFFICULT_LEVEL + " = ?", new String[]{name, difficultLevel + ""});
+        db.update(ACHIEVEMENT_TABLE_NAME, contentValues, COLUMN_NAME + " = ? AND " + COLUMN_DIFFICULT_LEVEL + " = ?", new String[]{name, (difficultLevel + "")});
         db.close();
         return true;
     }
@@ -126,11 +129,15 @@ public class AchievementDbHelper extends SQLiteOpenHelper {
             int answers = res.getInt(res.getColumnIndex(COLUMN_ANSWERS));
             int status = res.getInt(res.getColumnIndex(COLUMN_STATUS));
             int diffLevel = res.getInt(res.getColumnIndex(COLUMN_DIFFICULT_LEVEL));
-            Achievement newAchievement = new Achievement(name, locked, answers, status, diffLevel);
-            arrayList.add(newAchievement);
+            if(diffLevel == MainActivity.gameDifficultLevel.getLevelNum())
+            {
+                Achievement newAchievement = new Achievement(name, locked, answers, status, diffLevel);
+                arrayList.add(newAchievement);
+            }
             res.moveToNext();
         }
         db.close();
+        //Collections.sort(arrayList);
         return arrayList;
     }
 }

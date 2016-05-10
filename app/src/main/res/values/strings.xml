@@ -3,7 +3,7 @@
     <string name="back_to_menu">Menu</string>
     <string name="timeToAnswer">Czas na odpowiedź:</string>
     <string name="questionsCount">Liczba pytań:</string>
-    <string name="chooseDifficultLevel">Wybierz poziom trudności:</string>
+    <string name="chooseDifficultLevel">Zmien:</string>
     <string name="taskText">Zadanie</string>
     <string name="gameSummary">Podsumowanie rozgrywki:</string>
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>
@@ -20,6 +20,8 @@
     <string name="end_game">Zakończyć grę?</string>
     <string name="alert_dialog_game">Rozgrywka</string>
     <string name="menuDifficultLevel">Poziom trudnosci</string>
+    <string name="achDiffLevelText">Poziom:</string>
+    <string name="currentDiffLevel">Aktualny poziom:</string>
 
 
     <string-array name="difficulty_levels">
@@ -37,10 +39,30 @@
     </string-array>
 
     <string-array name="achievments_array">
+        <!-- BARDZO LATWY-->
+        <item>3 pod rząd!,3,1</item>
+        <item>5 pod rząd!,5,1</item>
         <item>10 pod rząd!,10,1</item>
-        <item>15 pod rząd!,15,2</item>
-        <item>15 pod rząd!,15,3</item>
-        <item>35 pod rząd!,35,4</item>
+        <!-- LATWY-->
+        <item>5 pod rząd!,5,2</item>
+        <item>10 pod rząd!,10,2</item>
+        <item>20 pod rząd!,20,2</item>
+
+        <!-- SREDNI-->
+        <item>10 pod rząd!,10,3</item>
+        <item>20 pod rząd!,20,3</item>
+        <item>30 pod rząd!,30,3</item>
+
+        <!-- TRUDNY-->
+        <item>10 pod rząd!,10,4</item>
+        <item>25 pod rząd!,25,4</item>
+        <item>40 pod rząd!,40,4</item>
+
+        <!-- BARDZO TRUDNY-->
+        <item>5 pod rząd!,5,5</item>
+        <item>15 pod rząd!,15,5</item>
+        <item>25 pod rząd!,25,5</item>
+        <item>40 pod rząd!,40,5</item>
         <item>50 pod rząd!,50,5</item>
     </string-array>
 </resources>

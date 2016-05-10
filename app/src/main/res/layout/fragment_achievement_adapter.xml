@@ -26,25 +26,4 @@
             android:layout_toRightOf="@id/achievementListImage"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="70dp"
-            android:layout_height="40dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Poziom: "
-            android:textSize="@dimen/achievementDetails"/>
-        <TextView
-            android:id="@+id/achievementDifficultLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Łatwy"
-            android:textSize="@dimen/achievementDetails"/>
-    </LinearLayout>
-
 </LinearLayout>

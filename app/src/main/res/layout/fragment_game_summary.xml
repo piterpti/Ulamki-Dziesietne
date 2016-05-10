@@ -24,19 +24,6 @@
                 android:layout_marginLeft="10dp">
 
                 <info.hoang8f.widget.FButton
-                    fbutton:buttonColor="#2ECC71"
-                    fbutton:shadowColor="#27AE60"
-                    android:textColor="#ffffff"
-                    fbutton:shadowEnabled="true"
-                    fbutton:shadowHeight="5dp"
-                    fbutton:cornerRadius="20dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.33"
-                    android:layout_height="wrap_content"
-                    android:text="Poziomy"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/go_back_to_levels"/>
-                <info.hoang8f.widget.FButton
                     fbutton:buttonColor="#3498DB"
                     fbutton:shadowColor="#2980B9"
                     android:textColor="#ffffff"

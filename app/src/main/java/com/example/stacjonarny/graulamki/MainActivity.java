@@ -10,6 +10,7 @@ import android.view.View;
 
 
 import com.example.stacjonarny.graulamki.Classes.Achievement;
+import com.example.stacjonarny.graulamki.Classes.DatabaseConnection;
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
 import com.example.stacjonarny.graulamki.Classes.GameState;
 import com.example.stacjonarny.graulamki.Classes.SQL.AchievementDbHelper;
@@ -18,7 +19,7 @@ import com.example.stacjonarny.graulamki.fragments.AchievementFragment;
 import com.example.stacjonarny.graulamki.fragments.Game;
 import com.example.stacjonarny.graulamki.fragments.GameSummary;
 import com.example.stacjonarny.graulamki.fragments.MainMenu;
-import com.example.stacjonarny.graulamki.fragments.StartGameFragment;
+import com.example.stacjonarny.graulamki.fragments.DifficultLevelFragment;
 import java.util.*;
 
 public class MainActivity extends FragmentActivity {
@@ -35,7 +36,11 @@ public class MainActivity extends FragmentActivity {
     public static Context mainContext;
     public static ArrayList<Achievement> unlockedAchievements;
     public final static String SOUND_KEY = "SOUNDONOFF";
+    public final static String DIFFICULT_LEVEL_KEY = "DIFFICULT_LEVEL_START";
+    public final static String FIRST_RUN_KEY = "FIRST_RUN";
     public static boolean SOUND = true;
+    public static boolean FIRST_RUN = true;
+
 
     public static final boolean DEBUG_MODE = true;
 
@@ -57,21 +62,21 @@ public class MainActivity extends FragmentActivity {
         LoadDifficultLevels();
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SOUND = sharedPreferences.getBoolean(SOUND_KEY, true);
-        Thread dataBaseConnection = new Thread(new DatabaseConnection());
-        dataBaseConnection.start();
+        FIRST_RUN = sharedPreferences.getBoolean(FIRST_RUN_KEY, true);
+        MainActivity.gameDifficultLevel = difficultLevels[sharedPreferences.getInt(DIFFICULT_LEVEL_KEY, 0)];
+        new DatabaseConnection(mainContext);
+
     }
 
     public void StartGameFragment(View view) {
-        StartGameFragment start_game_fragment = new StartGameFragment();
+        Bundle args = new Bundle();
+        Game play_mode_fragment = new Game();
+        play_mode_fragment.setArguments(args);
+        play_mode_fragment.setRetainInstance(true);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.slide_out,
-                R.anim.slide_in,
-                R.anim.slide_out);
-        transaction.replace(R.id.fragment_container, start_game_fragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.fragment_container, play_mode_fragment,DifficultLevelFragment.GAME_FRAGMENT_TAG);
         transaction.commit();
+        play_mode_fragment.CreateGame();
     }
 
     public void StartAchievementFragment(View view) {
@@ -86,6 +91,8 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, achievement_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+        new DatabaseConnection(MainActivity.mainContext);
+
     }
 
     public void StartAboutGameFragment(View view) {
@@ -99,17 +106,10 @@ public class MainActivity extends FragmentActivity {
         transaction.replace(R.id.fragment_container, about_game_fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        if(DEBUG_MODE)
-        {
-            achievementDbHelper.clearAchievementsDatabase();
-            achievementDbHelper.resetAllAchievements();
-            Thread dataBaseConnection = new Thread(new DatabaseConnection());
-            dataBaseConnection.start();
-        }
     }
 
     public void StartDiffLevelFragment(View view) {
-        StartGameFragment start_game_fragment = new StartGameFragment();
+        DifficultLevelFragment start_game_fragment = new DifficultLevelFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(
                 R.anim.slide_in,
@@ -143,46 +143,12 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    class DatabaseConnection implements Runnable {
-
-        @Override
-        public void run() {
-            GetDataFromDatabase();
-        }
-
-        public void GetDataFromDatabase()
-        {
-            achievementDbHelper = new AchievementDbHelper(mainContext);
-            achievementList = achievementDbHelper.getAllAchievements();
-            AddAchievementsToDatabase();
-            achievementList = achievementDbHelper.getAllAchievements();
-        }
-
-        public void AddAchievementsToDatabase() {
-            String[] achievements = getResources().getStringArray(R.array.achievments_array);
-            for(String achieves : achievements) {
-                String[] achieve = achieves.split(",");
-                Achievement newAchieve = new Achievement(achieve[0], Integer.valueOf(achieve[1]), Integer.valueOf(achieve[2]));
-                boolean ifExist = false;
-                for(Achievement a : achievementList) {
-                    if(a.getName().equals(newAchieve.getName())) {
-                        ifExist = true;
-                    }
-                }
-                if(!ifExist)
-                {
-                    achievementDbHelper.insertAchievement(newAchieve.getName(), newAchieve.getCorrectAnswersRow(), newAchieve.getDifficultLevel());
-                }
-            }
-        }
-    }
-
     @Override
     public void onBackPressed() {
         boolean callSuper = true;
         Game gameFragment = null;
         GameSummary gameSummaryFragment = null;
-        gameFragment = (Game) getSupportFragmentManager().findFragmentByTag(StartGameFragment.GAME_FRAGMENT_TAG);
+        gameFragment = (Game) getSupportFragmentManager().findFragmentByTag(DifficultLevelFragment.GAME_FRAGMENT_TAG);
         gameSummaryFragment = (GameSummary) getSupportFragmentManager().findFragmentByTag(Game.GAME_SUMMARY_TAG);
         if (gameFragment != null && gameFragment.isVisible()) {
             if(gameFragment.BackPressed()) {

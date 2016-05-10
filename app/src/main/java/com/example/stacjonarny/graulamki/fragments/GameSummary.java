@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import java.util.*;
 
@@ -28,7 +26,6 @@ public class GameSummary extends Fragment {
     private TextView textViewSummaries;
     private String[] gameTexTSummaries;
     private FButton goBackToMenuButton;
-    private FButton goBackToLevelsButton;
     private FButton exitGameButton;
     private LinearLayout unlockedLayout;
     private NonScrollListView unlockedAchievementsList;
@@ -80,7 +77,6 @@ public class GameSummary extends Fragment {
         correctAnswers = (TextView) viev.findViewById(R.id.summaryGameStatistics);
         textViewSummaries = (TextView) viev.findViewById(R.id.textSummaries);
         goBackToMenuButton = (FButton) viev.findViewById(R.id.go_back_to_menu);
-        goBackToLevelsButton = (FButton) viev.findViewById(R.id.go_back_to_levels);
         exitGameButton = (FButton) viev.findViewById(R.id.exit_game);
         unlockedLayout = (LinearLayout) viev.findViewById(R.id.unlockedLayout);
         unlockedAchievementsList = (NonScrollListView) viev.findViewById(R.id.unlockedSummariesList);
@@ -92,12 +88,6 @@ public class GameSummary extends Fragment {
             @Override
             public void onClick(View v) {
                 BackToMenu();
-            }
-        });
-        goBackToLevelsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BackToLevels();
             }
         });
         exitGameButton.setOnClickListener(new View.OnClickListener() {
@@ -130,22 +120,5 @@ public class GameSummary extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.fragment_container, main_menu_fragment);
                 transaction.commit();
-    }
-    public void BackToLevels(){
-        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-            fm.popBackStack();
-        }
-        StartGameFragment start_game_fragment = new StartGameFragment();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.slide_out,
-                R.anim.slide_in,
-                R.anim.slide_out);
-        transaction.replace(R.id.fragment_container, start_game_fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 }

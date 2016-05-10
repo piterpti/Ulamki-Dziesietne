@@ -43,7 +43,7 @@
             android:onClick="StartDiffLevelFragment"
             android:textSize="50sp"
             android:textColor="#ffffff"
-            android:background="#18FFFF"
+            android:background="#1311FF"
             android:layout_weight="0.2"
             android:drawableLeft="@drawable/achievement"
             android:paddingLeft="220dp"

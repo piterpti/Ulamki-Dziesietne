@@ -109,11 +109,12 @@ public class GameSummary extends Fragment {
             textViewSummaries.setText(gameTexTSummaries[2]);
         }
     }
-    public void BackToMenu(){
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
-                MainMenu main_menu_fragment = new MainMenu();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.fragment_container, main_menu_fragment);
-                transaction.commit();
+    public void BackToMenu()
+    {
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
+        MainMenu main_menu_fragment = new MainMenu();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.commit();
     }
 }

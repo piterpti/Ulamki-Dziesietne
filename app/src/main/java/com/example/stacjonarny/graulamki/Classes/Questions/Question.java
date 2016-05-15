@@ -34,6 +34,30 @@ public abstract class Question implements QuestionMethods
         return isCorrectAnswer;
     }
 
+    public String spaceBetweenDigits(String toEdit)
+    {
+        int counter = -1;
+        String withSpaces = "";
+        for(int i = toEdit.length() - 1; i >= 0; i--)
+        {
+            if(toEdit.charAt(i) == '.')
+            {
+                counter = 0;
+            } else {
+                counter++;
+            }
+
+            if(counter >= 3) {
+                counter = 0;
+                withSpaces += " ";
+            }
+            withSpaces += toEdit.charAt(i);
+
+        }
+
+        return new StringBuilder(withSpaces).reverse().toString();
+    }
+
 
 }
 

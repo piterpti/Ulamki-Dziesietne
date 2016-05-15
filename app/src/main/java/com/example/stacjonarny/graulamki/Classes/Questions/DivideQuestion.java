@@ -16,7 +16,7 @@ public class DivideQuestion extends Question {
     {
         int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma - secondExpression.comma;
-        return new MyNumber(val, comma).toString();
+        return spaceBetweenDigits(new MyNumber(val, comma).toString());
     }
 
     public MyNumber getAnswerMyNum()
@@ -45,20 +45,20 @@ public class DivideQuestion extends Question {
             comma++;
             temp = new MyNumber(val, comma).toString();
         }
-        return temp;
+        return spaceBetweenDigits(temp);
     }
 
     public String getIncorrectAnswer2()
     {
         int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma - secondExpression.comma + lossNumberToAnswer;
-        return new MyNumber(val, comma).toString();
+        return spaceBetweenDigits(new MyNumber(val, comma).toString());
     }
 
     public String getIncorrectAnswer3()
     {
         int val = firstExpression.number / secondExpression.number;
         int comma = firstExpression.comma - secondExpression.comma - lossNumberToAnswer;
-        return new MyNumber(val, comma).toString();
+        return spaceBetweenDigits(new MyNumber(val, comma).toString());
     }
 }

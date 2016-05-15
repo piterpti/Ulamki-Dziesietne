@@ -242,6 +242,9 @@ public class Game extends Fragment {
         answerButtons[randoms[1]].setText(question.getIncorrectAnswer1());
         answerButtons[randoms[2]].setText(question.getIncorrectAnswer2());
         answerButtons[randoms[3]].setText(question.getIncorrectAnswer3());
+//        answerButtons[randoms[1]].setText("");
+//        answerButtons[randoms[2]].setText("");
+//        answerButtons[randoms[3]].setText("");
         answerButtons[randoms[0]].setIsCorrect(true);
         answerButtons[randoms[1]].setIsCorrect(MainActivity.DEBUG_MODE);
         answerButtons[randoms[2]].setIsCorrect(MainActivity.DEBUG_MODE);

@@ -56,8 +56,26 @@ public class DifficultLevelFragment extends Fragment {
 
         currentAdapter = new DifficultyLevelAdapter(getActivity(), new DifficultLevel[]{toAdd});
         currentLevel.setAdapter(currentAdapter);
+        currentLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BackToMenu();
+            }
+        });
         list.setAdapter(adapter);
         list.setOnItemClickListener(new ListHandler());
+    }
+
+    private void BackToMenu() {
+        MainMenu main_menu_fragment = new MainMenu();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in,
+                R.anim.slide_out);
+        transaction.replace(R.id.fragment_container, main_menu_fragment);
+        transaction.commit();
     }
 
     // class to handle difficulty levels list
@@ -71,18 +89,11 @@ public class DifficultLevelFragment extends Fragment {
             editor.putInt(MainActivity.DIFFICULT_LEVEL_KEY, MainActivity.gameDifficultLevel.getLevelNum() - 1);
             editor.commit();
             MainActivity.achievementList.clear();
-
-            MainMenu main_menu_fragment = new MainMenu();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(
-                    R.anim.slide_in,
-                    R.anim.slide_out,
-                    R.anim.slide_in,
-                    R.anim.slide_out);
-            transaction.replace(R.id.fragment_container, main_menu_fragment);
-            transaction.commit();
+            BackToMenu();
             new DatabaseConnection(MainActivity.mainContext);
         }
+
+
     }
 
 }

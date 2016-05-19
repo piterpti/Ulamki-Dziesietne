@@ -30,7 +30,9 @@ public class MultiplyQuestion extends Question {
 
     @Override
     public String questionWithoutAnswer() {
-        return firstExpression.toString() + " * " + secondExpression.toString();
+        String first = super.spaceBetweenDigits(firstExpression.toString());
+        String second = super.spaceBetweenDigits(secondExpression.toString());
+        return (first + " * " + second);
     }
 
     @Override

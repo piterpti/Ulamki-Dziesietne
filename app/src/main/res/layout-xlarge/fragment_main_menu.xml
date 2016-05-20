@@ -45,7 +45,7 @@
             android:textColor="#ffffff"
             android:background="#1311FF"
             android:layout_weight="0.25"
-            android:drawableTop="@drawable/achievement"
+            android:drawableTop="@drawable/difficult_level"
             android:paddingTop="50dp"
             android:paddingBottom="40dp" />
         <Button

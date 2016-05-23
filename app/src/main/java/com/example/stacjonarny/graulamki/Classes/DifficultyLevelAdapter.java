@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.stacjonarny.graulamki.Classes.DifficultLevel;
@@ -14,6 +15,7 @@ import com.example.stacjonarny.graulamki.R;
 
 
 public class DifficultyLevelAdapter extends ArrayAdapter {
+
 
     public DifficultyLevelAdapter(Context context, DifficultLevel[] list) {
         super(context, 0, list);
@@ -33,9 +35,15 @@ public class DifficultyLevelAdapter extends ArrayAdapter {
         TextView timeView = (TextView) convertView.findViewById(R.id.diffLevelTime);
         textView.setText(lvl.getLevel());
         timeView.setText(convertView.getResources().getString(R.string.timeToAnswer) + " " + lvl.getTimeToAnswer() + " sekund");
-        countView.setText(convertView.getResources().getString(R.string.questionsCount) + " " +lvl.getQuestionCount());
-        convertView.setBackgroundColor(Color.parseColor(lvl.getBackgroundColor()));
+        countView.setText(convertView.getResources().getString(R.string.questionsCount) + " " + lvl.getQuestionCount());
+        LinearLayout layoutColor = (LinearLayout) convertView.findViewById(R.id.diffLevelAdapterLayout);
+        layoutColor.setBackgroundColor(Color.parseColor(lvl.getBackgroundColor()));
+        if(!lvl.isActive())
+        {
+            convertView.setBackgroundColor(Color.parseColor(lvl.getBackgroundColor()));
+        } else {
+            convertView.setBackgroundColor(Color.WHITE);
+        }
         return convertView;
     }
-
 }

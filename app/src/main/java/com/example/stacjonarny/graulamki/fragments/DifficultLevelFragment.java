@@ -26,9 +26,6 @@ public class DifficultLevelFragment extends Fragment {
 
     public static final String GAME_FRAGMENT_TAG = "GAME";
     private ListView list;
-    private ListView currentLevel;
-    private DifficultyLevelAdapter currentAdapter;
-    private DifficultLevel[] difficultLevels;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,29 +36,16 @@ public class DifficultLevelFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        DifficultLevel toAdd = null;
-        difficultLevels = new DifficultLevel[4];
-        int index = 0;
-        for(DifficultLevel d : MainActivity.difficultLevels) {
-            if(d.getLevelNum() == MainActivity.gameDifficultLevel.getLevelNum()) {
-                toAdd = d;
+
+        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), MainActivity.difficultLevels);
+        for(DifficultLevel diffLevel : MainActivity.difficultLevels) {
+            if(diffLevel.getLevel().equals(MainActivity.gameDifficultLevel.getLevel())) {
+                diffLevel.setIsActive(true);
             } else {
-                difficultLevels[index++] = d;
+                diffLevel.setIsActive(false);
             }
         }
-        DifficultyLevelAdapter adapter = new DifficultyLevelAdapter(getActivity(), difficultLevels);
         list = (ListView) getActivity().findViewById(R.id.difficultyLevels);
-        currentLevel = (ListView) getActivity().findViewById(R.id.currentLevel);
-
-
-        currentAdapter = new DifficultyLevelAdapter(getActivity(), new DifficultLevel[]{toAdd});
-        currentLevel.setAdapter(currentAdapter);
-        currentLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BackToMenu();
-            }
-        });
         list.setAdapter(adapter);
         list.setOnItemClickListener(new ListHandler());
     }
@@ -84,6 +68,7 @@ public class DifficultLevelFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             MainActivity.gameDifficultLevel = (DifficultLevel) list.getItemAtPosition(position);
+            ((DifficultLevel) list.getItemAtPosition(position)).setIsActive(true);
             SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(MainActivity.DIFFICULT_LEVEL_KEY, MainActivity.gameDifficultLevel.getLevelNum() - 1);
@@ -92,8 +77,6 @@ public class DifficultLevelFragment extends Fragment {
             BackToMenu();
             new DatabaseConnection(MainActivity.mainContext);
         }
-
-
     }
 
 }

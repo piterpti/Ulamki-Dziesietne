@@ -18,7 +18,8 @@ public class MultiplyQuestion extends Question {
     public String getAnswer() {
         int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma;
-        return super.spaceBetweenDigits(new MyNumber(val, comma).toString());
+        MyNumber toReturn = new MyNumber(val, comma);
+        return super.spaceBetweenDigits(toReturn.toString(), toReturn.comma);
     }
 
     @Override
@@ -30,8 +31,8 @@ public class MultiplyQuestion extends Question {
 
     @Override
     public String questionWithoutAnswer() {
-        String first = super.spaceBetweenDigits(firstExpression.toString());
-        String second = super.spaceBetweenDigits(secondExpression.toString());
+        String first = super.spaceBetweenDigits(firstExpression.toString(), firstExpression.comma);
+        String second = super.spaceBetweenDigits(secondExpression.toString(), secondExpression.comma);
         return (first + " * " + second);
     }
 
@@ -49,20 +50,22 @@ public class MultiplyQuestion extends Question {
             comma++;
             temp = new MyNumber(val, comma).toString();
         }
-        return spaceBetweenDigits(temp);
+        return spaceBetweenDigits(temp, comma);
     }
 
     @Override
     public String getIncorrectAnswer2() {
         int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma + lossNumberToAnswer;
-        return spaceBetweenDigits(new MyNumber(val, comma).toString());
+        MyNumber toReturn = new MyNumber(val, comma);
+        return spaceBetweenDigits(toReturn.toString(), toReturn.comma);
     }
 
     @Override
     public String getIncorrectAnswer3() {
         int val = firstExpression.number * secondExpression.number;
         int comma = firstExpression.comma + secondExpression.comma - lossNumberToAnswer;
-        return spaceBetweenDigits(new MyNumber(val, comma).toString());
+        MyNumber toReturn = new MyNumber(val, comma);
+        return spaceBetweenDigits(toReturn.toString(), toReturn.comma);
     }
 }

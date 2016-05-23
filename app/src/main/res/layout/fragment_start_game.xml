@@ -15,20 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/currentDiffLevel"
-            android:textSize="28sp"
-            android:padding="16dp"
-            android:textColor="@android:color/white"/>
-
-        <ListView
-            android:id="@+id/currentLevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
-
-        <TextView
+     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/chooseDifficultLevel"
@@ -40,6 +27,8 @@
             android:id="@+id/difficultyLevels"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="2dp"
             >
         </com.example.stacjonarny.graulamki.Classes.NonScrollListView>
         </LinearLayout>

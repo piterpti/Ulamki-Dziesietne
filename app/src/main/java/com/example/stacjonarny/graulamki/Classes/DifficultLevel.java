@@ -10,6 +10,16 @@ public class DifficultLevel {
     private int questionCount;
     private String backgroundColor = "";
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    private boolean isActive = false;
+
     public DifficultLevel(String level, float timeToAnswer, int questionCount, int levelNum, String backgroundColor) {
         this.level = level;
         this.timeToAnswer = timeToAnswer;

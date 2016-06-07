@@ -114,7 +114,7 @@ public class GameSummary extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).commit();
         MainMenu main_menu_fragment = new MainMenu();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, main_menu_fragment);
+        transaction.add(R.id.fragment_container, main_menu_fragment, MainActivity.MENU_FRAGMENT);
         transaction.commit();
     }
 }

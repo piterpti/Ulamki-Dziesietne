@@ -62,7 +62,7 @@ public class Game extends Fragment {
     private DonutProgress circleTimer;
     private int [] randoms;
 
-    private final int VERDICT_TIME = 30; // DEFAULT 3000 MILI SECONDS
+    private final int VERDICT_TIME = 3000; // DEFAULT 3000 MILI SECONDS
 
     public Game() {
     }

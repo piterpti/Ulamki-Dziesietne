@@ -38,6 +38,7 @@ public class MainActivity extends FragmentActivity {
     public final static String SOUND_KEY = "SOUNDONOFF";
     public final static String DIFFICULT_LEVEL_KEY = "DIFFICULT_LEVEL_START";
     public final static String FIRST_RUN_KEY = "FIRST_RUN";
+    public final static String MENU_FRAGMENT = "MENU_FRAGMENT";
     public static boolean SOUND = true;
     public static boolean FIRST_RUN = true;
 
@@ -53,7 +54,7 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if(savedInstanceState == null)
         {
-            transaction.add(R.id.fragment_container, main_menu_fragment);
+            transaction.add(R.id.fragment_container, main_menu_fragment, MENU_FRAGMENT);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -149,6 +150,12 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        MainMenu mainMenu = null;
+        mainMenu = (MainMenu) getSupportFragmentManager().findFragmentByTag(MENU_FRAGMENT);
+        if(mainMenu != null && mainMenu.isVisible()) {
+            System.exit(0);
+        }
+
         boolean callSuper = true;
         Game gameFragment = null;
         GameSummary gameSummaryFragment = null;

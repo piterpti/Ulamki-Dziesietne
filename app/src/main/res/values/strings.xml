@@ -9,7 +9,8 @@
     <string name="correctAnswers">Poprawnych odpowiedzi:</string>
     <string name="correctAnswer">DOBRZE!</string>
     <string name="inCorrectAnswer">ŹLE!</string>
-    <string name="applicationAuthors">Michał Brzujszczak\nPaweł Karpiński\nDamian Kurek\nPiotr Łukasik</string>
+    <string name="applicationAuthors">Michał Brzujszczak - system osiągnięć; połączenie z bazą danych,\nPaweł Karpiński - system wyboru poziomu trudności;
+        logika menu\nDamian Kurek - design aplikacji, animacje;\nPiotr Łukasik - generator pytań i odpowiedzi, dźwięki</string>
     <string name="menuNewGame">Graj</string>
     <string name="menuAchievements">Osiągnięcia</string>
     <string name="menuAboutGame">O grze</string>
